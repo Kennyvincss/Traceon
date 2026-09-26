@@ -1,0 +1,15 @@
+{
+  "name": "traceon",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Traceon developer workflow platform — UI plus a small server for GitHub sign-in and read-only repository analysis.",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "node --test \"test/*.test.js\"",
+    "test:e2e": "node test/e2e.browser.js"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

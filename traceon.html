@@ -209,6 +209,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .mt-8{margin-top:8px}.mt-12{margin-top:12px}.mt-16{margin-top:16px}
 .fw-700{font-weight:700}.fs-12{font-size:12px}.fs-13{font-size:13px}
 .col-red{color:var(--red2)}.col-yellow{color:var(--yellow2)}.col-green{color:var(--teal)}.col-blue{color:var(--accent2)}.col-purple{color:var(--purple)}.col-muted{color:var(--text2)}
+.inline-code{background:var(--bg3);padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:.92em}
 .report-section{margin-bottom:28px}
 .report-section h3{font-size:14px;font-weight:700;margin-bottom:12px;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:8px}
 </style>
@@ -221,68 +222,76 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
   <!-- PANEL 0: Landing -->
   <div id="cs-landing" class="connect-card" style="width:520px;text-align:center">
     <div class="connect-logo" style="font-size:32px;margin-bottom:10px">Trace<span>on</span></div>
+    <div style="font-size:11px;font-weight:700;letter-spacing:1.2px;color:var(--text3);margin-bottom:10px">CONNECT YOUR PROJECT</div>
     <div style="font-size:18px;font-weight:700;margin-bottom:8px">Understand your codebase<br>before you change it.</div>
-    <div style="font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:28px">Connect GitHub to analyse your repositories, map architecture, find test gaps, track change impact, and prepare for release.</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:24px">Sign in with GitHub to securely access repositories you authorize for analysis.</div>
 
-    <!-- GitHub button -->
-    <button class="btn" onclick="startGitHubConnect()" style="width:100%;justify-content:center;padding:13px;font-size:15px;font-weight:700;background:#24292f;color:#fff;border:1px solid #444c56;border-radius:var(--radius);margin-bottom:14px;gap:10px">
+    <div id="cs-landing-notice" style="display:none;margin-bottom:14px;text-align:left"></div>
+
+    <!-- GitHub sign-in (standard OAuth, handled by the Traceon server) -->
+    <button class="btn" id="gh-continue-btn" onclick="continueWithGitHub()" style="width:100%;justify-content:center;padding:13px;font-size:15px;font-weight:700;background:#24292f;color:#fff;border:1px solid #444c56;border-radius:var(--radius);margin-bottom:8px;gap:10px">
       <svg height="20" width="20" viewBox="0 0 16 16" fill="#fff"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-      Continue with GitHub
+      <span id="gh-continue-label">Continue with GitHub</span>
     </button>
+    <div style="font-size:11px;color:var(--text3);margin-bottom:16px">Read-only access · Traceon never writes to your repositories</div>
 
     <!-- OR divider -->
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
       <div style="flex:1;height:1px;background:var(--border)"></div>
-      <span style="font-size:12px;color:var(--text3)">or connect another way</span>
+      <span style="font-size:12px;color:var(--text3)">or</span>
       <div style="flex:1;height:1px;background:var(--border)"></div>
     </div>
 
-    <!-- Other options row -->
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px">
-      <button class="btn btn-secondary" onclick="startGitHubPATFlow()" style="flex-direction:column;padding:12px 8px;gap:4px;font-size:12px">
-        <span style="font-size:18px">🔑</span>Access Token
-      </button>
-      <button class="btn btn-secondary" onclick="switchConnectTab('url');showConnectPanel('tabs')" style="flex-direction:column;padding:12px 8px;gap:4px;font-size:12px">
-        <span style="font-size:18px">🔗</span>Repo URL
-      </button>
-      <button class="btn btn-secondary" onclick="switchConnectTab('paste');showConnectPanel('tabs')" style="flex-direction:column;padding:12px 8px;gap:4px;font-size:12px">
-        <span style="font-size:18px">📋</span>Paste File
-      </button>
-    </div>
-
     <!-- Demo -->
-    <div style="border-top:1px solid var(--border);padding-top:16px">
-      <button class="btn btn-secondary" onclick="selectDemo()" style="width:100%;justify-content:center;padding:10px;font-size:14px">
-        ⚡ Try Demo Project <span class="demo-label" style="margin-left:6px">DEMO</span>
-      </button>
-      <div style="margin-top:8px;font-size:11px;color:var(--text3)">No account needed — ShopCore API with realistic issues pre-loaded</div>
+    <button class="btn btn-secondary" onclick="selectDemo()" style="width:100%;justify-content:center;padding:11px;font-size:14px">
+      ⚡ Try Demo Project <span class="demo-label" style="margin-left:6px">DEMO</span>
+    </button>
+    <div style="margin-top:8px;font-size:11px;color:var(--text3)">No account needed — ShopCore API with simulated issues pre-loaded</div>
+
+    <!-- Other ways to explore (no credentials involved) -->
+    <div style="border-top:1px solid var(--border);margin-top:18px;padding-top:12px;font-size:12px;color:var(--text3)">
+      Just exploring?
+      <a href="#" onclick="switchConnectTab('url');showConnectPanel('tabs');return false" style="color:var(--accent2)">Preview a public URL</a> ·
+      <a href="#" onclick="switchConnectTab('paste');showConnectPanel('tabs');return false" style="color:var(--accent2)">paste a file</a>
     </div>
   </div>
 
-  <!-- PANEL 1: GitHub OAuth setup / PAT entry -->
+  <!-- PANEL 1: GitHub sign-in status (errors, setup required) -->
   <div id="cs-github-auth" class="connect-card" style="width:520px;display:none">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
       <button class="btn btn-secondary btn-sm" onclick="showConnectPanel('landing')">← Back</button>
-      <div style="font-weight:700;font-size:16px">Connect GitHub</div>
+      <div style="font-weight:700;font-size:16px">Continue with GitHub</div>
     </div>
     <div id="cs-github-auth-body"></div>
   </div>
 
   <!-- PANEL 2: Repo browser -->
-  <div id="cs-repo-browser" class="connect-card" style="width:640px;display:none">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+  <div id="cs-repo-browser" class="connect-card" style="width:680px;display:none">
+    <div id="cs-gh-connected" style="display:none;margin-bottom:16px;padding:12px 14px;background:rgba(63,185,80,.06);border:1px solid rgba(63,185,80,.3);border-radius:var(--radius)"></div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
       <button class="btn btn-secondary btn-sm" onclick="showConnectPanel('landing')">← Back</button>
       <div>
-        <div style="font-weight:700;font-size:16px">Your Repositories</div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--text3)">YOUR GITHUB REPOSITORIES</div>
         <div id="cs-repo-user-info" style="font-size:12px;color:var(--text2)"></div>
       </div>
-      <div style="margin-left:auto" id="cs-repo-user-badge"></div>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+        <span id="cs-repo-user-badge"></span>
+        <button class="btn btn-secondary btn-sm" onclick="signOutGitHub()">Sign out</button>
+      </div>
     </div>
-    <input id="cs-repo-search" type="text" placeholder="Search repositories…" oninput="filterRepos(this.value)"
-      class="url-input" style="width:100%;margin-bottom:14px;padding:9px 12px;font-size:13px">
-    <div id="cs-repo-list" style="display:flex;flex-direction:column;gap:10px;max-height:460px;overflow-y:auto;padding-right:4px"></div>
+    <div style="display:flex;gap:8px;margin-bottom:14px">
+      <input id="cs-repo-search" type="text" placeholder="Search repositories…" oninput="renderFilteredRepos()"
+        class="url-input" style="flex:1;padding:9px 12px;font-size:13px">
+      <select id="cs-repo-sort" onchange="renderFilteredRepos()" class="url-input" style="width:auto;padding:9px 10px;font-size:13px">
+        <option value="updated">Recently updated</option>
+        <option value="name">Name</option>
+        <option value="created">Newest</option>
+      </select>
+      <button class="btn btn-secondary btn-sm" id="cs-repo-refresh" onclick="loadRepoBrowser()" title="Refresh repositories">↻ Refresh</button>
+    </div>
+    <div id="cs-repo-list" style="display:flex;flex-direction:column;gap:10px;max-height:440px;overflow-y:auto;padding-right:4px"></div>
     <div id="cs-repo-loading" style="text-align:center;padding:32px;color:var(--text2);font-size:13px;display:none">
-      <div class="spinner" style="margin:0 auto 10px"></div>Loading repositories…
+      <div class="spinner" style="margin:0 auto 10px"></div>Loading your repositories…
     </div>
     <div id="cs-repo-error" style="display:none;padding:16px;background:rgba(218,54,51,.06);border:1px solid rgba(218,54,51,.2);border-radius:var(--radius);font-size:13px;color:var(--red2)"></div>
   </div>
@@ -298,7 +307,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 
   <!-- PANEL 4: Real scan progress -->
   <div id="cs-scan-progress" class="connect-card" style="width:560px;display:none">
-    <div style="font-weight:700;font-size:16px;margin-bottom:16px;display:flex;align-items:center;gap:10px">
+    <div id="cs-scan-title" style="font-weight:700;font-size:16px;margin-bottom:16px;display:flex;align-items:center;gap:10px">
       <div class="spinner"></div> Traceon is Analysing
     </div>
     <div id="cs-scan-progress-body"></div>
@@ -335,7 +344,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
         </div>
       </div>
       <button class="btn btn-primary" id="analyze-btn" style="width:100%;justify-content:center;padding:11px;font-size:14px" onclick="startUrlAnalysis()" disabled>🔍 Analyse Project</button>
-      <div style="margin-top:10px;font-size:11px;color:var(--text3);text-align:center">Known public repos use curated analysis. Unknown repos show what's actually accessible.</div>
+      <div style="margin-top:10px;font-size:11px;color:var(--text3);text-align:center">Known public repos show a curated, simulated preview. To analyse your own repositories, use Continue with GitHub.</div>
     </div>
     <!-- TAB: Upload -->
     <div id="ctab-panel-upload" style="display:none">
@@ -604,7 +613,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
         </div>
 
         <!-- Stats row -->
-        <div class="grid3 mb-20">
+        <div class="grid3 mb-20" id="overview-stats-row">
           <div class="card">
             <div class="card-header"><span class="card-title">Project Stats</span></div>
             <div class="card-body" style="padding:0">
@@ -1769,6 +1778,7 @@ function runLoadingSequence(onDone) {
 
 function finishLoading(mode, classified) {
   document.getElementById('loading-overlay').classList.add('hidden');
+  resetProjectViews();
 
   // Clear page caches so they re-initialise with correct data
   const el = document.getElementById('maintenance-findings'); if(el) el.innerHTML = '';
@@ -1824,15 +1834,15 @@ function finishLoading(mode, classified) {
       const isLive = true;
       const healthVal = prof.health ? prof.health + ' / 100' : '— / 100';
       const healthCls = prof.health >= 85 ? 'ok' : prof.health >= 70 ? 'warn' : 'crit';
-      updateHeaderForProject(prof.name, prof.version, 'live', healthVal, healthCls);
+      updateHeaderForProject(prof.name, prof.version, 'preview', healthVal, healthCls);
       const srcLabel = prof.type === 'website' ? 'Website' : 'Repository';
       updateOverviewMeta('Project Analysis',
-        `${prof.name} · Last analysed just now · <span class="ev-verified">VERIFIED</span> <span class="ev-ai">AI ANALYSIS</span>`);
+        `${prof.name} · Curated preview · <span class="demo-label">SIMULATED</span>`);
       updateProjectSource(
         `${srcLabel} URL`,
         activeProjectUrl,
-        prof.analysisType,
-        today, 'live'
+        prof.analysisType + ' (curated preview)',
+        today, 'preview'
       );
       document.getElementById('url-inaccessible-banner').style.display = 'none';
       const bc = prof.files
@@ -1852,9 +1862,9 @@ function showInaccessibleBanner(classified) {
   let title = 'Unable to fully analyse this project';
   let reason = '';
   if (classified.type === 'repo-unknown') {
-    reason = `The repository <strong>${classified.repoName}</strong> could not be accessed. It may be private, require authentication, or not yet be supported in Prototype URL Analysis Mode. Source code analysis requires access to the repository contents.`;
+    reason = `The repository <strong>${escHtml(classified.repoName)}</strong> could not be accessed. To analyse a repository you own or can access, go back and choose <strong>Continue with GitHub</strong>. It may be private, require authentication, or not yet be supported in Prototype URL Analysis Mode. Source code analysis requires access to the repository contents.`;
   } else if (classified.type === 'website-unknown') {
-    reason = `The website <strong>${classified.host}</strong> does not expose enough information for full analysis. Source code is not publicly available. Traceon cannot verify architecture, tests, or maintenance details from a public website URL alone.`;
+    reason = `The website <strong>${escHtml(classified.host)}</strong> does not expose enough information for full analysis. Source code is not publicly available. Traceon cannot verify architecture, tests, or maintenance details from a public website URL alone.`;
   }
   document.getElementById('inaccessible-title').innerHTML = title;
   document.getElementById('inaccessible-reason').innerHTML = reason;
@@ -1865,7 +1875,13 @@ function updateHeaderForProject(name, version, sourceType, healthStr, healthCls)
   document.getElementById('header-project').innerHTML =
     `<span>📦</span><span class="proj-name">${name}</span>${version?`<span style="color:var(--text3);font-size:11px">${version}</span>`:''}`;
   const pill = document.getElementById('header-source-pill');
-  if (sourceType === 'live') {
+  if (sourceType === 'preview') {
+    pill.className = 'source-pill demo';
+    pill.innerHTML = '<span class="dot"></span> URL PREVIEW · SIMULATED';
+  } else if (sourceType === 'github') {
+    pill.className = 'source-pill live';
+    pill.innerHTML = '<span class="dot"></span> LIVE PROJECT · GITHUB REPOSITORY';
+  } else if (sourceType === 'live') {
     pill.className = 'source-pill live';
     pill.innerHTML = '<span class="dot"></span> LIVE PROJECT';
   } else {
@@ -1888,7 +1904,13 @@ function updateProjectSource(typeLabel, url, analysisType, date, sourceType) {
   document.getElementById('ps-analysis-type').textContent = analysisType;
   document.getElementById('ps-date').textContent = date;
   const pill = document.getElementById('ps-source-pill');
-  if (sourceType === 'live') {
+  if (sourceType === 'preview') {
+    pill.className = 'source-pill demo';
+    pill.innerHTML = '<span class="dot"></span> URL PREVIEW · SIMULATED';
+  } else if (sourceType === 'github') {
+    pill.className = 'source-pill live';
+    pill.innerHTML = '<span class="dot"></span> LIVE PROJECT · GITHUB REPOSITORY';
+  } else if (sourceType === 'live') {
     pill.className = 'source-pill live';
     pill.innerHTML = '<span class="dot"></span> LIVE PROJECT';
   } else {
@@ -1968,9 +1990,9 @@ function renderUrlProfileOverviewStats(prof) {
   // ---- Components card ----
   const componentsCard = `<div class="card"><div class="card-body">
     <div class="stat-number">${prof.components}</div>
-    <div class="stat-label">Components</div>
+    <div class="stat-label">${prof._repoData ? 'Modules' : 'Components'}</div>
     <hr class="separator">
-    <div style="font-size:12px;color:var(--text2)">${prof.desc.slice(0, 80)}${prof.desc.length > 80 ? '…' : ''}</div>
+    <div style="font-size:12px;color:var(--text2)">${escHtml(prof.desc.slice(0, 80))}${prof.desc.length > 80 ? '…' : ''}</div>
   </div></div>`;
 
   // ---- Coverage card ----
@@ -1984,6 +2006,16 @@ function renderUrlProfileOverviewStats(prof) {
       <hr class="separator">
       <div class="progress-bar"><div class="progress-fill ${cls}" style="width:${bar}%"></div></div>
       <div style="font-size:12px;color:var(--text2);margin-top:8px">${prof.tests ? prof.tests.toLocaleString() + ' tests' : '—'}</div>
+    </div></div>`;
+  } else if (prof.testReachPct != null) {
+    const bar = prof.testReachPct;
+    const cls = bar >= 70 ? 'green' : bar >= 40 ? 'yellow' : 'red';
+    coverageCard = `<div class="card"><div class="card-body">
+      <div class="stat-number">${bar}%</div>
+      <div class="stat-label">Files Reached by Tests</div>
+      <hr class="separator">
+      <div class="progress-bar"><div class="progress-fill ${cls}" style="width:${bar}%"></div></div>
+      <div style="font-size:12px;color:var(--text2);margin-top:8px">${prof.tests} test files · static estimate, not line coverage</div>
     </div></div>`;
   } else {
     coverageCard = `<div class="card"><div class="card-body">
@@ -2028,8 +2060,8 @@ function renderUrlProfileOverviewStats(prof) {
         <div class="issue-item" style="padding:12px 18px;margin:0" onclick="navigate('${a.nav}')">
           <span style="font-size:16px">${a.dot}</span>
           <div class="issue-content">
-            <div class="issue-title">${a.title}</div>
-            <div class="issue-desc">${a.desc}</div>
+            <div class="issue-title">${escHtml(a.title)}</div>
+            <div class="issue-desc">${escHtml(a.desc)}</div>
           </div>
         </div>`).join('');
     }
@@ -2180,6 +2212,7 @@ function startUploadAnalysis() {
 
 function finishLoadingUpload(name) {
   document.getElementById('loading-overlay').classList.add('hidden');
+  resetProjectViews();
   // Clear cached page data
   ['maintenance-findings','coverage-by-module','testing-gaps','test-results-panel',
    'test-generate-panel','impact-component-buttons','important-files-list'].forEach(id => {
@@ -2316,6 +2349,7 @@ function startPasteAnalysis() {
 
 function finishLoadingPaste(name, content) {
   document.getElementById('loading-overlay').classList.add('hidden');
+  resetProjectViews();
   ['maintenance-findings','coverage-by-module','testing-gaps','test-results-panel',
    'test-generate-panel','impact-component-buttons','important-files-list'].forEach(id => {
     const el = document.getElementById(id); if (el) el.innerHTML = '';
@@ -2367,243 +2401,305 @@ function finishLoadingPaste(name, content) {
 
 
 // ============================================================
-// GITHUB INTEGRATION
+// PROJECT SWITCHING — every source (demo, URL, upload, paste, GitHub) starts
+// from the pristine views so no project's data leaks into another.
 // ============================================================
-
-// GitHub state — never exposed in UI, stored only in memory
-const GH = {
-  token: null,        // PAT or OAuth token — only in memory, never shown
-  user: null,         // { login, name, avatar_url, public_repos, total_private_repos }
-  repos: [],          // full list from API
-  selectedRepo: null, // currently selected repo object
-  repoData: null,     // scanned repo model
+const PRISTINE_VIEWS = {
+  overview: document.getElementById('page-overview').innerHTML,
+  sidebar: document.getElementById('sidebar').innerHTML,
 };
 
-// ---- OAuth flow ----
-// GitHub OAuth from a single static file requires a client_id.
-// The token exchange (code → token) needs a backend.
-// We implement PKCE-style device flow or redirect to a configurable callback.
-
-const GITHUB_CLIENT_ID = ''; // set by user in PAT flow or OAuth config
-
-function startGitHubConnect() {
-  // Show the auth panel with OAuth + PAT options
-  const body = document.getElementById('cs-github-auth-body');
-  body.innerHTML = `
-    <div style="margin-bottom:20px;padding:14px;background:rgba(56,139,253,.06);border:1px solid rgba(56,139,253,.2);border-radius:var(--radius)">
-      <div style="font-size:13px;font-weight:600;color:var(--accent2);margin-bottom:6px">About GitHub authentication</div>
-      <div style="font-size:12px;color:var(--text2);line-height:1.7">
-        Traceon is a browser-only prototype. Full GitHub OAuth requires a backend to exchange the authorization code for a token securely.<br><br>
-        <strong style="color:var(--text)">The fastest way to connect:</strong> create a free GitHub Personal Access Token with <code style="background:var(--bg3);padding:1px 4px;border-radius:3px">repo:read</code> scope and paste it below. Your token stays in memory only — it is never stored or transmitted outside your browser.
-      </div>
-    </div>
-
-    <div style="margin-bottom:16px">
-      <div style="font-size:12px;font-weight:600;color:var(--text2);margin-bottom:8px">Option A — Personal Access Token (works instantly)</div>
-      <input type="password" id="gh-pat-input" class="url-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
-        style="width:100%;margin-bottom:8px"
-        oninput="document.getElementById('gh-pat-connect-btn').disabled=!this.value.trim().startsWith('ghp_')&&!this.value.trim().startsWith('github_pat_')">
-      <div style="font-size:11px;color:var(--text3);margin-bottom:10px">
-        Create one at <a href="https://github.com/settings/tokens/new?scopes=repo&description=Traceon" target="_blank" rel="noopener" style="color:var(--accent2)">github.com/settings/tokens</a> — select <strong>Contents: Read-only</strong> and <strong>Metadata: Read-only</strong>. No write permissions needed.
-      </div>
-      <button class="btn btn-primary" id="gh-pat-connect-btn" style="width:100%;justify-content:center;padding:10px" onclick="connectWithPAT()" disabled>Connect with Token</button>
-    </div>
-
-    <div style="border-top:1px solid var(--border);padding-top:16px">
-      <div style="font-size:12px;font-weight:600;color:var(--text2);margin-bottom:8px">Option B — GitHub OAuth App (requires client_id)</div>
-      <div style="display:flex;gap:8px;margin-bottom:8px">
-        <input type="text" id="gh-client-id-input" class="url-input" placeholder="Your GitHub OAuth App client_id (20 chars)"
-          style="flex:1" oninput="document.getElementById('gh-oauth-btn').disabled=this.value.trim().length<10">
-        <button class="btn btn-primary" id="gh-oauth-btn" style="white-space:nowrap" onclick="startOAuthFlow()" disabled>Authorise</button>
-      </div>
-      <div style="font-size:11px;color:var(--text3)">Register an OAuth app at <a href="https://github.com/settings/developers" target="_blank" rel="noopener" style="color:var(--accent2)">github.com/settings/developers</a> with callback URL <code style="background:var(--bg3);padding:1px 4px;border-radius:3px">${location.href.split('?')[0]}</code>. Request <strong>repo (read-only contents)</strong> scope only.</div>
-    </div>`;
-  showConnectPanel('github-auth');
+function resetProjectViews() {
+  document.getElementById('page-overview').innerHTML = PRISTINE_VIEWS.overview;
+  document.getElementById('sidebar').innerHTML = PRISTINE_VIEWS.sidebar;
+  ['maintenance-findings','coverage-by-module','testing-gaps','test-results-panel',
+   'test-generate-panel','impact-component-buttons','important-files-list',
+   'ob-overview','ob-arch','ob-setup','ob-firstday','map-detail-content'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.innerHTML = '';
+  });
+  const hint = document.getElementById('map-detail-hint'); if (hint) hint.style.display = '';
+  const ir = document.getElementById('impact-result'); if (ir) ir.style.display = 'none';
+  selectedMapNode = null;
+  selectedImpactComponent = null;
 }
 
-function startGitHubPATFlow() {
-  startGitHubConnect();
+// ============================================================
+// GITHUB INTEGRATION
+// ============================================================
+//
+// "Continue with GitHub" is a standard GitHub OAuth sign-in handled by the
+// Traceon server (see server/index.js and docs/GITHUB_AUTH_SETUP.md):
+//
+//   Continue with GitHub → /auth/github/login → GitHub authorization page
+//   → /auth/github/callback (code exchanged server-side) → back to Traceon
+//
+// The browser never receives a GitHub token, client id/secret or any other
+// credential. It holds only an HttpOnly session cookie and calls Traceon's own
+// /api endpoints, which return safe metadata (username, avatar, repositories,
+// analysis results). Repository access is read-only.
+
+const GH = {
+  backend: null,        // /api/session response, or null when the Traceon server is not reachable
+  user: null,           // { login, name, avatar_url, html_url }
+  repos: [],            // repositories the user authorized (safe fields only)
+  installUrl: null,     // GitHub App: where the user chooses which repositories Traceon may read
+  justConnected: false,
+  selectedRepo: null,
+  repoData: null,       // scanned Traceon Project Model
+};
+
+const GH_MESSAGES = {
+  cancelled:         'GitHub login was cancelled.',
+  failed:            'We could not connect to GitHub. Please try again.',
+  not_authenticated: 'Your GitHub session has ended. Please continue with GitHub again.',
+  forbidden:         'Traceon does not have permission to access this repository.',
+  not_found:         'Traceon does not have permission to access this repository.',
+  empty:             'This repository does not contain enough files for a complete analysis.',
+  unavailable:       'Traceon could not retrieve this repository. Please check its permissions or try another repository.',
+  rate_limited:      'GitHub temporarily limited requests. Please try again later.',
+  bad_request:       'Traceon could not retrieve this repository. Please check its permissions or try another repository.',
+  signed_out:        'You have signed out of GitHub.',
+  busy:              'Traceon is already analysing a repository for you. Please wait for it to finish.',
+};
+
+class TraceonApiError extends Error {
+  constructor(code) { super(code); this.code = code; }
 }
 
-async function connectWithPAT() {
-  const token = document.getElementById('gh-pat-input').value.trim();
-  if (!token) return;
-  const btn = document.getElementById('gh-pat-connect-btn');
-  btn.disabled = true;
-  btn.textContent = 'Verifying…';
-
+// Calls the Traceon server (same origin). Never calls GitHub directly.
+async function traceonApi(path, opts = {}) {
+  let resp;
   try {
-    const user = await ghFetch('https://api.github.com/user', token);
-    GH.token = token;
-    GH.user = user;
-    await loadRepoBrowser();
-  } catch(e) {
-    btn.disabled = false;
-    btn.textContent = 'Connect with Token';
-    const body = document.getElementById('cs-github-auth-body');
-    const err = document.createElement('div');
-    err.style.cssText = 'padding:10px 14px;background:rgba(218,54,51,.08);border:1px solid rgba(218,54,51,.3);border-radius:var(--radius);color:var(--red2);font-size:13px;margin-bottom:12px';
-    err.textContent = e.message.includes('401') ? 'Token invalid or expired. Please check and try again.' :
-                      e.message.includes('403') ? 'Token lacks required permissions. Ensure repo:read scope is selected.' :
-                      'GitHub connection failed: ' + e.message;
-    body.prepend(err);
-    setTimeout(() => err.remove(), 6000);
+    resp = await fetch(path, {
+      ...opts,
+      credentials: 'same-origin',
+      headers: { 'X-Requested-With': 'traceon', ...(opts.headers || {}) },
+    });
+  } catch (e) {
+    throw new TraceonApiError('backend_unreachable');
   }
+  if (!(resp.headers.get('content-type') || '').includes('json')) throw new TraceonApiError('backend_unreachable');
+  const data = await resp.json().catch(() => ({}));
+  if (!resp.ok) throw new TraceonApiError(data.error || 'unavailable');
+  return data;
 }
 
-function startOAuthFlow() {
-  const clientId = document.getElementById('gh-client-id-input').value.trim();
-  if (!clientId) return;
-  const state = Math.random().toString(36).slice(2);
-  sessionStorage.setItem('gh_oauth_state', state);
-  sessionStorage.setItem('gh_oauth_client_id', clientId);
-  const params = new URLSearchParams({
-    client_id: clientId,
-    scope: 'repo',
-    state,
-    redirect_uri: location.href.split('?')[0],
-  });
-  location.href = 'https://github.com/login/oauth/authorize?' + params;
+async function refreshGitHubSession() {
+  GH.backend = null;
+  if (location.protocol === 'http:' || location.protocol === 'https:') {
+    try { GH.backend = await traceonApi('/api/session'); } catch (e) { GH.backend = null; }
+  }
+  GH.user = GH.backend && GH.backend.authenticated ? GH.backend.user : null;
+  GH.installUrl = GH.backend ? GH.backend.installUrl : null;
+  return GH.backend;
 }
 
-// Handle OAuth redirect callback (code in URL)
-async function handleOAuthCallback() {
-  const params = new URLSearchParams(location.search);
-  const code = params.get('code');
-  const state = params.get('state');
-  if (!code) return false;
-  const savedState = sessionStorage.getItem('gh_oauth_state');
-  if (state !== savedState) return false;
+function setContinueButton(label, disabled) {
+  const btn = document.getElementById('gh-continue-btn');
+  const lbl = document.getElementById('gh-continue-label');
+  if (btn) btn.disabled = !!disabled;
+  if (lbl) lbl.textContent = label;
+}
 
-  // Token exchange must happen server-side; show helpful message
-  document.getElementById('connect-screen').classList.remove('hidden');
-  showConnectPanel('github-auth');
+async function continueWithGitHub() {
+  setContinueButton('Connecting…', true);
+  const session = await refreshGitHubSession();
+  if (!session) { setContinueButton('Continue with GitHub', false); return showGitHubSetupRequired('backend'); }
+  if (!session.githubConfigured) { setContinueButton('Continue with GitHub', false); return showGitHubSetupRequired('config'); }
+  if (session.authenticated) { setContinueButton('Continue with GitHub', false); return loadRepoBrowser(); }
+  setContinueButton('Redirecting to GitHub…', true);
+  location.href = '/auth/github/login';
+}
+
+// Returning via the browser's back button restores a disabled button from cache.
+window.addEventListener('pageshow', () => setContinueButton('Continue with GitHub', false));
+
+function showLandingNotice(msg, tone = 'error') {
+  const el = document.getElementById('cs-landing-notice');
+  if (!el) return;
+  if (!msg) { el.style.display = 'none'; el.innerHTML = ''; return; }
+  const c = tone === 'info'
+    ? 'background:rgba(56,139,253,.06);border:1px solid rgba(56,139,253,.25);color:var(--accent2)'
+    : 'background:rgba(218,54,51,.06);border:1px solid rgba(218,54,51,.3);color:var(--red2)';
+  el.innerHTML = `<div style="padding:10px 14px;border-radius:var(--radius);font-size:13px;${c}">${escHtml(msg)}</div>`;
+  el.style.display = 'block';
+}
+
+// Honest state when GitHub sign-in cannot run: no fake login, no credential inputs.
+function showGitHubSetupRequired(kind) {
   const body = document.getElementById('cs-github-auth-body');
+  const intro = kind === 'backend'
+    ? `This copy of Traceon was opened without the Traceon server, so GitHub sign-in is not available here.`
+    : `The Traceon server is running, but GitHub sign-in has not been set up yet.`;
+  const steps = kind === 'backend'
+    ? `Start Traceon with <code class="inline-code">npm start</code> and open <code class="inline-code">http://localhost:3000</code>.`
+    : `An administrator needs to register a GitHub App and set <code class="inline-code">GITHUB_CLIENT_ID</code> and <code class="inline-code">GITHUB_CLIENT_SECRET</code> on the server.`;
   body.innerHTML = `
-    <div style="padding:16px;background:rgba(210,153,34,.06);border:1px solid rgba(210,153,34,.2);border-radius:var(--radius);margin-bottom:16px">
-      <div style="font-weight:700;color:var(--yellow2);margin-bottom:6px">⚠️ Backend required for OAuth token exchange</div>
+    <div style="padding:16px;background:rgba(210,153,34,.06);border:1px solid rgba(210,153,34,.25);border-radius:var(--radius);margin-bottom:16px">
+      <div style="font-weight:700;color:var(--yellow2);margin-bottom:6px">GitHub sign-in is not available yet</div>
       <div style="font-size:13px;color:var(--text2);line-height:1.7">
-        GitHub returned an authorization code, but exchanging it for an access token requires a server-side request (the client secret cannot be exposed in the browser).<br><br>
-        <strong style="color:var(--text)">Use a Personal Access Token instead</strong> — it works immediately without a backend.
+        ${intro}<br><br>
+        GitHub sign-in runs through the Traceon server so that GitHub credentials never reach your browser. ${steps}
+        Setup steps are in <code class="inline-code">docs/GITHUB_AUTH_SETUP.md</code>.
       </div>
     </div>
-    <div style="font-size:12px;font-weight:600;color:var(--text2);margin-bottom:8px">Continue with a Personal Access Token</div>
-    <input type="password" id="gh-pat-input" class="url-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
-      style="width:100%;margin-bottom:10px"
-      oninput="document.getElementById('gh-pat-connect-btn').disabled=!this.value.trim().startsWith('ghp_')&&!this.value.trim().startsWith('github_pat_')">
-    <button class="btn btn-primary" id="gh-pat-connect-btn" style="width:100%;justify-content:center;padding:10px" onclick="connectWithPAT()" disabled>Connect with Token</button>`;
-  history.replaceState({}, '', location.pathname); // clean URL
+    <button class="btn btn-secondary" style="width:100%;justify-content:center;padding:10px" onclick="selectDemo()">⚡ Try Demo Project instead</button>`;
+  showConnectPanel('github-auth');
+}
+
+// Handles the redirect back from GitHub (?github=connected or ?github_error=…).
+async function handleGitHubReturn() {
+  const params = new URLSearchParams(location.search);
+  const ok = params.get('github');
+  const err = params.get('github_error');
+  if (!ok && !err) return false;
+  history.replaceState({}, '', location.pathname);
+  document.getElementById('connect-screen').classList.remove('hidden');
+  showConnectPanel('landing');
+  if (err) {
+    if (err === 'not_configured') { await refreshGitHubSession(); showGitHubSetupRequired('config'); }
+    else showLandingNotice(GH_MESSAGES[err] || GH_MESSAGES.failed);
+    return true;
+  }
+  await refreshGitHubSession();
+  if (!GH.user) { showLandingNotice(GH_MESSAGES.failed); return true; }
+  GH.justConnected = true;
+  loadRepoBrowser();
   return true;
-}
-
-// ---- GitHub API helper ----
-async function ghFetch(url, token, opts = {}) {
-  const resp = await fetch(url, {
-    headers: {
-      'Authorization': 'Bearer ' + token,
-      'Accept': 'application/vnd.github+json',
-      'X-GitHub-Api-Version': '2022-11-28',
-    },
-    ...opts,
-  });
-  if (!resp.ok) throw new Error(resp.status + ' ' + resp.statusText);
-  return resp.json();
-}
-
-async function ghFetchText(url, token) {
-  const resp = await fetch(url, {
-    headers: {
-      'Authorization': 'Bearer ' + token,
-      'Accept': 'application/vnd.github.raw+json',
-      'X-GitHub-Api-Version': '2022-11-28',
-    },
-  });
-  if (!resp.ok) return null;
-  return resp.text();
 }
 
 // ---- Repo browser ----
 async function loadRepoBrowser() {
   showConnectPanel('repo-browser');
-
-  // User badge
+  if (!GH.user) await refreshGitHubSession();
+  if (!GH.user) {
+    showConnectPanel('landing');
+    showLandingNotice(GH_MESSAGES.not_authenticated);
+    return;
+  }
+  const u = GH.user;
+  const avatar = u.avatar_url ? `<img src="${escHtml(u.avatar_url)}${u.avatar_url.includes('?') ? '&' : '?'}s=64" width="32" height="32" alt="" style="border-radius:50%">` : '';
+  const conn = document.getElementById('cs-gh-connected');
+  conn.innerHTML = `<div style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--teal);margin-bottom:8px">GITHUB CONNECTED</div>
+    <div style="display:flex;align-items:center;gap:10px">${avatar}
+      <div><div style="font-weight:600;font-size:13px;color:var(--teal)">✓ ${GH.justConnected ? 'Connected successfully' : 'Signed in'}</div>
+      <div style="font-size:13px;color:var(--text)">@${escHtml(u.login)}</div></div>
+    </div>`;
+  conn.style.display = 'block';
+  GH.justConnected = false;
   document.getElementById('cs-repo-user-info').textContent =
-    `@${GH.user.login} · ${GH.user.public_repos || 0} public + ${GH.user.total_private_repos || 0} private repos`;
-  document.getElementById('cs-repo-user-badge').innerHTML =
-    `<img src="${GH.user.avatar_url}&s=32" width="28" height="28" style="border-radius:50%;vertical-align:middle"> `;
+    GH.backend && GH.backend.mode === 'app' ? 'Repositories you authorized Traceon to read' : 'Repositories available to Traceon';
+  document.getElementById('cs-repo-user-badge').innerHTML = '';
 
   const loading = document.getElementById('cs-repo-loading');
   const errorEl = document.getElementById('cs-repo-error');
   const listEl  = document.getElementById('cs-repo-list');
+  const refresh = document.getElementById('cs-repo-refresh');
   loading.style.display = 'block';
   listEl.innerHTML = '';
   errorEl.style.display = 'none';
+  refresh.disabled = true;
 
   try {
-    // Fetch up to 100 repos (public + private), sorted by push date
-    const repos = await ghFetch(
-      'https://api.github.com/user/repos?per_page=100&sort=pushed&affiliation=owner,collaborator',
-      GH.token
-    );
-    GH.repos = repos;
+    const data = await traceonApi('/api/repos');
+    GH.repos = data.repositories || [];
+    if (data.installUrl) GH.installUrl = data.installUrl;
     loading.style.display = 'none';
-    renderRepoList(repos);
-  } catch(e) {
+    renderFilteredRepos();
+  } catch (e) {
     loading.style.display = 'none';
+    if (e.code === 'not_authenticated') {
+      GH.user = null;
+      showConnectPanel('landing');
+      showLandingNotice(GH_MESSAGES.not_authenticated);
+      return;
+    }
+    errorEl.innerHTML = `${escHtml(e.code === 'rate_limited' ? GH_MESSAGES.rate_limited : 'We could not load your repositories from GitHub. Please try again.')}
+      <div style="margin-top:10px"><button class="btn btn-secondary btn-sm" onclick="loadRepoBrowser()">↻ Try again</button></div>`;
     errorEl.style.display = 'block';
-    errorEl.textContent = 'Could not load repositories: ' + e.message;
+  } finally {
+    refresh.disabled = false;
   }
 }
 
-function renderRepoList(repos) {
-  const listEl = document.getElementById('cs-repo-list');
-  if (!repos.length) {
-    listEl.innerHTML = '<div style="text-align:center;padding:32px;color:var(--text2);font-size:13px">No repositories found.</div>';
-    return;
-  }
-  listEl.innerHTML = repos.map(repo => {
-    const updated = relativeTime(repo.pushed_at || repo.updated_at);
-    const lang = repo.language || 'Unknown';
-    const langColor = { JavaScript:'#f1e05a', TypeScript:'#3178c6', Python:'#3572A5', Go:'#00ADD8',
-      Ruby:'#701516', Rust:'#dea584', Java:'#b07219', 'C#':'#178600', PHP:'#4F5D95', Swift:'#F05138' }[lang] || '#8b949e';
-    return `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius2);padding:14px 16px;display:flex;gap:14px;align-items:flex-start;transition:border-color .15s" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
-      <div style="flex:1;min-width:0">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap">
-          <span style="font-weight:700;font-size:14px;color:var(--accent2)">${escHtml(repo.name)}</span>
-          <span style="font-size:10px;padding:1px 6px;border-radius:10px;font-weight:600;${repo.private ? 'background:rgba(218,54,51,.12);color:var(--red2)' : 'background:rgba(63,185,80,.1);color:var(--teal)'}">${repo.private ? 'Private' : 'Public'}</span>
-          ${repo.fork ? '<span style="font-size:10px;padding:1px 6px;border-radius:10px;background:var(--bg4);color:var(--text3);font-weight:600">Fork</span>' : ''}
-        </div>
-        ${repo.description ? `<div style="font-size:12px;color:var(--text2);margin-bottom:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escHtml(repo.description)}</div>` : ''}
-        <div style="display:flex;align-items:center;gap:12px;font-size:11px;color:var(--text3)">
-          <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:${langColor};display:inline-block"></span>${escHtml(lang)}</span>
-          ${repo.stargazers_count ? `<span>⭐ ${repo.stargazers_count.toLocaleString()}</span>` : ''}
-          <span>Updated ${updated}</span>
-          <span>${repo.default_branch || 'main'}</span>
-        </div>
-      </div>
-      <button class="btn btn-primary btn-sm" onclick="selectRepoForAnalysis(${repo.id})" style="flex-shrink:0;margin-top:2px">Analyse</button>
-    </div>`;
-  }).join('');
-}
-
-function filterRepos(query) {
-  const q = query.toLowerCase();
-  const filtered = q ? GH.repos.filter(r =>
+function renderFilteredRepos() {
+  const q = (document.getElementById('cs-repo-search').value || '').trim().toLowerCase();
+  const sort = document.getElementById('cs-repo-sort').value;
+  let list = q ? GH.repos.filter(r =>
     r.name.toLowerCase().includes(q) ||
+    (r.owner || '').toLowerCase().includes(q) ||
     (r.description || '').toLowerCase().includes(q) ||
     (r.language || '').toLowerCase().includes(q)
-  ) : GH.repos;
-  renderRepoList(filtered);
+  ) : GH.repos.slice();
+  const t = r => new Date(r.pushed_at || r.updated_at || 0).getTime();
+  if (sort === 'name') list.sort((a, b) => a.full_name.localeCompare(b.full_name));
+  else if (sort === 'created') list.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
+  else list.sort((a, b) => t(b) - t(a));
+  renderRepoList(list, q);
+}
+
+function renderRepoList(repos, query) {
+  const listEl = document.getElementById('cs-repo-list');
+  const manage = GH.installUrl
+    ? `<a href="${escHtml(GH.installUrl)}" style="color:var(--accent2)">Choose which repositories Traceon can read on GitHub</a>` : '';
+  if (!repos.length) {
+    listEl.innerHTML = query
+      ? `<div style="text-align:center;padding:32px;color:var(--text2);font-size:13px">No repositories match “${escHtml(query)}”.</div>`
+      : `<div style="text-align:center;padding:32px 16px;color:var(--text2);font-size:13px;line-height:1.7">
+          <div style="font-size:28px;margin-bottom:8px">📭</div>
+          <div style="font-weight:600;color:var(--text);margin-bottom:4px">No repositories available yet</div>
+          ${GH.installUrl
+            ? `Traceon can only see repositories you have shared with it.<br><a class="btn btn-primary btn-sm" style="margin-top:12px" href="${escHtml(GH.installUrl)}">Select repositories on GitHub</a>`
+            : `We did not find any repositories for @${escHtml(GH.user ? GH.user.login : '')}.`}
+        </div>`;
+    return;
+  }
+  const langColors = { JavaScript:'#f1e05a', TypeScript:'#3178c6', Python:'#3572A5', Go:'#00ADD8', Ruby:'#701516',
+    Rust:'#dea584', Java:'#b07219', 'C#':'#178600', PHP:'#4F5D95', Swift:'#F05138', Kotlin:'#A97BFF', HTML:'#e34c26', CSS:'#563d7c', Shell:'#89e051' };
+  listEl.innerHTML = repos.map(repo => {
+    const lang = repo.language || 'Unknown';
+    const vis = (repo.visibility || (repo.private ? 'private' : 'public')).toLowerCase();
+    const visLabel = vis.charAt(0).toUpperCase() + vis.slice(1);
+    const badge = repo.private ? 'background:rgba(218,54,51,.12);color:var(--red2)' : 'background:rgba(63,185,80,.1);color:var(--teal)';
+    return `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius2);padding:14px 16px;display:flex;gap:14px;align-items:flex-start;transition:border-color .15s" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="flex:1;min-width:0">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px;flex-wrap:wrap">
+          <span style="font-weight:700;font-size:14px;color:var(--accent2)">${escHtml(repo.name)}</span>
+          <span style="font-size:10px;padding:1px 6px;border-radius:10px;font-weight:600;${badge}">${escHtml(visLabel)}</span>
+          ${repo.fork ? '<span style="font-size:10px;padding:1px 6px;border-radius:10px;background:var(--bg4);color:var(--text3);font-weight:600">Fork</span>' : ''}
+          ${repo.archived ? '<span style="font-size:10px;padding:1px 6px;border-radius:10px;background:var(--bg4);color:var(--yellow2);font-weight:600">Archived</span>' : ''}
+        </div>
+        <div style="font-size:11px;color:var(--text3);margin-bottom:6px">${escHtml(repo.owner || '')}</div>
+        ${repo.description ? `<div style="font-size:12px;color:var(--text2);margin-bottom:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escHtml(repo.description)}</div>` : ''}
+        <div style="display:flex;align-items:center;gap:12px;font-size:11px;color:var(--text3);flex-wrap:wrap">
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:${langColors[lang] || '#8b949e'};display:inline-block"></span>${escHtml(lang)}</span>
+          <span>⎇ ${escHtml(repo.default_branch || 'main')}</span>
+          <span>Updated ${relativeTime(repo.pushed_at || repo.updated_at)}</span>
+          <span>${escHtml(visLabel)} repository</span>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="selectRepoForAnalysis(${Number(repo.id)})" style="flex-shrink:0;margin-top:2px">Analyze Repository</button>
+    </div>`;
+  }).join('') + (manage ? `<div style="text-align:center;font-size:12px;color:var(--text3);padding:6px 0 2px">Missing a repository? ${manage}</div>` : '');
 }
 
 function relativeTime(iso) {
   if (!iso) return 'unknown';
   const secs = (Date.now() - new Date(iso)) / 1000;
-  if (secs < 3600)    return Math.floor(secs/60) + ' minutes ago';
-  if (secs < 86400)   return Math.floor(secs/3600) + ' hours ago';
-  if (secs < 2592000) return Math.floor(secs/86400) + ' days ago';
-  if (secs < 31536000)return Math.floor(secs/2592000) + ' months ago';
-  return Math.floor(secs/31536000) + ' years ago';
+  const ago = (n, unit) => `${n} ${unit}${n === 1 ? '' : 's'} ago`;
+  if (secs < 3600)    return ago(Math.max(1, Math.floor(secs/60)), 'minute');
+  if (secs < 86400)   return ago(Math.floor(secs/3600), 'hour');
+  if (secs < 2592000) return ago(Math.floor(secs/86400), 'day');
+  if (secs < 31536000)return ago(Math.floor(secs/2592000), 'month');
+  return ago(Math.floor(secs/31536000), 'year');
+}
+
+async function signOutGitHub() {
+  try { await traceonApi('/auth/logout', { method: 'POST' }); } catch (e) { /* session is cleared below regardless */ }
+  GH.user = null; GH.repos = []; GH.selectedRepo = null; GH.justConnected = false;
+  document.getElementById('cs-gh-connected').style.display = 'none';
+  showConnectPanel('landing');
+  showLandingNotice(GH_MESSAGES.signed_out, 'info');
 }
 
 function selectRepoForAnalysis(repoId) {
@@ -2623,35 +2719,36 @@ function showRepoConfirm(repo) {
         <span style="font-size:10px;padding:1px 7px;border-radius:10px;font-weight:600;${repo.private ? 'background:rgba(218,54,51,.12);color:var(--red2)' : 'background:rgba(63,185,80,.1);color:var(--teal)'}">${repo.private ? 'Private' : 'Public'}</span>
       </div>
       <table class="data-table" style="font-size:13px">
-        <tr><td class="col-muted" style="width:130px">Language</td><td>${escHtml(repo.language || 'Unknown')}</td></tr>
+        <tr><td class="col-muted" style="width:130px">Owner</td><td>${escHtml(repo.owner || '')}</td></tr>
+        <tr><td class="col-muted">Language</td><td>${escHtml(repo.language || 'Unknown')}</td></tr>
         <tr><td class="col-muted">Default branch</td><td>${escHtml(repo.default_branch || 'main')}</td></tr>
-        <tr><td class="col-muted">Last updated</td><td>${relativeTime(repo.pushed_at)}</td></tr>
-        ${repo.stargazers_count ? `<tr><td class="col-muted">Stars</td><td>⭐ ${repo.stargazers_count.toLocaleString()}</td></tr>` : ''}
+        <tr><td class="col-muted">Last updated</td><td>${relativeTime(repo.pushed_at || repo.updated_at)}</td></tr>
         ${repo.description ? `<tr><td class="col-muted">Description</td><td>${escHtml(repo.description)}</td></tr>` : ''}
       </table>
     </div>
-    <div style="padding:12px 14px;background:rgba(56,139,253,.05);border:1px solid rgba(56,139,253,.15);border-radius:var(--radius);margin-bottom:16px;font-size:12px;color:var(--text2)">
-      <strong style="color:var(--accent2)">What Traceon will read:</strong> file tree, README, package.json / requirements.txt / go.mod / Cargo.toml, test files, CI/CD config, Dockerfile. <strong>No write access. No secrets read.</strong>
+    <div style="padding:12px 14px;background:rgba(56,139,253,.05);border:1px solid rgba(56,139,253,.15);border-radius:var(--radius);margin-bottom:16px;font-size:12px;color:var(--text2);line-height:1.6">
+      <strong style="color:var(--accent2)">What Traceon will read:</strong> a read-only snapshot of the <strong>${escHtml(repo.default_branch || 'main')}</strong> branch — folder structure, source and test files, dependency manifests and lockfiles, README and docs, configuration, Dockerfiles and CI/CD workflows.
+      <strong>Traceon never commits, pushes, opens pull requests or changes settings.</strong> Values in <code class="inline-code">.env</code> files are not read.
     </div>
     <button class="btn btn-primary" style="width:100%;justify-content:center;padding:12px;font-size:14px" onclick="startRealScan()">
-      🔍 Start Traceon Analysis
+      🔍 Analyze Repository
     </button>`;
   showConnectPanel('repo-confirm');
 }
 
 // ============================================================
-// REAL REPOSITORY SCANNER
+// REAL REPOSITORY SCANNER — runs on the Traceon server, streamed here
 // ============================================================
 
 async function startRealScan() {
   const repo = GH.selectedRepo;
   if (!repo) return;
   showConnectPanel('scan-progress');
+  document.getElementById('cs-scan-title').innerHTML = '<div class="spinner"></div> Traceon is Analysing';
 
   const body = document.getElementById('cs-scan-progress-body');
   const branch = repo.default_branch || 'main';
 
-  // Scanning stages with real data
   const stages = [
     { id:'s-connect',  label:'Repository connected',          detail:'' },
     { id:'s-tree',     label:'Discovering file structure',    detail:'' },
@@ -2671,6 +2768,7 @@ async function startRealScan() {
     { id:'ag-cfg',   label:'Configuration Agent' },
     { id:'ag-dep2',  label:'Deployment Agent' },
   ];
+  const stageState = {};
 
   function stageIcon(state) {
     return { pending:'<span style="color:var(--text3)">○</span>', running:'<div class="spinner" style="display:inline-block"></div>', done:'<span style="color:var(--teal)">✓</span>', error:'<span style="color:var(--red2)">✗</span>' }[state];
@@ -2680,7 +2778,7 @@ async function startRealScan() {
     body.innerHTML = `
       <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;margin-bottom:14px;font-size:13px">
         <div style="font-weight:600;margin-bottom:4px">${escHtml(repo.full_name)}</div>
-        <div style="font-size:12px;color:var(--text2)">${escHtml(repo.language || '')} · ${escHtml(branch)} branch</div>
+        <div style="font-size:12px;color:var(--text2)">${escHtml(repo.language || '')} · ${escHtml(branch)} branch · read-only</div>
       </div>
       <div style="display:flex;gap:16px;margin-bottom:14px">
         <div style="flex:1">
@@ -2704,6 +2802,7 @@ async function startRealScan() {
   }
 
   function setStage(id, state, detail) {
+    stageState[id] = state;
     const icon  = document.getElementById(id + '-icon');
     const label = document.getElementById(id + '-label');
     const det   = document.getElementById(id + '-detail');
@@ -2714,281 +2813,242 @@ async function startRealScan() {
 
   function updateCounts(counts) {
     const el = document.getElementById('scan-counts');
-    if (el) el.innerHTML = Object.entries(counts).map(([k,v]) => `<span><strong style="color:var(--text)">${v}</strong> ${k}</span>`).join('');
+    if (el) el.innerHTML = Object.entries(counts).map(([k,v]) => `<span><strong style="color:var(--text)">${escHtml(String(v))}</strong> ${k}</span>`).join('');
   }
 
   const counts = { 'files discovered': '…', 'source files': '—', 'test files': '—', 'dependencies': '—', 'docs': '—' };
   renderProgress(counts);
 
-  // ---- Collected real data ----
-  const repoModel = {
-    name: repo.name,
-    fullName: repo.full_name,
-    owner: repo.owner.login,
-    language: repo.language || 'Unknown',
-    branch,
-    description: repo.description || '',
-    isPrivate: repo.private,
-    stars: repo.stargazers_count,
-    url: repo.html_url,
-    allFiles: [],
-    sourceFiles: [],
-    testFiles: [],
-    configFiles: [],
-    docFiles: [],
-    deployFiles: [],
-    packageJson: null,
-    requirementsTxt: null,
-    goMod: null,
-    cargoToml: null,
-    readmeContent: '',
-    ciFiles: [],
-    dockerfile: false,
-    testFramework: null,
-    dependencies: {},
-    devDependencies: {},
-    rawManifest: {},
-    findings: [],
-  };
-
+  let model = null;
   try {
-    // STAGE 1: Connect
-    setStage('s-connect', 'done', `github.com/${repo.full_name}`);
-    setStage('ag-arch', 'running');
-
-    // STAGE 2: File tree
-    setStage('s-tree', 'running');
-    let tree;
+    const url = `/api/repos/${encodeURIComponent(repo.owner)}/${encodeURIComponent(repo.name)}/scan?ref=${encodeURIComponent(branch)}`;
+    let resp;
     try {
-      const treeResp = await ghFetch(
-        `https://api.github.com/repos/${repo.full_name}/git/trees/${branch}?recursive=1`,
-        GH.token
-      );
-      tree = treeResp.tree || [];
-    } catch(e) {
-      // Fall back to non-recursive if truncated
-      tree = [];
+      resp = await fetch(url, { credentials: 'same-origin', headers: { 'X-Requested-With': 'traceon' } });
+    } catch (e) { throw new TraceonApiError('unavailable'); }
+    if (!resp.ok || !resp.body) {
+      const d = await resp.json().catch(() => ({}));
+      throw new TraceonApiError(d.error || 'unavailable');
     }
-    repoModel.allFiles = tree.filter(f => f.type === 'blob').map(f => f.path);
-    counts['files discovered'] = repoModel.allFiles.length;
-    updateCounts(counts);
-
-    // Classify files
-    repoModel.sourceFiles = repoModel.allFiles.filter(f =>
-      /\.(ts|tsx|js|jsx|py|go|rs|java|cs|rb|php|swift|kt|cpp|c|h)$/.test(f) &&
-      !f.includes('/node_modules/') && !f.includes('/.git/') &&
-      !/\.(test|spec|_test)\.(ts|tsx|js|jsx|py|go|rs)$/.test(f)
-    );
-    repoModel.testFiles = repoModel.allFiles.filter(f =>
-      /\.(test|spec|_test)\.(ts|tsx|js|jsx|py|go|rs)$/.test(f) ||
-      /\/__tests__\//.test(f) ||
-      /\/tests?\//.test(f) ||
-      f.endsWith('_test.go') || f.endsWith('_test.py')
-    );
-    repoModel.configFiles = repoModel.allFiles.filter(f =>
-      /\.(json|yaml|yml|toml|ini|env\.example|eslintrc|prettierrc|babelrc)$/.test(f) ||
-      f.endsWith('.env.example') || f.endsWith('tsconfig.json') || f.endsWith('vite.config.ts')
-    );
-    repoModel.docFiles = repoModel.allFiles.filter(f =>
-      /readme|changelog|contributing|license|docs?\//i.test(f) && /\.(md|txt|rst)$/.test(f)
-    );
-    repoModel.deployFiles = repoModel.allFiles.filter(f =>
-      /dockerfile|docker-compose|\.github\/workflows|\.gitlab-ci|jenkinsfile|\.circleci/i.test(f)
-    );
-    repoModel.dockerfile = repoModel.allFiles.some(f => /^dockerfile$/i.test(f.split('/').pop()));
-    repoModel.ciFiles = repoModel.allFiles.filter(f => /\.github\/workflows/.test(f));
-
-    counts['source files']  = repoModel.sourceFiles.length;
-    counts['test files']    = repoModel.testFiles.length;
-    counts['docs']          = repoModel.docFiles.length;
-    setStage('s-tree', 'done', `${repoModel.allFiles.length} files in ${branch}`);
-    updateCounts(counts);
-
-    // STAGE 3: Dependency manifests
-    setStage('s-manifest', 'running');
-    setStage('ag-dep', 'running');
-
-    const manifestPaths = {
-      'package.json': 'packageJson',
-      'requirements.txt': 'requirementsTxt',
-      'go.mod': 'goMod',
-      'Cargo.toml': 'cargoToml',
-    };
-
-    for (const [file, key] of Object.entries(manifestPaths)) {
-      if (repoModel.allFiles.includes(file) || repoModel.allFiles.some(f => f.endsWith('/' + file) && f.split('/').length === 2)) {
-        const actualPath = repoModel.allFiles.find(f => f === file || f.endsWith('/' + file));
-        if (!actualPath) continue;
-        const content = await ghFetchText(
-          `https://api.github.com/repos/${repo.full_name}/contents/${actualPath}`,
-          GH.token
-        );
-        if (content) {
-          if (key === 'packageJson') {
-            try {
-              const pkg = JSON.parse(content);
-              repoModel.packageJson = pkg;
-              repoModel.dependencies = pkg.dependencies || {};
-              repoModel.devDependencies = pkg.devDependencies || {};
-              repoModel.rawManifest = pkg;
-            } catch(e) { /* malformed */ }
-          } else {
-            repoModel[key] = content;
-          }
-        }
+    // Newline-delimited JSON: stage/count events, then the result (or an error code).
+    const reader = resp.body.getReader();
+    const decoder = new TextDecoder();
+    let buf = '', errorCode = null;
+    for (;;) {
+      const { value, done } = await reader.read();
+      if (value) buf += decoder.decode(value, { stream: true });
+      let nl;
+      while ((nl = buf.indexOf('\n')) >= 0) {
+        const line = buf.slice(0, nl).trim();
+        buf = buf.slice(nl + 1);
+        if (!line) continue;
+        const ev = JSON.parse(line);
+        if (ev.type === 'stage') setStage(ev.id, ev.state, ev.detail);
+        else if (ev.type === 'counts') { Object.assign(counts, ev.counts); updateCounts(counts); }
+        else if (ev.type === 'result') model = ev.model;
+        else if (ev.type === 'error') errorCode = ev.code;
       }
+      if (done) break;
     }
-
-    const depCount = Object.keys(repoModel.dependencies).length + Object.keys(repoModel.devDependencies).length;
-    if (repoModel.requirementsTxt) {
-      const lines = repoModel.requirementsTxt.split('\n').filter(l => l.trim() && !l.startsWith('#'));
-      counts['dependencies'] = lines.length;
-    } else {
-      counts['dependencies'] = depCount || '—';
-    }
-    setStage('s-manifest', 'done', depCount > 0 ? `${depCount} npm packages` : repoModel.requirementsTxt ? 'requirements.txt found' : repoModel.goMod ? 'go.mod found' : 'manifest parsed');
-    setStage('ag-dep', 'done');
-    updateCounts(counts);
-
-    // STAGE 4: Tests
-    setStage('s-tests', 'running');
-    setStage('ag-test', 'running');
-    // Detect test framework
-    const allDeps = { ...repoModel.dependencies, ...repoModel.devDependencies };
-    if (allDeps.jest || allDeps['@jest/core'])           repoModel.testFramework = 'Jest';
-    else if (allDeps.vitest)                             repoModel.testFramework = 'Vitest';
-    else if (allDeps.mocha)                              repoModel.testFramework = 'Mocha';
-    else if (allDeps.jasmine)                            repoModel.testFramework = 'Jasmine';
-    else if (repoModel.allFiles.some(f => /pytest\.ini|conftest\.py/.test(f))) repoModel.testFramework = 'Pytest';
-    else if (repoModel.testFiles.some(f => f.endsWith('_test.go')))            repoModel.testFramework = 'Go test';
-    else if (repoModel.testFiles.length > 0)             repoModel.testFramework = 'Unknown framework';
-    else                                                 repoModel.testFramework = null;
-    setStage('s-tests', 'done', `${repoModel.testFiles.length} test files${repoModel.testFramework ? ' · ' + repoModel.testFramework : ''}`);
-    setStage('ag-test', 'done');
-
-    // STAGE 5: Docs
-    setStage('s-docs', 'running');
-    setStage('ag-docs', 'running');
-    const readmePath = repoModel.allFiles.find(f => /^readme\.md$/i.test(f));
-    if (readmePath) {
-      const txt = await ghFetchText(
-        `https://api.github.com/repos/${repo.full_name}/contents/${readmePath}`,
-        GH.token
-      );
-      if (txt) repoModel.readmeContent = txt.slice(0, 8000); // cap at 8KB
-    }
-    setStage('s-docs', 'done', `${repoModel.docFiles.length} documentation files`);
-    setStage('ag-docs', 'done');
-
-    // STAGE 6: Config
-    setStage('s-config', 'running');
-    setStage('ag-cfg', 'running');
-    const hasEnvExample = repoModel.allFiles.some(f => f.endsWith('.env.example'));
-    const hasEslint     = repoModel.allFiles.some(f => /eslintrc|\.eslintrc/.test(f));
-    const hasTsConfig   = repoModel.allFiles.some(f => f.endsWith('tsconfig.json'));
-    setStage('s-config', 'done',
-      [hasEnvExample && '.env.example', hasEslint && 'ESLint', hasTsConfig && 'TypeScript'].filter(Boolean).join(' · ') || 'scanned');
-    setStage('ag-cfg', 'done');
-
-    // STAGE 7: Deployment
-    setStage('s-deploy', 'running');
-    setStage('ag-dep2', 'running');
-    setStage('s-deploy', 'done',
-      `${repoModel.dockerfile ? 'Dockerfile · ' : ''}${repoModel.ciFiles.length} CI workflow${repoModel.ciFiles.length !== 1 ? 's' : ''}`);
-    setStage('ag-dep2', 'done');
-    setStage('ag-arch', 'done');
-    setStage('ag-maint', 'running');
-
-    // Run maintenance analysis
-    repoModel.findings = analyseRepoFindings(repoModel);
-    setStage('ag-maint', 'done');
-
-    GH.repoData = repoModel;
-    updateCounts(counts);
-
-    // Brief pause so user can see the completed state
-    await new Promise(r => setTimeout(r, 900));
-    finishGitHubScan(repoModel);
-
-  } catch(err) {
-    // Show scan error with detail
-    body.innerHTML += `<div style="margin-top:12px;padding:12px 14px;background:rgba(218,54,51,.06);border:1px solid rgba(218,54,51,.25);border-radius:var(--radius);color:var(--red2);font-size:13px">
-      <strong>Scan error:</strong> ${escHtml(err.message)}<br>
-      <div style="margin-top:8px;display:flex;gap:8px">
-        <button class="btn btn-secondary btn-sm" onclick="showConnectPanel('repo-confirm')">← Try again</button>
-        <button class="btn btn-primary btn-sm" onclick="selectDemo()">⚡ Use Demo instead</button>
+    if (errorCode) throw new TraceonApiError(errorCode);
+    if (!model) throw new TraceonApiError('unavailable');
+  } catch (err) {
+    const code = err && err.code ? err.code : 'unavailable';
+    Object.entries(stageState).forEach(([id, st]) => { if (st === 'running') setStage(id, 'error'); });
+    document.getElementById('cs-scan-title').innerHTML = '<span style="color:var(--red2)">✗</span> Analysis stopped';
+    const reauth = code === 'not_authenticated';
+    body.insertAdjacentHTML('beforeend', `<div style="margin-top:12px;padding:12px 14px;background:rgba(218,54,51,.06);border:1px solid rgba(218,54,51,.25);border-radius:var(--radius);color:var(--red2);font-size:13px">
+      ${escHtml(GH_MESSAGES[code] || GH_MESSAGES.unavailable)}
+      <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+        ${reauth
+          ? `<button class="btn btn-primary btn-sm" onclick="continueWithGitHub()">Continue with GitHub</button>`
+          : `<button class="btn btn-secondary btn-sm" onclick="showConnectPanel('repo-browser')">← Choose another repository</button>
+             ${code === 'rate_limited' || code === 'unavailable' ? `<button class="btn btn-secondary btn-sm" onclick="startRealScan()">↻ Try again</button>` : ''}`}
+        <button class="btn btn-secondary btn-sm" onclick="selectDemo()">⚡ Use Demo instead</button>
       </div>
-    </div>`;
+    </div>`);
+    if (reauth) GH.user = null;
+    return;
   }
+
+  // Maintenance agent: derive findings from the real Project Model
+  setStage('ag-maint', 'running');
+  model.findings = analyseRepoFindings(model);
+  setStage('ag-maint', 'done');
+  GH.repoData = model;
+
+  // Brief pause so the user can see the completed state
+  await new Promise(r => setTimeout(r, 700));
+  finishGitHubScan(model);
 }
 
 // ---- Derive maintenance findings from real repo data ----
+function parseVersion(v) {
+  const m = String(v || '').match(/(\d+)(?:\.(\d+))?(?:\.(\d+))?/);
+  return m ? [+m[1], +(m[2] || 0), +(m[3] || 0)] : null;
+}
+function versionLess(a, b) {
+  for (let i = 0; i < 3; i++) { if (a[i] !== b[i]) return a[i] < b[i]; }
+  return false;
+}
+
 function analyseRepoFindings(m) {
   const findings = [];
-
-  // Dependency issues
   const allDeps = { ...m.dependencies, ...m.devDependencies };
+  const manifestFor = eco => ((m.manifests || []).find(x => x.ecosystem === eco) || {}).path || 'package.json';
+  const list = (arr, n = 5) => arr.slice(0, n).join(', ') + (arr.length > n ? ` and ${arr.length - n} more` : '');
 
-  // Known risky deps
+  // ---- Dependencies ----
   const riskyDeps = {
     'jsonwebtoken': { before: '9.0.0', issue: 'CVE-2022-23529 — authentication token forgery', sev: 'CRITICAL' },
     'lodash':       { before: '4.17.21', issue: 'Prototype pollution vulnerability', sev: 'HIGH' },
-    'axios':        { before: '1.0.0', issue: 'SSRF vulnerability in older versions', sev: 'HIGH' },
-    'express':      { before: '4.19.0', issue: 'Known security fixes in v4.19+', sev: 'MEDIUM' },
+    'axios':        { before: '1.6.0', issue: 'CSRF/SSRF vulnerabilities in older versions', sev: 'HIGH' },
+    'express':      { before: '4.19.2', issue: 'Open redirect fix (CVE-2024-29041) in v4.19.2+', sev: 'MEDIUM' },
     'minimist':     { before: '1.2.6', issue: 'Prototype pollution', sev: 'HIGH' },
-    'node-fetch':   { before: '2.6.7', issue: 'Known vulnerabilities in < 2.6.7', sev: 'HIGH' },
+    'node-fetch':   { before: '2.6.7', issue: 'Header exposure on redirect (CVE-2022-0235)', sev: 'HIGH' },
+    'django':       { before: '4.2.0', issue: 'Release line no longer receives security fixes', sev: 'HIGH' },
+    'flask':        { before: '2.2.5', issue: 'Session cookie disclosure (CVE-2023-30861)', sev: 'MEDIUM' },
+    'requests':     { before: '2.31.0', issue: 'Proxy-Authorization header leak (CVE-2023-32681)', sev: 'MEDIUM' },
   };
   for (const [pkg, spec] of Object.entries(riskyDeps)) {
-    if (allDeps[pkg]) {
-      const ver = (allDeps[pkg] || '').replace(/[\^~>=<]/g,'').split('.')[0];
-      findings.push({ sev: spec.sev, cat: 'Dependencies', title: `${pkg}@${allDeps[pkg]} — ${spec.issue}`, loc: 'package.json', why: `This version of ${pkg} has a known security issue.`, action: `Upgrade ${pkg} to ${spec.before} or later.` });
-    }
+    if (!allDeps[pkg]) continue;
+    const ver = parseVersion(allDeps[pkg]);
+    if (!ver || !versionLess(ver, parseVersion(spec.before))) continue;
+    findings.push({ sev: spec.sev, cat: 'Dependencies', title: `${pkg}@${allDeps[pkg]} — ${spec.issue}`, loc: manifestFor(/^(django|flask|requests)$/.test(pkg) ? 'python' : 'npm'),
+      why: `The declared version of ${pkg} is below ${spec.before}, which contains the fix.`, action: `Upgrade ${pkg} to ${spec.before} or later and re-run the test suite.` });
   }
-
-  // No tests
-  if (m.testFiles.length === 0) {
-    findings.push({ sev: 'HIGH', cat: 'Testing', title: 'No test files found', loc: 'Repository root', why: 'Untested code is a deployment risk.', action: 'Add a test suite using ' + (m.language === 'Python' ? 'Pytest' : m.language === 'Go' ? 'go test' : 'Jest or Vitest') + '.' });
-  } else if (m.testFiles.length < m.sourceFiles.length * 0.3) {
-    findings.push({ sev: 'MEDIUM', cat: 'Testing', title: `Low test coverage — ${m.testFiles.length} test files for ${m.sourceFiles.length} source files`, loc: 'tests/', why: 'Many source files appear to have no corresponding tests.', action: 'Add tests for untested modules, starting with critical paths.' });
-  }
-
-  // No README
-  if (!m.readmeContent) {
-    findings.push({ sev: 'MEDIUM', cat: 'Documentation', title: 'README is missing or empty', loc: 'README.md', why: 'New contributors cannot understand the project.', action: 'Add a README with setup, usage, and contribution instructions.' });
-  }
-
-  // No .env.example
-  if (m.allFiles.some(f => f.toLowerCase().includes('.env')) && !m.allFiles.some(f => f.endsWith('.env.example'))) {
-    findings.push({ sev: 'HIGH', cat: 'Configuration', title: '.env.example is missing', loc: '.env.example', why: 'Environment variables are not documented — developers may miss required config.', action: 'Create .env.example listing all required variables (without secret values).' });
-  }
-
-  // No CI/CD
-  if (m.ciFiles.length === 0 && !m.allFiles.some(f => /\.travis|circle|jenkins|gitlab-ci/i.test(f))) {
-    findings.push({ sev: 'LOW', cat: 'Deployment', title: 'No CI/CD configuration found', loc: '.github/workflows/', why: 'Releases are manual — no automated testing before merge.', action: 'Add a GitHub Actions workflow to run tests on pull requests.' });
-  }
-
-  // Large number of deps
+  (m.missingLockfiles || []).forEach(eco => {
+    const names = { npm: 'package-lock.json / yarn.lock / pnpm-lock.yaml', python: 'poetry.lock / Pipfile.lock / pinned requirements', go: 'go.sum', ruby: 'Gemfile.lock', php: 'composer.lock', rust: 'Cargo.lock' };
+    findings.push({ sev: eco === 'rust' ? 'LOW' : 'MEDIUM', cat: 'Dependencies', title: `No lockfile for ${eco} dependencies`, loc: manifestFor(eco),
+      why: 'Without a lockfile every install can resolve different versions, so builds are not reproducible and vulnerable versions can slip in.', action: `Commit ${names[eco] || 'a lockfile'}.` });
+  });
   const depCount = Object.keys(m.dependencies).length;
   if (depCount > 50) {
-    findings.push({ sev: 'LOW', cat: 'Dependencies', title: `${depCount} production dependencies — review for unused packages`, loc: 'package.json', why: 'Large dependency trees increase attack surface and build times.', action: 'Audit with `npm prune` or `depcheck` to remove unused packages.' });
+    findings.push({ sev: 'LOW', cat: 'Dependencies', title: `${depCount} production dependencies — review for unused packages`, loc: manifestFor('npm'), why: 'Large dependency trees increase attack surface and build times.', action: 'Audit dependencies and remove unused packages.' });
   }
 
+  // ---- Configuration & secrets ----
+  const committedEnv = m.allFiles.filter(f => /(^|\/)\.env(\.(local|prod|production|dev|development|staging))?$/.test(f));
+  if (committedEnv.length) {
+    findings.push({ sev: 'CRITICAL', cat: 'Configuration', title: `Environment file committed to the repository (${committedEnv[0]})`, loc: committedEnv[0],
+      why: 'Environment files usually contain credentials. Anyone with read access to the repository can see them. (Traceon did not read its contents.)',
+      action: 'Remove the file from version control, add it to .gitignore, and rotate any secrets it contained.' });
+  }
+  const missingEnv = m.envMissing || [];
+  if (missingEnv.length) {
+    const first = (m.envUsed[missingEnv[0]] || [])[0] || 'source';
+    findings.push({ sev: m.envTemplates && m.envTemplates.length ? 'MEDIUM' : 'HIGH', cat: 'Configuration',
+      title: `${missingEnv.length} environment variable${missingEnv.length > 1 ? 's' : ''} used in code but not documented`,
+      loc: (m.envTemplates && m.envTemplates[0]) || first,
+      why: `Code reads ${list(missingEnv, 6)}${m.envTemplates && m.envTemplates.length ? `, which ${missingEnv.length > 1 ? 'are' : 'is'} missing from ${m.envTemplates[0]}` : ' but there is no .env.example'}. New developers and deployments will miss required configuration.`,
+      action: `${m.envTemplates && m.envTemplates.length ? 'Add the missing names to ' + m.envTemplates[0] : 'Create .env.example listing every variable'} (names and safe example values only).` });
+  }
+
+  // ---- Testing ----
+  const src = m.sourceFiles.length;
+  const reached = new Set(m.testReached || []);
+  if (m.testFiles.length === 0 && src > 0) {
+    findings.push({ sev: 'HIGH', cat: 'Testing', title: 'No test files found', loc: 'Repository root', why: 'Untested code is a deployment risk — regressions reach users unnoticed.', action: `Add a test suite using ${suggestTestFramework(m)}.` });
+  } else if (src > 0) {
+    const pct = Math.round(reached.size / src * 100);
+    if (pct < 40) findings.push({ sev: 'MEDIUM', cat: 'Testing', title: `Only ${pct}% of source files are reached by tests (${reached.size} of ${src})`, loc: 'tests', why: 'Most source files are not imported by any test, directly or through the code under test.', action: 'Add tests for the modules listed on the Testing page, starting with the most depended-on ones.' });
+    const untested = (m.modules || []).filter(x => x.reachPct === 0 && x.fileCount >= 3 && !x.id.startsWith('('))
+      .sort((a, b) => (b.importedBy.length + b.routes) - (a.importedBy.length + a.routes)).slice(0, 3);
+    untested.forEach(x => findings.push({ sev: x.routes || x.importedBy.length >= 2 ? 'HIGH' : 'MEDIUM', cat: 'Testing', title: `Module ${x.id} has no tests (${x.fileCount} files)`, loc: x.id + '/',
+      why: `${x.importedBy.length ? `Used by ${list(x.importedBy, 3)}. ` : ''}${x.routes ? `Contains ${x.routes} API route${x.routes > 1 ? 's' : ''}. ` : ''}No test imports any file in this module.`,
+      action: `Add tests for ${x.id} — use Generate Test on the Testing page for a starting stub.` }));
+  }
+  const routeFiles = [...new Set((m.routes || []).map(r => r.file))];
+  const untestedRoutes = (m.routes || []).filter(r => !reached.has(r.file));
+  if (untestedRoutes.length && m.testFiles.length) {
+    findings.push({ sev: 'MEDIUM', cat: 'Testing', title: `${untestedRoutes.length} of ${m.routes.length} API routes are defined in files no test reaches`, loc: untestedRoutes[0].file,
+      why: `Endpoints such as ${list(untestedRoutes.map(r => r.method + ' ' + r.path), 3)} have no test coverage path.`, action: 'Add request-level tests for these endpoints.' });
+  }
+  const pkgTest = m.packageJson && m.packageJson.scripts ? m.packageJson.scripts.test : null;
+  if (m.packageJson && m.testFiles.length && (!pkgTest || /no test specified/.test(pkgTest))) {
+    findings.push({ sev: 'LOW', cat: 'Testing', title: 'package.json has no working "test" script', loc: 'package.json', why: 'Contributors and CI cannot run the tests with a standard command.', action: `Add "test": "${m.testFramework === 'Vitest' ? 'vitest run' : m.testFramework === 'Jest' ? 'jest' : 'node --test'}" to scripts.` });
+  }
+
+  // ---- Documentation ----
+  if (!m.readmeContent) {
+    findings.push({ sev: 'MEDIUM', cat: 'Documentation', title: 'README is missing or empty', loc: 'README.md', why: 'New contributors cannot understand the project.', action: 'Add a README with setup, usage, and contribution instructions.' });
+  } else if (!m.readmeHasSetup) {
+    findings.push({ sev: 'LOW', cat: 'Documentation', title: 'README has no setup or usage section', loc: m.readmePath || 'README.md', why: `README headings (${list(m.readmeSections || [], 4) || 'none'}) do not explain how to install or run the project.`, action: 'Add "Getting started" steps: install, configure, run, test.' });
+  }
+  if ((m.routes || []).length >= 5 && !m.allFiles.some(f => /openapi|swagger|api\.md|api-docs|(^|\/)docs\/api/i.test(f))) {
+    findings.push({ sev: 'LOW', cat: 'Documentation', title: `${m.routes.length} API routes with no API documentation`, loc: routeFiles[0] || 'routes', why: 'Consumers of the API must read source code to learn the endpoints.', action: 'Add an OpenAPI spec or docs/api.md.' });
+  }
+
+  // ---- Code health ----
+  (m.largeFiles || []).filter(f => f.lines > 1500).slice(0, 3).forEach(f => findings.push({ sev: 'LOW', cat: 'Code Health', title: `Very large file: ${f.path} (${f.lines.toLocaleString()} lines)`, loc: f.path, why: 'Large files are harder to review, test and change safely.', action: 'Split it into smaller, focused modules.' }));
+  if ((m.totalTodos || 0) >= 20) {
+    findings.push({ sev: 'LOW', cat: 'Code Health', title: `${m.totalTodos} TODO/FIXME markers in source`, loc: m.todoFiles[0] ? m.todoFiles[0].path : 'source', why: `Highest concentration: ${list(m.todoFiles.map(t => `${t.path} (${t.count})`), 3)}.`, action: 'Triage the markers into tracked issues or resolve them.' });
+  }
+
+  // ---- Deployment ----
+  const ci = m.ci || [];
+  if (ci.length === 0) {
+    findings.push({ sev: 'LOW', cat: 'Deployment', title: 'No CI/CD configuration found', loc: '.github/workflows/', why: 'Releases are manual — no automated testing before merge.', action: 'Add a GitHub Actions workflow that runs the tests on every pull request.' });
+  } else if (m.testFiles.length && !ci.some(w => w.runsTests)) {
+    findings.push({ sev: 'MEDIUM', cat: 'Deployment', title: 'CI never runs the test suite', loc: ci[0].path, why: `${ci.length} workflow${ci.length > 1 ? 's' : ''} found (${list(ci.map(w => w.name), 3)}), none of which run tests.`, action: 'Add a test step to the CI workflow that runs on pull requests.' });
+  }
+  (m.docker || []).forEach(d => {
+    if (d.usesLatest) findings.push({ sev: 'MEDIUM', cat: 'Deployment', title: `${d.path} uses an unpinned base image (${d.baseImages[0]})`, loc: d.path, why: 'Unpinned or :latest images change underneath you, breaking builds or introducing vulnerabilities.', action: 'Pin the base image to a specific version tag or digest.' });
+    if (d.runsAsRoot) findings.push({ sev: 'LOW', cat: 'Deployment', title: `${d.path} runs the container as root`, loc: d.path, why: 'A compromised process in the container has root privileges.', action: 'Add a non-root USER instruction.' });
+  });
+
   return findings;
+}
+
+function suggestTestFramework(m) {
+  if (m.language === 'Python') return 'Pytest';
+  if (m.language === 'Go') return 'the built-in go test';
+  if (m.language === 'Rust') return 'cargo test';
+  if (m.language === 'Ruby') return 'RSpec';
+  return (m.frameworks || []).includes('Vite') ? 'Vitest' : 'Jest or Vitest';
+}
+
+function installCommandFor(m) {
+  const lock = (m.lockfiles || []).map(f => f.split('/').pop());
+  if (m.packageJson) return lock.includes('pnpm-lock.yaml') ? 'pnpm install' : lock.includes('yarn.lock') ? 'yarn install' : lock.some(l => /^bun\.lock/.test(l)) ? 'bun install' : lock.includes('package-lock.json') ? 'npm ci' : 'npm install';
+  if (lock.includes('poetry.lock')) return 'poetry install';
+  if (lock.includes('Pipfile.lock')) return 'pipenv install --dev';
+  if (m.requirementsTxt) return 'pip install -r requirements.txt';
+  if ((m.ecosystems || []).includes('python')) return 'pip install -e .';
+  if (m.goMod) return 'go mod download';
+  if (m.cargoToml) return 'cargo build';
+  if ((m.ecosystems || []).includes('ruby')) return 'bundle install';
+  if ((m.ecosystems || []).includes('php')) return 'composer install';
+  return '# Install dependencies (see README)';
+}
+
+function testCommandFor(m) {
+  const scripts = m.packageJson && m.packageJson.scripts ? m.packageJson.scripts : {};
+  const lock = (m.lockfiles || []).map(f => f.split('/').pop());
+  const runner = lock.includes('pnpm-lock.yaml') ? 'pnpm' : lock.includes('yarn.lock') ? 'yarn' : 'npm';
+  if (scripts.test && !/no test specified/.test(scripts.test)) return `${runner} test`;
+  switch (m.testFramework) {
+    case 'Vitest': return 'npx vitest run';
+    case 'Jest': return 'npx jest';
+    case 'Mocha': return 'npx mocha';
+    case 'Playwright': return 'npx playwright test';
+    case 'Cypress': return 'npx cypress run';
+    case 'Pytest': return 'pytest';
+    case 'unittest': return 'python -m unittest';
+    case 'Go test': return 'go test ./...';
+    case 'Cargo test': return 'cargo test';
+    case 'RSpec': return 'bundle exec rspec';
+    case 'PHPUnit': return 'vendor/bin/phpunit';
+    case 'JUnit': return m.allFiles.some(f => /build\.gradle/.test(f)) ? './gradlew test' : 'mvn test';
+    default: return '# No test command detected';
+  }
 }
 
 // ---- Build Traceon project model from real repo ----
 function finishGitHubScan(m) {
   document.getElementById('connect-screen').classList.add('hidden');
+  resetProjectViews();
 
-  // Clear cached page data (including onboarding sub-tabs)
-  ['maintenance-findings','coverage-by-module','testing-gaps','test-results-panel',
-   'test-generate-panel','impact-component-buttons','important-files-list',
-   'ob-overview','ob-arch','ob-setup','ob-firstday'].forEach(id => {
-    const el = document.getElementById(id); if (el) el.innerHTML = '';
-  });
-  const ir = document.getElementById('impact-result'); if (ir) ir.style.display = 'none';
-
-  // Build project profile from real data
   const critCount  = m.findings.filter(f => f.sev === 'CRITICAL').length;
   const highCount  = m.findings.filter(f => f.sev === 'HIGH').length;
   const medCount   = m.findings.filter(f => f.sev === 'MEDIUM').length;
@@ -3003,37 +3063,26 @@ function finishGitHubScan(m) {
   const healthCls = health >= 85 ? 'ok' : health >= 65 ? 'warn' : 'crit';
   const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
-  // Detect framework from package.json / language
-  let framework = m.language;
-  const allDeps = { ...m.dependencies, ...m.devDependencies };
-  if (allDeps.react)   framework = 'React';
-  else if (allDeps.vue)        framework = 'Vue.js';
-  else if (allDeps.angular || allDeps['@angular/core']) framework = 'Angular';
-  else if (allDeps.express)    framework = 'Express.js';
-  else if (allDeps.fastify)    framework = 'Fastify';
-  else if (allDeps.next)       framework = 'Next.js';
-  else if (allDeps.nuxt)       framework = 'Nuxt.js';
-  else if (m.requirementsTxt?.includes('flask'))    framework = 'Flask';
-  else if (m.requirementsTxt?.includes('django'))   framework = 'Django';
-  else if (m.requirementsTxt?.includes('fastapi'))  framework = 'FastAPI';
-
+  const framework = m.framework || m.language;
   const name = m.name;
+  const reachPct = m.sourceFiles.length ? Math.round((m.testReached || []).length / m.sourceFiles.length * 100) : 0;
 
-  // Infer component structure from top-level directories
-  const topDirs = [...new Set(m.sourceFiles.map(f => f.split('/')[0]).filter(d => d && !d.includes('.')))];
-  const nodes = buildMapNodesFromDirs(topDirs, m);
-  const edges = buildMapEdgesFromNodes(nodes);
+  const nodes = buildMapNodesFromModules(m);
+  const nodeIds = new Set(nodes.map(n => n.id));
+  const edges = (m.moduleEdges || []).filter(([a, b]) => nodeIds.has(a) && nodeIds.has(b)).map(([a, b]) => [a, b]);
+  const depCount = Object.keys(m.dependencies).length;
 
-  // Store as active URL profile so all pages use real data
+  // Store as active profile so all pages use real data
   activeUrlProfile = {
-    name, version: '', type: 'repo',
+    name, version: m.packageJson && m.packageJson.version ? 'v' + m.packageJson.version : '', type: 'repo',
     language: m.language,
     framework,
     health,
     files: m.sourceFiles.length,
-    components: nodes.filter(n => n.id !== 'root').length,
-    dependencies: Object.keys(m.dependencies).length || (m.requirementsTxt ? m.requirementsTxt.split('\n').filter(l=>l.trim()&&!l.startsWith('#')).length : 0),
-    coverage: null, // real coverage requires running tests
+    components: nodes.length,
+    dependencies: depCount,
+    coverage: null,          // real line coverage requires running the tests
+    testReachPct: reachPct,  // static: share of source files reached from tests via imports
     tests: m.testFiles.length,
     analysisType: 'GitHub Repository Analysis',
     desc: m.description || `${m.language} project — ${m.sourceFiles.length} source files, ${m.testFiles.length} test files.`,
@@ -3044,77 +3093,102 @@ function finishGitHubScan(m) {
     releaseWarnings: buildReleaseWarnings(m),
     mapNodes: nodes,
     mapEdges: edges,
-    // Extra real-repo data
     _repoData: m,
   };
   activeProjectSource = 'github';
   activeProjectUrl = m.url;
 
-  // Update header & overview
-  updateHeaderForProject(name, '', 'live', health + ' / 100', healthCls);
+  const commit = m.commit ? ` @ <span class="file-path" style="font-size:11px">${escHtml(m.commit.sha.slice(0, 7))}</span>` : '';
+  updateHeaderForProject(escHtml(name), activeUrlProfile.version, 'github', health + ' / 100', healthCls);
   updateOverviewMeta('Project Analysis',
-    `${escHtml(m.fullName)} · Last analysed just now · <span class="ev-verified">VERIFIED</span> <span class="ev-ai">AI ANALYSIS</span>`);
-  updateProjectSource('GitHub Repository', m.url, 'GitHub Repository Analysis', today, 'live');
+    `${escHtml(m.fullName)} · ${escHtml(m.branch)}${commit} · Last analysed just now · <span class="ev-verified">VERIFIED</span> <span class="ev-ai">AI ANALYSIS</span>`);
+  updateProjectSource('GitHub Repository', m.url, 'GitHub Repository Analysis', today, 'github');
 
-  // Inaccessible banner: hide it
   document.getElementById('url-inaccessible-banner').style.display = 'none';
 
+  const partial = m.analysis && m.analysis.mode === 'sampled'
+    ? `<br><span class="col-yellow">Large repository: ${m.analysis.filesRead} key files were read individually; some findings may be incomplete.</span>` : '';
   updateBaselineCard('Traceon Baseline Created',
-    `Project: ${escHtml(name)} · Source files: ${m.sourceFiles.length} · Test files: ${m.testFiles.length} · Dependencies: ${activeUrlProfile.dependencies}<br>` +
-    `Findings: ${critCount} critical · ${highCount} high · ${medCount} medium · ${lowCount} low · Analysis date: ${today} <span class="ev-ai">AI ANALYSIS</span>`);
+    `Project: ${escHtml(name)} · Modules: ${nodes.length} · Source files: ${m.sourceFiles.length} · Test files: ${m.testFiles.length} · Dependencies: ${depCount} · API routes: ${(m.routes || []).length}<br>` +
+    `Findings: ${critCount} critical · ${highCount} high · ${medCount} medium · ${lowCount} low · Test reach: ${reachPct}% · Analysis date: ${today} <span class="ev-ai">AI ANALYSIS</span>` +
+    (m.commit ? `<br>Snapshot: ${escHtml(m.branch)} @ ${escHtml(m.commit.sha.slice(0, 7))} — “${escHtml(m.commit.message)}”` : '') + partial);
 
   document.getElementById('app').style.display = 'flex';
   patchActiveProjectFromProfile(activeUrlProfile);
+  renderRepoOverviewRow(m);
 
-  // Patch onboarding with real data
   patchOnboardingForRealRepo(m, framework);
-  // Patch testing page
   patchTestingForRealRepo(m);
 
   navigate('overview');
   showToast(`✅ ${escHtml(name)} analysed — ${totalIssues} findings · ${m.sourceFiles.length} files · ${m.testFiles.length} tests`);
 }
 
-function buildMapNodesFromDirs(dirs, m) {
-  const nodes = [];
-  const colorMap = {
-    src:'#1c2a3a', lib:'#1c2a3a', app:'#1c2a3a', packages:'#1c2a3a',
-    test:'#1a1a2a', tests:'#1a1a2a', __tests__:'#1a1a2a', spec:'#1a1a2a',
-    docs:'#21262d', public:'#21262d', static:'#21262d',
-    config:'#2a1a00', configs:'#2a1a00',
-    scripts:'#21262d', tools:'#21262d', build:'#21262d',
-  };
-  const borderMap = {
-    src:'#388bfd', lib:'#388bfd', app:'#388bfd', packages:'#388bfd',
-    test:'#8957e5', tests:'#8957e5', __tests__:'#8957e5', spec:'#8957e5',
-    docs:'#58a6ff', public:'#58a6ff', static:'#58a6ff',
-    config:'#db6d28', configs:'#db6d28',
-  };
-
-  const iconMap = { src:'📂', lib:'📚', app:'🖥️', test:'🧪', tests:'🧪', docs:'📄', config:'⚙️', scripts:'🔧', build:'🏗️', packages:'📦', public:'🌐', api:'🔌' };
-  const MAX = 10;
-  const use = dirs.slice(0, MAX);
-  if (use.length === 0) {
-    // Flat repo — use language-based nodes
-    return buildFlatRepoNodes(m);
-  }
-
-  // Layout: grid 3 columns, ~80px apart
-  const cols = 3;
-  use.forEach((dir, i) => {
-    const col = i % cols;
-    const row = Math.floor(i / cols);
-    nodes.push({
-      id: dir,
-      label: (iconMap[dir.toLowerCase()] || '📁') + ' ' + dir,
-      x: 60 + col * 200,
-      y: 40 + row * 100,
-      w: 160, h: 44,
-      color: colorMap[dir.toLowerCase()] || '#21262d',
-      border: borderMap[dir.toLowerCase()] || '#444c56',
+// Layered layout: modules that nothing imports at the top, their dependencies below.
+function buildMapNodesFromModules(m) {
+  const mods = (m.modules || []).filter(x => x.fileCount > 0);
+  if (!mods.length) return buildFlatRepoNodes(m);
+  const ids = new Set(mods.map(x => x.id));
+  const level = {};
+  mods.forEach(x => { level[x.id] = x.importedBy.filter(i => ids.has(i)).length ? null : 0; });
+  if (!mods.some(x => level[x.id] === 0)) level[mods[0].id] = 0;
+  for (let iter = 0; iter < mods.length; iter++) {
+    let changed = false;
+    mods.forEach(x => {
+      if (level[x.id] === null || level[x.id] === undefined) return;
+      x.importsFrom.filter(t => ids.has(t)).forEach(t => {
+        const want = Math.min(level[x.id] + 1, 4);
+        if (level[t] === null || level[t] === undefined || level[t] < want) { level[t] = want; changed = true; }
+      });
     });
+    if (!changed) break;
+  }
+  mods.forEach(x => { if (level[x.id] === null || level[x.id] === undefined) level[x.id] = 1; });
+
+  const rows = {};
+  mods.forEach(x => { (rows[level[x.id]] = rows[level[x.id]] || []).push(x); });
+  const W = 170, H = 50, GAP = 24, ROW = 110;
+  const maxCols = 4;
+  const nodes = [];
+  let y = 30;
+  Object.keys(rows).sort((a, b) => a - b).forEach(k => {
+    const row = rows[k];
+    for (let i = 0; i < row.length; i += maxCols) {
+      const chunk = row.slice(i, i + maxCols);
+      const totalW = chunk.length * W + (chunk.length - 1) * GAP;
+      let x = Math.max(20, (760 - totalW) / 2);
+      chunk.forEach(mod => {
+        const risk = moduleRisk(mod);
+        const short = mod.id.startsWith('(') ? mod.label : mod.id.split('/').slice(-2).join('/');
+        nodes.push({
+          id: mod.id,
+          label: `${moduleIcon(mod.id)} ${short.length > 20 ? '…' + short.slice(-19) : short}\n${mod.fileCount} files · ${mod.reachPct}% tested`,
+          x, y, w: W, h: H,
+          color: risk === 'HIGH' ? '#2a1515' : risk === 'MEDIUM' ? '#2a2210' : '#1c2a3a',
+          border: risk === 'HIGH' ? '#f85149' : risk === 'MEDIUM' ? '#d29922' : '#388bfd',
+          risk,
+        });
+        x += W + GAP;
+      });
+      y += ROW;
+    }
   });
   return nodes;
+}
+
+function moduleIcon(id) {
+  const last = id.split('/').pop().toLowerCase();
+  const map = { api:'🔌', routes:'🔌', controllers:'🔌', server:'🖥️', app:'🖥️', pages:'📄', components:'🧩', ui:'🧩', views:'🧩',
+    services:'⚙️', service:'⚙️', lib:'📚', utils:'🔧', helpers:'🔧', models:'🗃️', db:'🗄️', database:'🗄️', migrations:'🗄️',
+    auth:'🔐', config:'⚙️', hooks:'🪝', store:'📦', middleware:'🧱', cmd:'▶️', scripts:'🔧', '(root)':'📁', '(other)':'📁' };
+  return map[last] || map[id] || '📂';
+}
+
+function moduleRisk(mod) {
+  if (mod.id.startsWith('(')) return 'LOW';
+  if (mod.reachPct === 0 && mod.fileCount >= 3 && (mod.routes > 0 || mod.importedBy.length >= 2 || mod.hasEntry)) return 'HIGH';
+  if (mod.reachPct < 40 && mod.fileCount >= 2) return 'MEDIUM';
+  return 'LOW';
 }
 
 function buildFlatRepoNodes(m) {
@@ -3130,20 +3204,17 @@ function buildFlatRepoNodes(m) {
   return nodes;
 }
 
-function buildMapEdgesFromNodes(nodes) {
-  // Simple: connect first node to all others
-  if (nodes.length < 2) return [];
-  return nodes.slice(1).map(n => [nodes[0].id, n.id]);
-}
-
 function buildTestingGaps(m) {
   const gaps = [];
   if (m.testFiles.length === 0) gaps.push('No tests exist at all');
-  if (!m.testFiles.some(f => /auth|login|session/i.test(f))) gaps.push('Authentication paths not tested');
-  if (!m.testFiles.some(f => /payment|pay|stripe|billing/i.test(f))) gaps.push('Payment flows not tested');
-  if (!m.testFiles.some(f => /error|fail|except/i.test(f))) gaps.push('Error handling paths not tested');
-  if (!m.testFiles.some(f => /integration|e2e/i.test(f))) gaps.push('No integration or end-to-end tests found');
-  return gaps.slice(0, 4);
+  (m.modules || []).filter(x => !x.id.startsWith('(') && x.reachedFiles < x.fileCount)
+    .sort((a, b) => a.reachPct - b.reachPct || b.fileCount - a.fileCount).slice(0, 6)
+    .forEach(x => gaps.push(`${x.id}: ${x.fileCount - x.reachedFiles} of ${x.fileCount} files not reached by any test`));
+  const reached = new Set(m.testReached || []);
+  const untestedRoutes = (m.routes || []).filter(r => !reached.has(r.file));
+  if (untestedRoutes.length) gaps.push(`${untestedRoutes.length} API route${untestedRoutes.length > 1 ? 's' : ''} without tests (e.g. ${untestedRoutes.slice(0, 2).map(r => r.method + ' ' + r.path).join(', ')})`);
+  if (m.testFiles.length && !m.testFiles.some(f => /integration|e2e|cypress|playwright/i.test(f)) && (m.routes || []).length) gaps.push('No integration or end-to-end tests found');
+  return gaps.slice(0, 8);
 }
 
 function buildReleaseWarnings(m) {
@@ -3151,33 +3222,34 @@ function buildReleaseWarnings(m) {
   const critCount = m.findings.filter(f => f.sev === 'CRITICAL').length;
   if (critCount > 0) warnings.push(`${critCount} critical finding${critCount > 1 ? 's' : ''} must be resolved`);
   if (m.testFiles.length === 0) warnings.push('No tests — release without any test coverage');
-  if (!m.allFiles.some(f => f.endsWith('.env.example')) && m.allFiles.some(f => /\.env/.test(f)))
-    warnings.push('Environment variables undocumented (.env.example missing)');
-  if (m.ciFiles.length === 0) warnings.push('No CI/CD pipeline — releases are fully manual');
+  if ((m.envMissing || []).length) warnings.push(`${m.envMissing.length} environment variable${m.envMissing.length > 1 ? 's' : ''} used in code but undocumented`);
+  if ((m.ci || []).length === 0) warnings.push('No CI/CD pipeline — releases are fully manual');
+  else if (m.testFiles.length && !(m.ci || []).some(w => w.runsTests)) warnings.push('CI does not run the test suite before release');
+  (m.missingLockfiles || []).forEach(e => warnings.push(`No ${e} lockfile — release builds are not reproducible`));
+  (m.docker || []).filter(d => d.usesLatest).forEach(d => warnings.push(`${d.path} uses an unpinned base image`));
   return warnings;
 }
 
 function patchOnboardingForRealRepo(m, framework) {
-  // Patch the important files list with real files
   const el = document.getElementById('important-files-list');
   if (!el) return;
   el.innerHTML = '';
   const importantFiles = [];
-  // Entry points
-  ['src/index.ts','src/index.js','src/main.ts','src/main.py','main.go','main.rs',
-   'app.py','server.js','server.ts','index.js','index.ts'].forEach(f => {
-    if (m.allFiles.includes(f)) importantFiles.push({ path: f, role: 'Application entry point', handles: ['Main entry point for the application'] });
-  });
-  // Dependency manifest
-  if (m.packageJson) importantFiles.push({ path: 'package.json', role: 'Node.js dependencies & scripts', handles: [`${Object.keys(m.dependencies).length} production deps · ${Object.keys(m.devDependencies).length} dev deps`, `Scripts: ${Object.keys(m.packageJson.scripts || {}).join(', ') || 'none'}`] });
-  if (m.requirementsTxt) importantFiles.push({ path: 'requirements.txt', role: 'Python dependencies', handles: [m.requirementsTxt.split('\n').filter(l=>l.trim()&&!l.startsWith('#')).length + ' packages'] });
-  if (m.goMod) importantFiles.push({ path: 'go.mod', role: 'Go module definition', handles: ['Module dependencies'] });
-  // README
-  if (m.readmeContent) importantFiles.push({ path: 'README.md', role: 'Project documentation', handles: [m.readmeContent.slice(0,120).replace(/[#*`]/g,'').trim() + '…'] });
-  // CI/CD
-  m.ciFiles.slice(0,2).forEach(f => importantFiles.push({ path: f, role: 'CI/CD workflow', handles: ['Automated pipeline configuration'] }));
-  // Dockerfile
-  if (m.dockerfile) importantFiles.push({ path: 'Dockerfile', role: 'Container definition', handles: ['Docker image configuration'] });
+  const seen = new Set();
+  const add = f => { if (!seen.has(f.path)) { seen.add(f.path); importantFiles.push(f); } };
+  (m.entryPoints || []).forEach(e => add({ path: e.path, role: 'Application entry point', handles: [e.reason, ...((m.symbols || {})[e.path] || []).slice(0, 5).map(s => `Exports ${s}`)] }));
+  (m.manifests || []).slice(0, 4).forEach(x => add({ path: x.path, role: `${x.ecosystem} dependencies`, handles: [`${x.deps} dependencies · ${x.devDeps} dev dependencies`].concat(
+    x.path === 'package.json' && m.packageJson ? [`Scripts: ${Object.keys(m.packageJson.scripts || {}).join(', ') || 'none'}`] : []) }));
+  (m.lockfiles || []).slice(0, 2).forEach(f => add({ path: f, role: 'Lockfile', handles: ['Pins exact dependency versions for reproducible installs'] }));
+  const routeFiles = {};
+  (m.routes || []).forEach(r => { (routeFiles[r.file] = routeFiles[r.file] || []).push(`${r.method} ${r.path}`); });
+  Object.entries(routeFiles).sort((a, b) => b[1].length - a[1].length).slice(0, 4)
+    .forEach(([f, rs]) => add({ path: f, role: `API routes (${rs.length})`, handles: rs.slice(0, 6).concat(rs.length > 6 ? [`…and ${rs.length - 6} more`] : []) }));
+  (m.testConfigFiles || []).slice(0, 2).forEach(f => add({ path: f, role: 'Test configuration', handles: [`Framework: ${m.testFrameworks.join(', ') || 'unknown'}`] }));
+  if (m.readmePath) add({ path: m.readmePath, role: 'Project documentation', handles: [(m.readmeSections || []).slice(0, 6).join(' · ') || m.readmeContent.slice(0, 120).replace(/[#*`]/g, '').trim() + '…'] });
+  (m.envTemplates || []).slice(0, 1).forEach(f => add({ path: f, role: 'Environment template', handles: [`Documents ${m.envDocumented.length} variables`].concat(m.envMissing.length ? [`⚠️ Missing: ${m.envMissing.slice(0, 5).join(', ')}${m.envMissing.length > 5 ? '…' : ''}`] : []) }));
+  (m.ci || []).slice(0, 2).forEach(w => add({ path: w.path, role: `CI/CD workflow — ${w.name}`, handles: [`Triggers: ${w.triggers.join(', ') || 'unknown'}`, w.runsTests ? 'Runs tests' : '⚠️ Does not run tests', w.deploys ? 'Deploys' : 'No deploy step'] }));
+  (m.docker || []).slice(0, 2).forEach(d => add({ path: d.path, role: 'Container definition', handles: [`Base: ${d.baseImages.join(' → ')}`, d.exposes.length ? `Exposes ${d.exposes.join(', ')}` : 'No EXPOSE', d.cmd ? `Runs: ${d.cmd}` : ''].filter(Boolean) }));
 
   if (importantFiles.length === 0) {
     el.innerHTML = '<div style="padding:20px 18px;color:var(--text2);font-size:13px">No important files identified — repository may be empty or use an unfamiliar structure.</div>';
@@ -3187,54 +3259,133 @@ function patchOnboardingForRealRepo(m, framework) {
     const hasWarning = f.handles.some(h => h.includes('⚠️'));
     return `<div class="expandable-header" onclick="toggleExpand(this)">
       <span class="expand-arrow open">▶</span>
-      <span class="file-path">${f.path}</span>
-      <span style="margin-left:12px;font-size:13px;color:var(--text2)">${f.role}</span>
+      <span class="file-path">${escHtml(f.path)}</span>
+      <span style="margin-left:12px;font-size:13px;color:var(--text2)">${escHtml(f.role)}</span>
       ${hasWarning ? '<span class="badge badge-yellow" style="margin-left:auto">⚠️ Issue found</span>' : ''}
-      <span class="ev-verified" style="margin-left:auto">VERIFIED</span>
+      <span class="ev-verified" style="margin-left:${hasWarning ? '8px' : 'auto'}">VERIFIED</span>
     </div>
     <div class="expandable-body open">
       <ul style="list-style:none;display:flex;flex-direction:column;gap:4px">
-        ${f.handles.map(h=>`<li style="font-size:13px;color:var(--text2)">${h}</li>`).join('')}
+        ${f.handles.map(h=>`<li style="font-size:13px;color:var(--text2)">${escHtml(h)}</li>`).join('')}
       </ul>
     </div>`;
   }).join('');
 }
 
 function patchTestingForRealRepo(m) {
-  // Patch coverage-by-module with real test file list
-  const el = document.getElementById('coverage-by-module');
-  if (!el) return;
-  // Will be rebuilt from activeUrlProfile on navigate — that's fine
-  // Patch test results panel with real test framework info
   const trp = document.getElementById('test-results-panel');
-  if (trp) trp.innerHTML = `
+  if (!trp) return;
+  const cases = Object.values(m.testCases || {}).reduce((s, n) => s + n, 0);
+  const ciTests = (m.ci || []).filter(w => w.runsTests);
+  const testCmd = testCommandFor(m);
+  trp.innerHTML = `
     <div class="card mb-16">
       <div class="card-header">
         <span class="card-title">Test Suite</span>
-        <span class="card-subtitle"><span class="ev-verified">VERIFIED from repository</span></span>
+        <span class="card-subtitle"><span class="ev-verified">VERIFIED from repository</span> · not executed</span>
       </div>
       <div class="card-body">
         <div class="grid4" style="margin-bottom:16px">
           <div style="text-align:center"><div class="stat-number">${m.testFiles.length}</div><div class="stat-label">Test Files</div></div>
-          <div style="text-align:center"><div class="stat-number col-muted">—</div><div class="stat-label">Passed</div></div>
-          <div style="text-align:center"><div class="stat-number col-muted">—</div><div class="stat-label">Failed</div></div>
+          <div style="text-align:center"><div class="stat-number">${cases}</div><div class="stat-label">Test Cases Found</div></div>
+          <div style="text-align:center"><div class="stat-number">${activeUrlProfile ? activeUrlProfile.testReachPct : 0}%</div><div class="stat-label">Files Reached (static)</div></div>
           <div style="text-align:center"><div class="stat-number col-muted">—</div><div class="stat-label">Coverage</div></div>
         </div>
-        <div style="padding:12px;background:var(--bg3);border-radius:var(--radius);font-size:13px;color:var(--text2)">
-          <strong style="color:var(--text)">Framework:</strong> ${m.testFramework || 'Not detected'}<br>
-          <strong style="color:var(--text)">Coverage:</strong> Not available — run <code style="background:var(--bg4);padding:1px 5px;border-radius:3px">${m.testFramework === 'Jest' ? 'jest --coverage' : m.testFramework === 'Vitest' ? 'vitest run --coverage' : m.testFramework === 'Pytest' ? 'pytest --cov' : 'your coverage command'}</code> locally to measure it.
+        <div style="padding:12px;background:var(--bg3);border-radius:var(--radius);font-size:13px;color:var(--text2);line-height:1.8">
+          <strong style="color:var(--text)">Framework:</strong> ${escHtml(m.testFrameworks.join(', ') || 'Not detected')}<br>
+          <strong style="color:var(--text)">Configuration:</strong> ${m.testConfigFiles.length ? m.testConfigFiles.slice(0, 3).map(f => `<span class="file-path">${escHtml(f)}</span>`).join(' ') : 'none found'}<br>
+          <strong style="color:var(--text)">Run locally:</strong> <code class="inline-code">${escHtml(testCmd)}</code><br>
+          <strong style="color:var(--text)">In CI:</strong> ${ciTests.length ? ciTests.map(w => escHtml(w.name)).join(', ') : 'no workflow runs the tests'}<br>
+          <strong style="color:var(--text)">Coverage:</strong> Traceon does not execute your code, so line coverage is not measured. “Files reached” counts source files imported by tests (directly or within two imports).
         </div>
         ${m.testFiles.length > 0 ? `<div style="margin-top:14px">
           <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;margin-bottom:8px">Test Files Found</div>
-          <div style="display:flex;flex-direction:column;gap:4px;max-height:200px;overflow-y:auto">
-            ${m.testFiles.slice(0,20).map(f=>`<span class="file-path">${escHtml(f)}</span>`).join('')}
-            ${m.testFiles.length > 20 ? `<span style="font-size:12px;color:var(--text3)">…and ${m.testFiles.length-20} more</span>` : ''}
+          <div style="display:flex;flex-direction:column;gap:4px;max-height:220px;overflow-y:auto">
+            ${m.testFiles.slice(0,40).map(f=>`<span class="file-path">${escHtml(f)}${m.testCases && m.testCases[f] !== undefined ? ` <span style="color:var(--text3)">(${m.testCases[f]} tests)</span>` : ''}</span>`).join('')}
+            ${m.testFiles.length > 40 ? `<span style="font-size:12px;color:var(--text3)">…and ${m.testFiles.length-40} more</span>` : ''}
           </div>
         </div>` : ''}
       </div>
     </div>`;
 }
 
+// Bottom row of the Overview (Project Stats / Module Coverage / Recent Activity) from real data
+function renderRepoOverviewRow(m) {
+  const row = document.getElementById('overview-stats-row');
+  if (!row) return;
+  const direct = Object.keys(m.dependencies).length, dev = Object.keys(m.devDependencies).length;
+  const cases = Object.values(m.testCases || {}).reduce((s, n) => s + n, 0);
+  const docs = [m.readmePath ? 'README' : null, m.hasContributing ? 'CONTRIBUTING' : null, m.hasChangelog ? 'CHANGELOG' : null,
+    m.allFiles.some(f => /openapi|swagger/i.test(f)) ? 'OpenAPI' : null].filter(Boolean).join(' · ') || 'None found';
+  const deploy = [(m.docker || []).length ? 'Docker' : null, (m.ci || []).length ? `${m.ci.length} CI workflow${m.ci.length > 1 ? 's' : ''}` : null,
+    ...m.deployFiles.filter(f => /vercel|netlify|fly\.toml|render|Procfile|serverless|\.tf$|Chart\.yaml/i.test(f)).slice(0, 2).map(f => f.split('/').pop())].filter(Boolean).join(' · ') || 'None found';
+  const mods = (m.modules || []).slice().sort((a, b) => b.fileCount - a.fileCount).slice(0, 5);
+  const f = activeUrlProfile.findings;
+  const when = m.commit && m.commit.date ? relativeTime(m.commit.date) : 'unknown';
+  row.innerHTML = `
+    <div class="card">
+      <div class="card-header"><span class="card-title">Project Stats</span><span class="ev-verified" style="margin-left:auto">VERIFIED</span></div>
+      <div class="card-body" style="padding:0">
+        <table class="data-table">
+          <tr><td class="col-muted">Language</td><td>${escHtml(m.language)}</td></tr>
+          <tr><td class="col-muted">Framework</td><td>${escHtml((m.frameworks || []).slice(0, 3).join(' · ') || 'Not detected')}</td></tr>
+          <tr><td class="col-muted">Dependencies</td><td>${direct} direct · ${dev} dev${m.lockfiles.length ? ' · locked' : ''}</td></tr>
+          <tr><td class="col-muted">Test Files</td><td>${m.testFiles.length} files · ${cases} tests found</td></tr>
+          <tr><td class="col-muted">Documentation</td><td>${escHtml(docs)}</td></tr>
+          <tr><td class="col-muted">Deployment</td><td>${escHtml(deploy)}</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><span class="card-title">Module Test Reach</span><span class="card-subtitle">static</span></div>
+      <div class="card-body" style="display:flex;flex-direction:column;gap:10px">
+        ${mods.map(x => {
+          const cls = x.reachPct >= 70 ? 'green' : x.reachPct >= 40 ? 'yellow' : 'red';
+          return `<div>
+            <div class="flex-center gap-8 mb-8"><span style="font-size:12px;flex:1;word-break:break-all">${escHtml(x.label)}</span><span class="badge badge-${cls}">${x.reachPct}%</span></div>
+            <div class="progress-bar"><div class="progress-fill ${cls}" style="width:${x.reachPct}%"></div></div>
+          </div>`;
+        }).join('') || '<div class="col-muted fs-13">No source modules detected.</div>'}
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><span class="card-title">Recent Activity</span></div>
+      <div class="card-body" style="padding:0">
+        <table class="data-table">
+          <tr><td class="col-muted fs-12">Analysis</td><td class="fs-12">Just now ✅</td></tr>
+          <tr><td class="col-muted fs-12">Snapshot</td><td class="fs-12">${escHtml(m.branch)} @ ${escHtml(m.commit ? m.commit.sha.slice(0, 7) : '—')}</td></tr>
+          <tr><td class="col-muted fs-12">Last commit</td><td class="fs-12">${escHtml(when)}${m.commit && m.commit.author ? ' · ' + escHtml(m.commit.author) : ''}</td></tr>
+          <tr><td class="col-muted fs-12">Maintenance</td><td class="fs-12">${f.critical + f.high + f.medium + f.low} findings</td></tr>
+          <tr><td class="col-muted fs-12">Release check</td><td class="fs-12">${activeUrlProfile.releaseWarnings.length ? `⚠️ ${activeUrlProfile.releaseWarnings.length} warnings` : '✅ No warnings'}</td></tr>
+          <tr><td class="col-muted fs-12">Tests run</td><td class="fs-12">Not executed by Traceon</td></tr>
+        </table>
+      </div>
+    </div>`;
+}
+
+// ---- Real-repo helpers shared by Map, Testing, Generate Test and Change Impact ----
+function repoModule(id) {
+  const m = activeUrlProfile && activeUrlProfile._repoData;
+  return m ? (m.modules || []).find(x => x.id === id) : null;
+}
+
+function reverseImportGraph(m) {
+  if (m._rev) return m._rev;
+  const rev = {};
+  Object.entries(m.importGraph || {}).forEach(([from, tos]) => tos.forEach(t => { (rev[t] = rev[t] || []).push(from); }));
+  Object.defineProperty(m, '_rev', { value: rev, enumerable: false });
+  return rev;
+}
+
+function relPath(fromDir, toFile) {
+  const a = fromDir ? fromDir.split('/') : [];
+  const b = toFile.split('/');
+  let i = 0;
+  while (i < a.length && i < b.length - 1 && a[i] === b[i]) i++;
+  const up = a.length - i;
+  const rel = (up ? '../'.repeat(up) : './') + b.slice(i).join('/');
+  return rel;
+}
 
 // ============================================================
 // PROJECT MAP
@@ -3247,6 +3398,8 @@ function initMap() {
   // Use URL profile map data when a live project is active
   const activeNodes = (activeUrlProfile && activeUrlProfile.mapNodes) ? activeUrlProfile.mapNodes : MAP_NODES;
   const activeEdges = (activeUrlProfile && activeUrlProfile.mapEdges) ? activeUrlProfile.mapEdges : MAP_EDGES;
+  svg.setAttribute('width', Math.max(700, ...activeNodes.map(n => n.x + n.w + 20)));
+  svg.setAttribute('height', Math.max(520, ...activeNodes.map(n => n.y + n.h + 20)));
 
   // Draw edges
   activeEdges.forEach(([from, to]) => {
@@ -3321,6 +3474,8 @@ function selectMapNode(id) {
   const g = document.getElementById('mn-'+id);
   if (g) g.classList.add('selected');
   selectedMapNode = id;
+
+  if (activeUrlProfile && activeUrlProfile._repoData) { renderRepoModuleDetail(id); return; }
 
   const detail = NODE_DETAILS[id];
   const node = MAP_NODES.find(n=>n.id===id);
@@ -3525,6 +3680,8 @@ function initCoverageByModule() {
   const el = document.getElementById('coverage-by-module');
   if (!el || el.innerHTML !== '') return;
 
+  if (activeUrlProfile && activeUrlProfile._repoData) { renderRepoCoverageByModule(el); return; }
+
   // URL profile with no coverage data
   if (activeUrlProfile && activeUrlProfile.coverage === null) {
     el.innerHTML = `<div class="card"><div class="card-body" style="text-align:center;padding:32px">
@@ -3592,7 +3749,9 @@ function initTestingGaps() {
   const el = document.getElementById('testing-gaps');
   if (!el || el.innerHTML !== '') return;
 
-  // For real repos use activeUrlProfile.testingGaps (array of gap strings)
+  if (activeUrlProfile && activeUrlProfile._repoData) { renderRepoTestingGaps(el); return; }
+
+  // URL previews use activeUrlProfile.testingGaps (array of gap strings)
   if (activeUrlProfile && activeUrlProfile.testingGaps) {
     const gaps = activeUrlProfile.testingGaps; // string array from buildTestingGaps()
     if (gaps.length === 0) {
@@ -3689,7 +3848,23 @@ function initTestGenerate() {
   const el = document.getElementById('test-generate-panel');
   if (!el || el.innerHTML !== '') return;
 
-  // For real repos generate component buttons from mapNodes
+  // GitHub repositories: one button per detected module
+  if (activeUrlProfile && activeUrlProfile._repoData) {
+    const m = activeUrlProfile._repoData;
+    const btns = (m.modules || []).filter(x => !x.id.startsWith('(other')).map(x =>
+      `<button class="btn btn-secondary" onclick="openGenModal(${jsArg(x.id)})">${moduleIcon(x.id)} ${escHtml(x.id)} <span class="col-muted" style="margin-left:4px">${x.reachPct}%</span></button>`
+    ).join('');
+    el.innerHTML = `<div class="card">
+      <div class="card-header"><span class="card-title">Generate Tests</span><span class="card-subtitle">Framework: ${escHtml(m.testFrameworks.join(', ') || 'not detected')} · <span class="ev-ai">AI ANALYSIS</span></span></div>
+      <div class="card-body">
+        <p class="fs-13 col-muted mb-16">Select a module — Traceon generates a test stub for its least-tested file, importing the file's real exports and following this repository's test layout. Percentages show files reached by tests. Nothing is written to your repository.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">${btns || '<span class="col-muted fs-13">No source modules detected.</span>'}</div>
+      </div>
+    </div>`;
+    return;
+  }
+
+  // URL previews: component buttons from mapNodes
   if (activeUrlProfile && activeUrlProfile.mapNodes) {
     const framework = activeUrlProfile._repoData ? activeUrlProfile._repoData.testFramework || 'the detected test framework' : 'the detected test framework';
     const btns = activeUrlProfile.mapNodes.map(n =>
@@ -3720,6 +3895,13 @@ function initTestGenerate() {
 }
 
 function runTests() {
+  if (activeUrlProfile && activeUrlProfile._repoData) {
+    navigate('testing');
+    const tabs = document.querySelectorAll('#page-testing .tab');
+    if (tabs[2]) switchTab(tabs[2], 't-results');
+    showToast(`Traceon analyses code without running it. Run <code class="inline-code">${escHtml(testCommandFor(activeUrlProfile._repoData))}</code> locally or in CI.`);
+    return;
+  }
   showToast('⏳ Test run started… (simulated)');
   setTimeout(() => {
     navigate('testing');
@@ -3740,7 +3922,15 @@ function initImpact() {
   const el = document.getElementById('impact-component-buttons');
   if (!el || el.innerHTML !== '') return;
 
-  // For real repos use map nodes as component list
+  // GitHub repositories: one entry per detected module
+  if (activeUrlProfile && activeUrlProfile._repoData) {
+    el.innerHTML = (activeUrlProfile._repoData.modules || []).map(x =>
+      `<button class="btn btn-secondary" data-id="${escHtml(x.id)}" onclick="selectImpactComponent(${jsArg(x.id)})">${moduleIcon(x.id)} ${escHtml(x.id)}</button>`
+    ).join('');
+    return;
+  }
+
+  // URL previews: map nodes as component list
   if (activeUrlProfile && activeUrlProfile.mapNodes) {
     el.innerHTML = activeUrlProfile.mapNodes.map(n =>
       `<button class="btn btn-secondary" onclick="selectImpactComponent('${n.id}')">${n.label}</button>`
@@ -3762,6 +3952,8 @@ function initImpact() {
 
 function selectImpactComponent(id) {
   selectedImpactComponent = id;
+
+  if (activeUrlProfile && activeUrlProfile._repoData) { renderRepoImpact(id); return; }
 
   // For real repos — show a lightweight impact summary derived from mapNodes
   if (activeUrlProfile && activeUrlProfile.mapNodes) {
@@ -3881,6 +4073,297 @@ function selectImpactComponent(id) {
 }
 
 // ============================================================
+// REAL REPOSITORY VIEWS (GitHub projects)
+// ============================================================
+function jsArg(v) { return escHtml(JSON.stringify(String(v))); }
+
+function capList(items, n, render) {
+  return items.slice(0, n).map(render).join('') +
+    (items.length > n ? `<div class="col-muted fs-12" style="padding:4px 2px">…and ${items.length - n} more</div>` : '');
+}
+
+function riskBadgeClass(risk) {
+  return { HIGH:'badge-red', MEDIUM:'badge-yellow', LOW:'badge-green', NONE:'badge-gray' }[risk] || 'badge-gray';
+}
+
+function renderRepoModuleDetail(id) {
+  const m = activeUrlProfile._repoData;
+  const mod = repoModule(id);
+  const node = activeUrlProfile.mapNodes.find(n => n.id === id);
+  document.getElementById('map-detail-hint').style.display = 'none';
+  const content = document.getElementById('map-detail-content');
+  if (!mod) {
+    content.innerHTML = `<p class="fs-13 col-muted">${escHtml(node ? node.label : id)}</p>`;
+    return;
+  }
+  const risk = node ? node.risk : 'LOW';
+  const reached = new Set(m.testReached || []);
+  const pClass = mod.reachPct >= 70 ? 'green' : mod.reachPct >= 40 ? 'yellow' : 'red';
+  const routes = (m.routes || []).filter(r => mod.files.includes(r.file));
+  const issues = (m.findings || []).filter(f => f.loc === id + '/' || mod.files.includes(f.loc));
+  const section = (title, body) => `<div class="map-detail-section"><div class="map-detail-section-title">${title}</div>${body}</div>`;
+  let html = `<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+    <span style="font-size:20px">${moduleIcon(id)}</span>
+    <div style="min-width:0">
+      <div style="font-weight:700;font-size:14px;word-break:break-all">${escHtml(mod.label)}</div>
+      <span class="badge ${riskBadgeClass(risk)}">${risk} RISK</span>
+    </div>
+  </div>
+  <p style="font-size:12px;color:var(--text2);margin-bottom:16px;line-height:1.6">${mod.fileCount} source files · ${mod.lines.toLocaleString()} lines${mod.hasEntry ? ' · contains an entry point' : ''}${mod.routes ? ` · ${mod.routes} API routes` : ''} <span class="ev-verified">VERIFIED</span></p>`;
+  html += section('Test Reach (static)', `<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="font-size:18px;font-weight:700">${mod.reachPct}%</span><span class="fs-12 col-muted">${mod.reachedFiles} of ${mod.fileCount} files reached by tests</span></div>
+    <div class="progress-bar"><div class="progress-fill ${pClass}" style="width:${mod.reachPct}%"></div></div>`);
+  html += section('Files', `<div style="display:flex;flex-direction:column;gap:4px">${capList(mod.files, 6, f => `<span class="file-path">${reached.has(f) ? '✓ ' : ''}${escHtml(f)}</span>`)}</div>`);
+  if (mod.importsFrom.length) html += section('Depends On', `<div style="display:flex;flex-wrap:wrap;gap:6px">${mod.importsFrom.map(x => `<span class="badge badge-gray">${escHtml(x)}</span>`).join('')}</div>`);
+  if (mod.importedBy.length) html += section('Used By', `<div style="display:flex;flex-wrap:wrap;gap:6px">${mod.importedBy.map(x => `<span class="badge badge-blue">${escHtml(x)}</span>`).join('')}</div>`);
+  if (routes.length) html += section(`API Routes (${routes.length})`, `<div style="display:flex;flex-direction:column;gap:4px">${capList(routes, 5, r => `<span class="file-path">${escHtml(r.method)} ${escHtml(r.path)}</span>`)}</div>`);
+  if (mod.testFiles.length) html += section('Test Files', `<div style="display:flex;flex-direction:column;gap:4px">${capList(mod.testFiles, 5, t => `<span class="file-path">${escHtml(t)}</span>`)}</div>`);
+  if (issues.length) html += section(`Issues (${issues.length})`, `<div style="display:flex;flex-direction:column;gap:6px">${issues.map(i => `<div style="font-size:12px;padding:6px 8px;background:rgba(218,54,51,.08);border-left:3px solid var(--red2);border-radius:4px">${escHtml(i.title)}</div>`).join('')}</div>`);
+  html += `<div style="margin-top:16px;display:flex;flex-direction:column;gap:8px">
+    <button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center" onclick="navigate('impact');selectImpactComponent(${jsArg(id)})">⚡ Analyse Change Impact</button>
+    <button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center" onclick="navigate('testing')">🧪 View Tests</button>
+  </div>`;
+  content.innerHTML = html;
+}
+
+function renderRepoCoverageByModule(el) {
+  const m = activeUrlProfile._repoData;
+  const mods = (m.modules || []).slice().sort((a, b) => b.fileCount - a.fileCount);
+  const rows = mods.map(x => {
+    const cls = x.reachPct >= 70 ? 'green' : x.reachPct >= 40 ? 'yellow' : 'red';
+    const risk = moduleRisk(x);
+    return `<tr>
+      <td class="fw-700" style="word-break:break-all">${moduleIcon(x.id)} ${escHtml(x.label)}</td>
+      <td>${x.fileCount}</td>
+      <td>${x.testFiles.length}</td>
+      <td style="min-width:140px"><div style="display:flex;align-items:center;gap:8px"><div class="progress-bar" style="flex:1"><div class="progress-fill ${cls}" style="width:${x.reachPct}%"></div></div><span class="fs-12">${x.reachPct}%</span></div></td>
+      <td><span class="badge ${riskBadgeClass(risk)}">${risk}</span></td>
+    </tr>`;
+  }).join('');
+  el.innerHTML = `<div class="card">
+    <div class="card-header">
+      <span class="card-title">Test Reach by Module</span>
+      <span class="card-subtitle"><span class="source-pill live" style="font-size:10px;padding:2px 8px"><span class="dot"></span> LIVE</span> <span class="ev-verified">STATIC ANALYSIS</span></span>
+    </div>
+    <div class="card-body" style="padding:0">
+      <table class="data-table">
+        <tr><th>Module</th><th>Files</th><th>Test files</th><th>Files reached by tests</th><th>Risk</th></tr>
+        ${rows || '<tr><td colspan="5" class="col-muted">No source modules detected</td></tr>'}
+      </table>
+      <div style="padding:12px 18px;font-size:12px;color:var(--text3);border-top:1px solid var(--border)">
+        “Files reached” is measured from the import graph: a source file counts when a test imports it directly or within two imports. It is not line coverage — run <code class="inline-code">${escHtml(testCommandFor(m))}</code> with coverage enabled for exact numbers.
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderRepoTestingGaps(el) {
+  const m = activeUrlProfile._repoData;
+  const reached = new Set(m.testReached || []);
+  const order = { HIGH: 0, MEDIUM: 1, LOW: 2 };
+  const mods = (m.modules || []).filter(x => !x.id.startsWith('(other') && x.reachedFiles < x.fileCount)
+    .map(x => ({ x, risk: moduleRisk(x) }))
+    .sort((a, b) => order[a.risk] - order[b.risk] || a.x.reachPct - b.x.reachPct || b.x.fileCount - a.x.fileCount)
+    .slice(0, 8);
+  const untestedRoutes = (m.routes || []).filter(r => !reached.has(r.file));
+  if (!mods.length && !untestedRoutes.length) {
+    el.innerHTML = `<div class="card"><div class="card-body" style="text-align:center;padding:40px">
+      <div style="font-size:32px;margin-bottom:10px">✅</div>
+      <div style="font-weight:600;margin-bottom:6px">No obvious testing gaps identified</div>
+      <div style="font-size:13px;color:var(--text2)">Every source file is reached by at least one test. Run <code class="inline-code">${escHtml(testCommandFor(m))}</code> with coverage for exact numbers. <span class="ev-needs">NEEDS VERIFICATION</span></div>
+    </div></div>`;
+    return;
+  }
+  let html = '';
+  mods.forEach(({ x, risk }) => {
+    const untested = x.files.filter(f => !reached.has(f));
+    const routes = (m.routes || []).filter(r => x.files.includes(r.file) && !reached.has(r.file));
+    html += `<div class="card mb-16">
+      <div class="card-header">
+        <span style="font-size:18px">${moduleIcon(x.id)}</span>
+        <span class="card-title" style="word-break:break-all">${escHtml(x.label)}</span>
+        <span class="badge ${riskBadgeClass(risk)}" style="margin-left:8px">${risk} RISK</span>
+        <span class="card-subtitle">Reached: ${x.reachPct}% · ${x.testFiles.length} test file${x.testFiles.length !== 1 ? 's' : ''}</span>
+      </div>
+      <div class="card-body">
+        <div style="font-size:12px;font-weight:600;color:var(--text3);text-transform:uppercase;margin-bottom:10px">Files no test reaches</div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px">
+          ${capList(untested, 6, f => `<div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(218,54,51,.06);border-left:3px solid var(--red2);border-radius:4px">
+            <span style="color:var(--red2)">⚠</span><span class="file-path">${escHtml(f)}</span>
+            ${(m.symbols[f] || []).length ? `<span class="fs-12 col-muted">exports ${escHtml(m.symbols[f].slice(0, 4).join(', '))}</span>` : ''}
+          </div>`)}
+          ${routes.length ? `<div class="fs-12 col-muted" style="margin-top:4px">Untested endpoints: ${escHtml(routes.slice(0, 4).map(r => r.method + ' ' + r.path).join(' · '))}${routes.length > 4 ? ' …' : ''}</div>` : ''}
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="openGenModal(${jsArg(x.id)})">⚡ Generate Test Stub for ${escHtml(x.id.split('/').pop())}</button>
+      </div>
+    </div>`;
+  });
+  if (untestedRoutes.length) {
+    html += `<div class="card mb-16"><div class="card-header"><span style="font-size:18px">🔌</span><span class="card-title">Endpoints without tests</span><span class="card-subtitle">${untestedRoutes.length} of ${m.routes.length} routes</span></div>
+      <div class="card-body" style="display:flex;flex-direction:column;gap:4px">${capList(untestedRoutes, 12, r => `<div class="impact-file direct">${escHtml(r.method)} ${escHtml(r.path)} <span class="col-muted" style="margin-left:auto">${escHtml(r.file)}</span></div>`)}</div></div>`;
+  }
+  html += `<div style="font-size:12px;color:var(--text3);padding:10px;background:var(--bg);border-radius:4px">Gaps are derived from the repository's import graph and file layout. <span class="ev-ai">AI ANALYSIS</span> <span class="ev-needs">NEEDS VERIFICATION</span></div>`;
+  el.innerHTML = html;
+}
+
+function mostCommonTestRoot(m) {
+  const counts = {};
+  m.testFiles.forEach(t => {
+    const first = t.split('/')[0];
+    if (/^(tests?|__tests__|spec|specs)$/.test(first)) counts[first] = (counts[first] || 0) + 1;
+  });
+  const best = Object.entries(counts).sort((a, b) => b[1] - a[1])[0];
+  return best ? best[0] : null;
+}
+
+function snakeCase(s) { return s.replace(/([a-z0-9])([A-Z])/g, '$1_$2').toLowerCase(); }
+
+// Builds a test stub from the module's real files and exported names. It never writes to the repository.
+function generateRepoTestStub(id) {
+  const m = activeUrlProfile._repoData;
+  const mod = repoModule(id);
+  if (!mod || !mod.files.length) return null;
+  const reached = new Set(m.testReached || []);
+  const syms = f => (m.symbols[f] || []);
+  const withSyms = mod.files.filter(f => syms(f).length);
+  const target = withSyms.find(f => !reached.has(f)) || withSyms[0] || mod.files.find(f => !reached.has(f)) || mod.files[0];
+  const names = syms(target).slice(0, 5);
+  const ext = target.split('.').pop();
+  const stem = target.split('/').pop().replace(/\.[^.]+$/, '');
+  const fw = m.testFramework;
+  let testPath, code;
+
+  if (/^(ts|tsx|js|jsx|mjs|cjs)$/.test(ext)) {
+    const root = mostCommonTestRoot(m);
+    const colocated = m.testFiles.filter(t => /\.(test|spec)\./.test(t) && !/(^|\/)(__tests__|tests?|spec)\//.test(t)).length;
+    const tExt = ext === 'tsx' ? 'tsx' : ext === 'ts' ? 'ts' : ext === 'jsx' ? 'jsx' : ext === 'mjs' ? 'mjs' : 'js';
+    testPath = (!root || colocated >= m.testFiles.length / 2)
+      ? target.replace(/\.[^.]+$/, `.test.${tExt}`)
+      : `${root}/${target.replace(/^(src|lib)\//, '').replace(/\.[^.]+$/, `.test.${tExt}`)}`;
+    const dir = testPath.split('/').slice(0, -1).join('/');
+    const esmJs = m.packageJson && m.packageJson.type === 'module' && /m?js$/.test(ext);
+    const imp = esmJs ? relPath(dir, target) : relPath(dir, target).replace(/\.(ts|tsx|js|jsx|mjs|cjs)$/, '');
+    const cjs = !/^(ts|tsx|mjs)$/.test(ext) && !(m.packageJson && m.packageJson.type === 'module') && (m.cjsFiles || []).includes(target);
+    const lines = [];
+    if (fw === 'Vitest') lines.push(`import { describe, it, expect } from 'vitest';`);
+    if (fw === 'Mocha') lines.push(cjs ? `const assert = require('node:assert');` : `import assert from 'node:assert';`);
+    if (names.length) lines.push(cjs ? `const { ${names.join(', ')} } = require('${imp}');` : `import { ${names.join(', ')} } from '${imp}';`);
+    else lines.push(cjs ? `const subject = require('${imp}');` : `import * as subject from '${imp}';`);
+    lines.push('', `describe('${stem}', () => {`);
+    (names.length ? names : ['subject']).forEach(n => {
+      lines.push(`  it('${n} behaves as expected', () => {`,
+        `    // TODO: call ${n} with representative input and assert on the result`,
+        fw === 'Mocha' ? `    assert.ok(${n});` : `    expect(${n}).toBeDefined();`, `  });`, '');
+    });
+    if (lines[lines.length - 1] === '') lines.pop();
+    lines.push('});');
+    code = lines.join('\n');
+  } else if (ext === 'py') {
+    const modPath = target.replace(/\.py$/, '').replace(/\/__init__$/, '').replace(/^src\//, '').split('/').join('.');
+    testPath = `${mostCommonTestRoot(m) || 'tests'}/test_${stem === '__init__' ? modPath.split('.').pop() : stem}.py`;
+    const lines = [names.length ? `from ${modPath} import ${names.join(', ')}` : `import ${modPath}`, '', ''];
+    (names.length ? names : [modPath.split('.').pop()]).forEach(n => {
+      if (/^[A-Z]/.test(n)) lines.push(`def test_${snakeCase(n)}_can_be_constructed():`, `    # TODO: construct ${n} with realistic arguments and assert its behaviour`, `    assert ${n} is not None`, '', '');
+      else lines.push(`def test_${snakeCase(n)}():`, `    # TODO: call ${n}(...) with representative input and assert on the result`, names.length ? `    assert callable(${n})` : `    assert ${modPath}`, '', '');
+    });
+    code = lines.join('\n').trimEnd() + '\n';
+  } else if (ext === 'go') {
+    const dir = target.split('/').slice(0, -1);
+    testPath = target.replace(/\.go$/, '_test.go');
+    code = `package ${dir.length ? dir[dir.length - 1] : 'main'}\n\nimport "testing"\n\n` +
+      (names.length ? names : [stem.charAt(0).toUpperCase() + stem.slice(1)]).map(n =>
+        `func Test${n}(t *testing.T) {\n\t// TODO: exercise ${n} with representative input and assert on the result\n\tt.Skip("not implemented yet")\n}\n`).join('\n');
+  } else {
+    testPath = `(test for ${target})`;
+    code = `// Test stub for ${target}\n// Detected test framework: ${fw || 'none'}\n// Exported names: ${names.join(', ') || 'none detected'}\n// TODO: add tests using this repository's test conventions.`;
+  }
+  return { testPath, code, target, names };
+}
+
+function renderRepoImpact(id) {
+  const m = activeUrlProfile._repoData;
+  const mod = repoModule(id);
+  if (!mod) { showToast('Component not found'); return; }
+  document.querySelectorAll('#impact-component-buttons .btn').forEach(b => {
+    const on = b.dataset.id === id;
+    b.classList.toggle('btn-primary', on);
+    b.classList.toggle('btn-secondary', !on);
+  });
+
+  const rev = reverseImportGraph(m);
+  const inMod = new Set(mod.files);
+  const testSet = new Set(m.testFiles);
+  const depth = {};
+  let frontier = mod.files.slice();
+  for (let d = 1; d <= 3 && frontier.length; d++) {
+    const next = [];
+    frontier.forEach(f => (rev[f] || []).forEach(g => {
+      if (!inMod.has(g) && depth[g] === undefined) { depth[g] = d; next.push(g); }
+    }));
+    frontier = next;
+  }
+  const dependents = Object.keys(depth);
+  const indirect = dependents.filter(f => !testSet.has(f)).sort((a, b) => depth[a] - depth[b] || a.localeCompare(b));
+  const relatedTests = [...new Set(mod.testFiles.concat(dependents.filter(f => testSet.has(f))))];
+  const reached = new Set(m.testReached || []);
+  const untested = mod.files.filter(f => !reached.has(f));
+  const affectedModules = [...new Set(indirect.map(f => m.fileToModule[f]).filter(Boolean))];
+  const endpoints = (m.routes || []).filter(r => inMod.has(r.file) || depth[r.file] !== undefined);
+  const envVars = Object.entries(m.envUsed || {}).filter(([, fs]) => fs.some(f => inMod.has(f))).map(([k]) => k);
+  const deployment = mod.hasEntry ? (m.docker || []).map(d => d.path).concat((m.ci || []).map(w => w.path)) : [];
+  if (envVars.length) deployment.push(`Environment: ${envVars.join(', ')}`);
+
+  const wide = indirect.length >= 10 || affectedModules.length >= 3;
+  const score = (wide ? 2 : indirect.length >= 3 ? 1 : 0) + (mod.reachPct === 0 ? 2 : mod.reachPct < 50 ? 1 : 0) + (endpoints.length ? 1 : 0) + (mod.hasEntry ? 1 : 0);
+  const risk = score >= 4 ? 'HIGH' : score >= 2 ? 'MEDIUM' : 'LOW';
+  const reasons = [];
+  if (indirect.length) reasons.push(`${indirect.length} file${indirect.length > 1 ? 's' : ''} in ${affectedModules.length} other module${affectedModules.length !== 1 ? 's' : ''} depend on it`);
+  if (endpoints.length) reasons.push(`${endpoints.length} API endpoint${endpoints.length > 1 ? 's are' : ' is'} affected`);
+  if (mod.reachPct < 50) reasons.push(`only ${mod.reachPct}% of its files are reached by tests`);
+  if (mod.hasEntry) reasons.push('it contains an application entry point');
+  const reason = reasons.length ? `Changes here matter because ${reasons.join('; ')}.` : 'Few other files depend on this module and its files are reached by tests.';
+  const borderFor = r => r === 'HIGH' ? 'var(--red2)' : r === 'MEDIUM' ? 'var(--yellow2)' : 'var(--green)';
+  const card = (title, sub, body, style = '') => `<div class="card" style="${style}"><div class="card-header"><span class="card-title">${title}</span>${sub ? `<span class="card-subtitle">${sub}</span>` : ''}</div><div class="card-body" style="padding:12px">${body}</div></div>`;
+  const none = t => `<div class="col-muted fs-13">${t}</div>`;
+
+  let html = `<div class="grid2 mb-16">
+    <div class="card" style="border-color:${borderFor(risk)}">
+      <div class="card-body">
+        <div style="font-size:13px;color:var(--text2);margin-bottom:8px">Change Impact Analysis</div>
+        <div style="font-size:20px;font-weight:700;margin-bottom:4px;word-break:break-all">${moduleIcon(id)} ${escHtml(mod.label)}</div>
+        <span class="badge ${riskBadgeClass(risk)}" style="font-size:13px;padding:4px 12px">${risk} RISK</span>
+        <hr class="separator">
+        <div class="fs-12 col-muted">${escHtml(reason)}</div>
+        <div class="fs-12 col-muted" style="margin-top:6px"><span class="ev-verified">IMPORT GRAPH</span> Static analysis of ${escHtml(m.fullName)} @ ${escHtml(m.commit ? m.commit.sha.slice(0, 7) : m.branch)}. <span class="ev-needs">NEEDS VERIFICATION</span></div>
+      </div>
+    </div>
+    <div class="card"><div class="card-body">
+      <div class="grid2" style="gap:12px;text-align:center">
+        <div><div class="stat-number col-red">${mod.files.length}</div><div class="stat-label">Direct impact</div></div>
+        <div><div class="stat-number col-yellow">${indirect.length}</div><div class="stat-label">Dependent files</div></div>
+        <div><div class="stat-number col-blue">${relatedTests.length}</div><div class="stat-label">Related tests</div></div>
+        <div><div class="stat-number col-red">${untested.length}</div><div class="stat-label">Files without tests</div></div>
+      </div>
+    </div></div>
+  </div>
+  <div class="grid2 mb-16">
+    ${card('Direct Impact', `${mod.files.length} files in this module`, capList(mod.files, 25, f => `<div class="impact-file direct">${escHtml(f)}</div>`))}
+    ${card('Indirect Impact', `${indirect.length} files import it (up to 3 hops)`, indirect.length ? capList(indirect, 25, f => `<div class="impact-file indirect">${escHtml(f)}<span class="col-muted" style="margin-left:auto;font-family:var(--font)">${depth[f] === 1 ? 'imports directly' : `via ${depth[f]} hops`}</span></div>`) : none('No other source files import this module.'))}
+  </div>
+  <div class="grid2 mb-16">
+    ${card('Related Tests', `${relatedTests.length} test files`, relatedTests.length ? capList(relatedTests, 20, f => `<div class="impact-file test-f">${escHtml(f)}</div>`) : none('No tests import this module or its dependents.'))}
+    ${card('⚠️ Missing Regression Tests', `${untested.length} files`, untested.length ? capList(untested, 15, f => `<div style="padding:8px;margin-bottom:6px;background:rgba(218,54,51,.06);border-left:3px solid var(--red2);border-radius:4px;font-size:13px">No test reaches <span class="file-path">${escHtml(f)}</span></div>`) + `<button class="btn btn-primary btn-sm" style="margin-top:6px" onclick="openGenModal(${jsArg(id)})">⚡ Generate Test Stub</button>` : none('Every file in this module is reached by at least one test.'), `border-color:${untested.length ? 'var(--red2)' : 'var(--border)'}`)}
+  </div>`;
+  const extra = [];
+  if (endpoints.length) extra.push(card('🔌 Affected Endpoints', `${endpoints.length} routes`, capList(endpoints, 15, r => `<div class="impact-file indirect">${escHtml(r.method)} ${escHtml(r.path)}<span class="col-muted" style="margin-left:auto">${escHtml(r.file)}</span></div>`)));
+  if (mod.docs.length) extra.push(card('📄 Documentation Affected', 'mentions this module', mod.docs.map(f => `<div class="impact-file">${escHtml(f)}</div>`).join('')));
+  if (deployment.length) extra.push(card('🚀 Deployment Config', '', deployment.map(f => `<div class="impact-file">${escHtml(f)}</div>`).join('')));
+  if (extra.length) html += `<div class="grid2">${extra.join('')}</div>`;
+
+  document.getElementById('impact-result').style.display = 'block';
+  document.getElementById('impact-result-content').innerHTML = html;
+}
+
+// ============================================================
 // RELEASE
 // ============================================================
 function prepareRelease() {
@@ -3952,7 +4435,7 @@ function showReleaseReport() {
 
     const checks = [
       { label:'Build', status: hasCI ? '✅' : '⚠️', ok: hasCI,
-        note: hasCI ? `CI/CD pipeline detected (${m.ciFiles.slice(0,2).join(', ')})` : 'No CI/CD pipeline — build not automated' },
+        note: hasCI ? `CI/CD pipeline detected (${escHtml(m.ciFiles.slice(0,2).join(', '))})` : 'No CI/CD pipeline — build not automated' },
       { label:'Tests', status: hasTests ? '✅' : '❌', ok: hasTests,
         note: hasTests ? `${m.testFiles.length} test files found · run locally to verify` : 'No tests found — release without test coverage' },
       { label:'Critical Issues', status: hasCritical ? '❌' : '✅', ok: !hasCritical,
@@ -4176,8 +4659,8 @@ function initOnboarding() {
               <tr><td class="col-muted">Source files</td><td>${m.sourceFiles.length}</td></tr>
               <tr><td class="col-muted">Test files</td><td>${m.testFiles.length}</td></tr>
               <tr><td class="col-muted">Dependencies</td><td>${prof.dependencies}</td></tr>
-              <tr><td class="col-muted">Top directories</td><td>${topDirs.slice(0,4).join(', ') || '—'}</td></tr>
-              ${m.ciFiles.length ? `<tr><td class="col-muted">CI/CD</td><td>${m.ciFiles.slice(0,2).join(', ')}</td></tr>` : ''}
+              <tr><td class="col-muted">Top directories</td><td>${escHtml(topDirs.slice(0,4).join(', ')) || '—'}</td></tr>
+              ${m.ciFiles.length ? `<tr><td class="col-muted">CI/CD</td><td>${escHtml(m.ciFiles.slice(0,2).join(', '))}</td></tr>` : ''}
             </table>
           </div>
         </div>
@@ -4187,8 +4670,8 @@ function initOnboarding() {
     // ---- Architecture tab ----
     const obArch = document.getElementById('ob-arch');
     if (obArch) {
-      const flowLines = topDirs.length > 0
-        ? topDirs.map((d, i) => (i === 0 ? `Entry → /${d}/` : `     ├── /${d}/`)).join('\n')
+      const flowLines = (m.modules || []).length
+        ? m.modules.slice(0, 12).map(x => `${x.id} (${x.fileCount} files)${x.importsFrom.length ? '\n  └─ uses ' + x.importsFrom.join(', ') : ''}`).join('\n')
         : 'Source files (flat structure)';
       obArch.innerHTML = `<div class="grid2 mb-16">
         <div class="card">
@@ -4216,9 +4699,19 @@ function initOnboarding() {
       </div>
       <div class="card mb-16" style="border-color:rgba(56,139,253,.3);background:rgba(56,139,253,.04)">
         <div class="card-body" style="padding:12px 18px;font-size:13px;color:var(--text2)">
-          <span class="ev-ai">AI ANALYSIS</span> · Full architecture diagram requires deeper static analysis. Use the <strong>Project Map</strong> to explore component relationships visually.
+          <span class="ev-verified">VERIFIED</span> · Module dependencies come from the import graph (${Object.keys(m.importGraph || {}).length} files with internal imports). Use the <strong>Project Map</strong> to explore them visually.
         </div>
-      </div>`;
+      </div>
+      <div class="card mb-16">
+        <div class="card-header"><span class="card-title">API Routes</span><span class="card-subtitle">${(m.routes || []).length} detected</span></div>
+        <div class="card-body" style="padding:12px">${(m.routes || []).length
+          ? capList(m.routes, 15, r => `<div class="impact-file"><strong>${escHtml(r.method)}</strong>&nbsp;${escHtml(r.path)}<span class="col-muted" style="margin-left:auto">${escHtml(r.file)}</span></div>`)
+          : '<div class="col-muted fs-13">No HTTP routes detected.</div>'}</div>
+      </div>
+      ${(m.entryPoints || []).length ? `<div class="card mb-16">
+        <div class="card-header"><span class="card-title">Entry Points</span></div>
+        <div class="card-body" style="padding:12px">${m.entryPoints.map(e => `<div class="impact-file"><span class="file-path">${escHtml(e.path)}</span><span class="col-muted" style="margin-left:auto">${escHtml(e.reason)}</span></div>`).join('')}</div>
+      </div>` : ''}`;
     }
 
     // ---- Setup tab ----
@@ -4226,17 +4719,21 @@ function initOnboarding() {
     if (obSetup) {
       const pkgScripts = m.packageJson && m.packageJson.scripts ? Object.entries(m.packageJson.scripts).slice(0, 6).map(([k, v]) => `npm run ${k}   # ${v}`).join('\n') : null;
       const cloneCmd = `git clone ${m.url || `https://github.com/${m.fullName}`}\ncd ${m.name}`;
-      const installCmd = m.packageJson ? 'npm install' : m.requirementsTxt ? 'pip install -r requirements.txt' : m.goMod ? 'go mod download' : 'Install dependencies (see README)';
-      const testCmd = m.testFramework === 'Jest' ? 'npm test' : m.testFramework === 'Vitest' ? 'npm run test' : m.testFramework === 'Pytest' ? 'pytest' : m.testFramework ? m.testFramework.toLowerCase() : '# run tests (check README)';
+      const installCmd = installCommandFor(m);
+      const testCmd = testCommandFor(m);
       obSetup.innerHTML = `<div class="card">
         <div class="card-header"><span class="card-title">Getting Started</span><span class="ev-ai" style="margin-left:auto">AI ANALYSIS</span></div>
         <div class="card-body">
           <div class="mb-16"><div style="font-weight:600;margin-bottom:8px">1. Clone & Install</div>
             <div class="code-block">${escHtml(cloneCmd)}\n${escHtml(installCmd)}</div>
           </div>
-          ${m.allFiles.some(f => f.endsWith('.env.example')) ? `<div class="mb-16"><div style="font-weight:600;margin-bottom:8px">2. Environment Setup</div>
-            <div class="code-block">cp .env.example .env\n# Edit .env with your local credentials</div>
-          </div>` : `<div class="mb-16 card" style="border-color:var(--yellow)"><div class="card-body" style="padding:12px 16px">
+          ${(m.envTemplates || []).length ? `<div class="mb-16"><div style="font-weight:600;margin-bottom:8px">2. Environment Setup</div>
+            <div class="code-block">cp ${escHtml(m.envTemplates[0])} .env\n# Edit .env with your local values</div>
+            ${m.envMissing.length ? `<div class="fs-12 col-yellow" style="margin-top:6px">⚠️ Also needed but not in ${escHtml(m.envTemplates[0])}: ${escHtml(m.envMissing.join(', '))}</div>` : ''}
+          </div>` : m.envMissing.length ? `<div class="mb-16 card" style="border-color:var(--yellow)"><div class="card-body" style="padding:12px 16px">
+            <span style="color:var(--yellow2);font-weight:700">⚠️ No .env.example found</span>
+            <span style="font-size:13px;color:var(--text2);margin-left:8px">The code reads these environment variables: ${escHtml(m.envMissing.join(', '))}</span>
+          </div></div>` : `<div class="mb-16 card" style="border-color:var(--yellow)"><div class="card-body" style="padding:12px 16px">
             <span style="color:var(--yellow2);font-weight:700">⚠️ No .env.example found</span>
             <span style="font-size:13px;color:var(--text2);margin-left:8px">Environment variables are not documented. Check README or ask the team.</span>
           </div></div>`}
@@ -4257,9 +4754,8 @@ function initOnboarding() {
     // ---- First Day tab ----
     const obFirstday = document.getElementById('ob-firstday');
     if (obFirstday) {
-      const entryFiles = ['src/index.ts','src/index.js','src/main.ts','src/main.py','main.go','index.js','index.ts','app.py','server.js']
-        .filter(f => m.allFiles.includes(f));
-      const testCmd = m.testFramework === 'Jest' ? 'npm test' : m.testFramework === 'Vitest' ? 'npm run test' : m.testFramework === 'Pytest' ? 'pytest' : 'run the test suite';
+      const entryFiles = (m.entryPoints || []).map(e => e.path).slice(0, 4);
+      const testCmd = testCommandFor(m);
       const firstIssue = activeUrlProfile.maintenanceHighlights.find(i => i.sev === 'LOW' || i.sev === 'MEDIUM');
       obFirstday.innerHTML = `<div class="grid2">
         <div class="card">
@@ -4290,7 +4786,7 @@ function initOnboarding() {
             <div class="mb-16">
               <div class="map-detail-section-title">Safest Areas to Start</div>
               <div style="display:flex;flex-direction:column;gap:6px">
-                ${topDirs.filter(d => !/payment|pay|stripe|billing|auth|db|migration/i.test(d)).slice(0,3).map(d => `<div class="impact-file indirect">/${escHtml(d)}/ — relatively isolated</div>`).join('') || '<div class="col-muted fs-13">Explore the Project Map to identify lower-risk areas</div>'}
+                ${(m.modules || []).filter(x => !x.id.startsWith('(') && x.importedBy.length <= 1 && x.reachPct >= 50).slice(0, 3).map(x => `<div class="impact-file indirect">${escHtml(x.id)}/ — ${x.importedBy.length ? 'used by 1 module' : 'no other module depends on it'} · ${x.reachPct}% tested</div>`).join('') || (m.modules || []).slice().sort((a, b) => a.importedBy.length - b.importedBy.length).slice(0, 3).map(x => `<div class="impact-file indirect">${escHtml(x.id)}/ — few dependents</div>`).join('') || '<div class="col-muted fs-13">Explore the Project Map to find isolated modules.</div>'}
               </div>
             </div>
             <div>
@@ -4333,6 +4829,22 @@ function initOnboarding() {
 // MODALS
 // ============================================================
 function openGenModal(module) {
+  if (activeUrlProfile && activeUrlProfile._repoData) {
+    const stub = generateRepoTestStub(module);
+    if (!stub) { showToast('No source files found for this module'); return; }
+    const m = activeUrlProfile._repoData;
+    lastGeneratedCode = stub.code;
+    document.getElementById('gen-modal-title').textContent = module;
+    document.getElementById('gen-modal-body').innerHTML = `<div style="margin-bottom:12px">
+        <div style="font-size:13px;color:var(--text2);margin-bottom:8px">Stub for <span class="file-path">${escHtml(stub.target)}</span> using ${escHtml(m.testFramework || 'no detected framework')}${stub.names.length ? ` — covers ${escHtml(stub.names.join(', '))}` : ''}.</div>
+        <span class="demo-label">GENERATED STUB — verify before use</span>
+      </div>
+      <div style="font-size:12px;font-weight:600;color:var(--text3);margin-bottom:8px">${escHtml(stub.testPath)}</div>
+      <pre style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:14px;font-family:var(--mono);font-size:12px;color:#a5d6ff;overflow-x:auto;line-height:1.7;white-space:pre">${escHtml(stub.code)}</pre>
+      <div class="fs-12 col-muted" style="margin-top:10px">Built from the exported names Traceon found in the file. The assertions are placeholders — fill in the TODOs with real inputs and expected results. Traceon does not write to your repository.</div>`;
+    document.getElementById('gen-modal').classList.remove('hidden');
+    return;
+  }
   const gap = TESTING_GAPS.find(g=>g.module===module);
   document.getElementById('gen-modal-title').textContent = module;
 
@@ -4368,7 +4880,7 @@ function copyCode() {
 }
 
 function escHtml(s) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 
 // ============================================================
@@ -4456,7 +4968,7 @@ function showReport(type) {
       changesText = `${m.sourceFiles.length} source files · ${m.testFiles.length} test files · ${activeUrlProfile.dependencies} dependencies · Static analysis only — git diff requires repository access. <span class="ev-needs">NEEDS VERIFICATION</span>`;
       testText = m.testFiles.length > 0 ? `${m.testFiles.length} test files present. Coverage requires running tests locally. <span class="ev-needs">NEEDS VERIFICATION</span>` : `No tests found. Release without test coverage.`;
       warningsHtml = warnings.length > 0 ? `<ol style="padding-left:20px;display:flex;flex-direction:column;gap:8px">${warnings.map(w=>`<li class="fs-13">${escHtml(w)}</li>`).join('')}</ol>` : '<p class="fs-13 col-muted">No warnings.</p>';
-      deployText = [m.dockerfile ? 'Dockerfile present.' : 'No Dockerfile.', m.ciFiles.length > 0 ? `CI/CD: ${m.ciFiles.slice(0,2).join(', ')}.` : 'No CI/CD pipeline.'].join(' ');
+      deployText = [m.dockerfile ? 'Dockerfile present.' : 'No Dockerfile.', m.ciFiles.length > 0 ? `CI/CD: ${escHtml(m.ciFiles.slice(0,2).join(', '))}.` : 'No CI/CD pipeline.'].join(' ');
     } else {
       statusText = `<div style="font-size:20px;font-weight:700;color:var(--yellow2)">⚠️ READY WITH WARNINGS</div>`;
       changesText = '12 commits · 18 files changed · New: Refund API, Order Search · Bug fixes: 3 payment controller fixes · No breaking changes detected.';
@@ -4526,9 +5038,9 @@ function showToast(msg) {
 // BOOTSTRAP
 // ============================================================
 window.addEventListener('DOMContentLoaded', async () => {
-  // Handle OAuth redirect (code in URL from GitHub)
-  const wasOAuth = await handleOAuthCallback();
-  if (!wasOAuth) {
+  // Returning from GitHub sign-in (?github=connected / ?github_error=…)
+  const wasGitHubReturn = await handleGitHubReturn();
+  if (!wasGitHubReturn) {
     // Normal load — show connect screen at landing panel
     showConnectPanel('landing');
     document.getElementById('connect-screen').classList.remove('hidden');
