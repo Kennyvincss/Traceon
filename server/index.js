@@ -89,7 +89,7 @@ function createApp({ cfg = loadConfig(), fetchImpl = fetch, store } = {}) {
   }
 
   async function handle(req, res) {
-    const url = new URL(req.url, cfg.appUrl);
+    const url = new URL(req.url, 'http://traceon.local');
     const p = url.pathname;
 
     // ---- UI ----

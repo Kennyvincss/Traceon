@@ -179,6 +179,17 @@ test('never sends write requests to GitHub', () => {
   assert.ok(apiCalls.length > 0 && apiCalls.every(r => r.method === 'GET'));
 });
 
+test('APP_URL typos are normalised instead of breaking the site', () => {
+  const { normalizeAppUrl } = require('../server/config');
+  assert.strictEqual(normalizeAppUrl('traceon-production.up.railway.app', 3000), 'https://traceon-production.up.railway.app');
+  assert.strictEqual(normalizeAppUrl(' "https://x.up.railway.app/" ', 3000), 'https://x.up.railway.app');
+  assert.strictEqual(normalizeAppUrl('localhost:3000', 3000), 'http://localhost:3000');
+  assert.strictEqual(normalizeAppUrl('', 8080), 'http://localhost:8080');
+  const cfg = loadConfig({ APP_URL: 'traceon-production.up.railway.app' });
+  assert.strictEqual(cfg.github.callbackUrl, 'https://traceon-production.up.railway.app/auth/github/callback');
+  assert.strictEqual(cfg.secureCookies, true);
+});
+
 test('without GitHub credentials the login reports "not configured"', async () => {
   const bare = await startTraceon(gh, { GITHUB_CLIENT_ID: '', GITHUB_CLIENT_SECRET: '' });
   try {

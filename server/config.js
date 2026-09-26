@@ -17,11 +17,26 @@ function loadDotEnv(file) {
   }
 }
 
+// Accepts common slips such as a missing scheme ("myapp.up.railway.app"), spaces,
+// quotes or a trailing slash, and warns instead of crashing on an unusable value.
+function normalizeAppUrl(raw, port) {
+  let v = String(raw || '').trim().replace(/^['"]|['"]$/g, '').replace(/\/+$/, '');
+  if (!v) return `http://localhost:${port}`;
+  if (!/^https?:\/\//i.test(v)) v = (/^(localhost|127\.0\.0\.1)(:|$)/.test(v) ? 'http://' : 'https://') + v;
+  try {
+    const u = new URL(v);
+    return `${u.protocol}//${u.host}${u.pathname.replace(/\/+$/, '')}`;
+  } catch {
+    console.warn(`[traceon] APP_URL "${raw}" is not a valid URL; using http://localhost:${port}`);
+    return `http://localhost:${port}`;
+  }
+}
+
 function loadConfig(env = process.env) {
   if (env === process.env) loadDotEnv(path.join(__dirname, '..', '.env'));
 
   const port = parseInt(env.PORT || '3000', 10);
-  const appUrl = (env.APP_URL || `http://localhost:${port}`).replace(/\/+$/, '');
+  const appUrl = normalizeAppUrl(env.APP_URL, port);
   const mode = (env.GITHUB_AUTH_MODE || 'app').toLowerCase();
 
   const cfg = {
@@ -52,4 +67,4 @@ function loadConfig(env = process.env) {
   return cfg;
 }
 
-module.exports = { loadConfig };
+module.exports = { loadConfig, normalizeAppUrl };
