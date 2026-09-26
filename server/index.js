@@ -99,7 +99,7 @@ function createApp({ cfg = loadConfig(), fetchImpl = fetch, store } = {}) {
         'Content-Type': 'text/html; charset=utf-8',
         'Cache-Control': 'no-cache',
         'Content-Security-Policy': [
-          "default-src 'self'", "script-src 'self' 'unsafe-inline'", "style-src 'self' 'unsafe-inline'",
+          "default-src 'self'", "script-src 'self' 'unsafe-inline'", "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com", "font-src https://fonts.gstatic.com",
           "img-src 'self' data: https://avatars.githubusercontent.com", "connect-src 'self'",
           "frame-ancestors 'none'", "base-uri 'none'", "form-action 'self'",
         ].join('; '),
