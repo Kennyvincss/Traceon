@@ -128,6 +128,22 @@ const SP = process.env.E2E_SCREENSHOTS || os.tmpdir();
     const res = await p.locator('#test-results-panel').textContent();
     if (!res.includes('tests/users.test.ts') || !res.includes('npm test')) throw new Error('RES:' + res.slice(0, 600));
   });
+  await step('testing summary cards show real data and are clickable', async () => {
+    await p.evaluate(() => navigate('testing'));
+    const cards = await p.locator('#t-overview .grid3').textContent();
+    for (const x of ['Files Reached by Tests', 'Tests Found', 'Critical Gaps']) if (!cards.includes(x)) throw new Error('missing ' + x);
+    if (cards.includes('127') || cards.includes('67%')) throw new Error('demo numbers on a real repo');
+    await p.click('#tstat-gaps');
+    if (!(await p.locator('#t-gaps').isVisible()) || !(await p.locator('#testing-gaps').innerText()).includes('src/services')) throw new Error('gaps view');
+    await p.click('#page-testing .tab:has-text("Coverage Overview")');
+    await p.click('#tstat-tests');
+    if (!(await p.locator('#t-results').isVisible()) || !(await p.locator('#test-results-panel').innerText()).includes('tests/users.test.ts')) throw new Error('results view');
+    await p.click('#page-testing .tab:has-text("Coverage Overview")');
+    await p.click('#tstat-coverage');
+    if (!(await p.locator('#coverage-by-module').isVisible())) throw new Error('coverage view');
+    if (!(await p.locator('#page-testing .section-header').isVisible())) throw new Error('page header hidden by tab switch');
+  });
+
   await step('generate test stub from real exports', async () => {
     await p.evaluate(() => openGenModal('src/services'));
     const t = await p.locator('#gen-modal-body').innerText();
@@ -212,6 +228,17 @@ const SP = process.env.E2E_SCREENSHOTS || os.tmpdir();
     if (!ov.includes('Express 4.18') || ov.includes('Module Test Reach') || ov.includes('octo-dev')) throw new Error('demo overview not restored');
     await p.evaluate(() => navigate('impact'));
     if (!(await p.locator('#impact-component-buttons').textContent()).includes('Payments')) throw new Error('demo impact not restored');
+  });
+  await step('demo testing cards are clickable and show the passing run', async () => {
+    await p.evaluate(() => navigate('testing'));
+    await p.click('#page-testing .tab:has-text("Coverage Overview")');
+    if ((await p.locator('#tstat-tests-value').innerText()) !== '127') throw new Error('demo values not restored');
+    await p.click('#tstat-tests');
+    if (!(await p.locator('#test-results-panel').innerText()).includes('127 passed')) throw new Error('demo results');
+    await p.click('#page-testing .tab:has-text("Coverage Overview")');
+    await p.click('#tstat-gaps');
+    if (!(await p.locator('#testing-gaps').innerText()).includes('Payments')) throw new Error('demo gaps');
+    await shot('11-demo-gaps');
   });
   await shot('09-demo');
 

@@ -209,6 +209,10 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .mt-8{margin-top:8px}.mt-12{margin-top:12px}.mt-16{margin-top:16px}
 .fw-700{font-weight:700}.fs-12{font-size:12px}.fs-13{font-size:13px}
 .col-red{color:var(--red2)}.col-yellow{color:var(--yellow2)}.col-green{color:var(--teal)}.col-blue{color:var(--accent2)}.col-purple{color:var(--purple)}.col-muted{color:var(--text2)}
+.stat-link{cursor:pointer;transition:border-color .15s,transform .15s}
+.stat-link:hover,.stat-link:focus{border-color:var(--accent2);outline:none;transform:translateY(-1px)}
+.stat-link-hint{font-size:11px;color:var(--accent2);margin-top:10px;opacity:.75}
+.stat-link:hover .stat-link-hint{opacity:1}
 .inline-code{background:var(--bg3);padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:.92em}
 .report-section{margin-bottom:28px}
 .report-section h3{font-size:14px;font-weight:700;margin-bottom:12px;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:8px}
@@ -983,7 +987,7 @@ npm run test:watch # watch mode</div>
         <div class="section-header">
           <div>
             <div class="section-title">Testing Center</div>
-            <div class="section-subtitle">Coverage analysis · missing tests · test generation · <span class="demo-label">DEMO</span></div>
+            <div class="section-subtitle" id="testing-subtitle">Coverage analysis · missing tests · test generation · <span class="demo-label">DEMO</span></div>
           </div>
           <div style="margin-left:auto;display:flex;gap:10px">
             <button class="btn btn-green" onclick="runTests()">▶ Run Tests</button>
@@ -999,18 +1003,21 @@ npm run test:watch # watch mode</div>
 
         <div id="t-overview">
           <div class="grid3 mb-16">
-            <div class="card"><div class="card-body" style="text-align:center;padding:24px">
-              <div style="font-size:40px;font-weight:800;color:var(--yellow2)">67%</div>
-              <div class="stat-label">Overall Coverage</div>
-              <div style="margin-top:10px"><div class="progress-bar" style="height:8px"><div class="progress-fill yellow" style="width:67%"></div></div></div>
+            <div class="card stat-link" id="tstat-coverage" role="button" tabindex="0" onclick="openTestingView('coverage')" onkeydown="if(event.key==='Enter')openTestingView('coverage')" title="Show coverage by module"><div class="card-body" style="text-align:center;padding:24px">
+              <div id="tstat-coverage-value" style="font-size:40px;font-weight:800;color:var(--yellow2)">67%</div>
+              <div class="stat-label" id="tstat-coverage-label">Overall Coverage</div>
+              <div style="margin-top:10px"><div class="progress-bar" style="height:8px"><div id="tstat-coverage-bar" class="progress-fill yellow" style="width:67%"></div></div></div>
+              <div class="stat-link-hint">View by module →</div>
             </div></div>
-            <div class="card"><div class="card-body" style="text-align:center;padding:24px">
-              <div class="stat-number col-green">127</div><div class="stat-label">Tests Passing</div>
-              <div style="font-size:12px;color:var(--text2);margin-top:8px">19 test files</div>
+            <div class="card stat-link" id="tstat-tests" role="button" tabindex="0" onclick="openTestingView('results')" onkeydown="if(event.key==='Enter')openTestingView('results')" title="Show test results"><div class="card-body" style="text-align:center;padding:24px">
+              <div class="stat-number col-green" id="tstat-tests-value">127</div><div class="stat-label" id="tstat-tests-label">Tests Passing</div>
+              <div style="font-size:12px;color:var(--text2);margin-top:8px" id="tstat-tests-sub">19 test files</div>
+              <div class="stat-link-hint">View test results →</div>
             </div></div>
-            <div class="card"><div class="card-body" style="text-align:center;padding:24px">
-              <div class="stat-number col-red">5</div><div class="stat-label">Critical Gaps</div>
-              <div style="font-size:12px;color:var(--text2);margin-top:8px">High-risk untested areas</div>
+            <div class="card stat-link" id="tstat-gaps" role="button" tabindex="0" onclick="openTestingView('gaps')" onkeydown="if(event.key==='Enter')openTestingView('gaps')" title="Show critical gaps"><div class="card-body" style="text-align:center;padding:24px">
+              <div class="stat-number col-red" id="tstat-gaps-value">5</div><div class="stat-label" id="tstat-gaps-label">Critical Gaps</div>
+              <div style="font-size:12px;color:var(--text2);margin-top:8px" id="tstat-gaps-sub">High-risk untested areas</div>
+              <div class="stat-link-hint">View gaps →</div>
             </div></div>
           </div>
           <div id="coverage-by-module"></div>
@@ -1668,10 +1675,11 @@ function switchTab(tabEl, targetId) {
   tabEl.classList.add('active');
   const target = document.getElementById(targetId);
   if (!target) return;
-  const parentContainer = target.parentElement;
-  Array.from(parentContainer.children).forEach(child => {
-    if (child.tagName !== 'DIV' || child.classList.contains('tabs')) return;
-    child.style.display = 'none';
+  // Hide only the panels these tabs control (not the page header or other content)
+  tabEl.parentElement.querySelectorAll('.tab').forEach(t => {
+    const m = (t.getAttribute('onclick') || '').match(/switchTab\(this,\s*'([^']+)'\)/);
+    const panel = m && document.getElementById(m[1]);
+    if (panel) panel.style.display = 'none';
   });
   target.style.display = 'block';
 }
@@ -3670,10 +3678,66 @@ function toggleExpand(header) {
 // TESTING
 // ============================================================
 function initTesting() {
+  renderTestingStats();
   initCoverageByModule();
   initTestingGaps();
   initTestResults();
   initTestGenerate();
+}
+
+// The three summary cards at the top of the Testing page
+function renderTestingStats() {
+  const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+  const bar = (pct, cls) => { const b = document.getElementById('tstat-coverage-bar'); if (b) { b.style.width = pct + '%'; b.className = 'progress-fill ' + cls; } };
+  const colour = pct => pct >= 70 ? ['var(--teal)', 'green'] : pct >= 40 ? ['var(--yellow2)', 'yellow'] : ['var(--red2)', 'red'];
+  const covEl = document.getElementById('tstat-coverage-value');
+  const sub = document.getElementById('testing-subtitle');
+  const m = activeUrlProfile && activeUrlProfile._repoData;
+  if (m) {
+    const pct = activeUrlProfile.testReachPct || 0;
+    const [c, cls] = colour(pct);
+    set('tstat-coverage-value', pct + '%'); if (covEl) covEl.style.color = c; bar(pct, cls);
+    set('tstat-coverage-label', 'Files Reached by Tests');
+    const cases = Object.values(m.testCases || {}).reduce((s, n) => s + n, 0);
+    set('tstat-tests-value', cases);
+    set('tstat-tests-label', 'Tests Found');
+    set('tstat-tests-sub', `${m.testFiles.length} test file${m.testFiles.length !== 1 ? 's' : ''} · not run by Traceon`);
+    const gapMods = (m.modules || []).filter(x => !x.id.startsWith('(other') && x.reachedFiles < x.fileCount);
+    const critical = gapMods.filter(x => moduleRisk(x) === 'HIGH').length;
+    set('tstat-gaps-value', critical);
+    set('tstat-gaps-sub', `High-risk modules · ${gapMods.length} with untested files`);
+    if (sub) sub.innerHTML = `Test reach · missing tests · test generation · <span class="source-pill live" style="font-size:10px;padding:2px 8px"><span class="dot"></span> LIVE</span>`;
+    return;
+  }
+  if (activeUrlProfile) {
+    const pct = activeUrlProfile.coverage;
+    const [c, cls] = colour(pct || 0);
+    set('tstat-coverage-value', pct != null ? pct + '%' : '—'); if (covEl) covEl.style.color = c; bar(pct || 0, cls);
+    set('tstat-coverage-label', 'Overall Coverage');
+    set('tstat-tests-value', activeUrlProfile.tests != null ? activeUrlProfile.tests.toLocaleString() : '—');
+    set('tstat-tests-label', 'Tests');
+    set('tstat-tests-sub', 'Curated preview');
+    set('tstat-gaps-value', (activeUrlProfile.testingGaps || []).length);
+    set('tstat-gaps-sub', 'Untested areas');
+    if (sub) sub.innerHTML = `Coverage analysis · missing tests · test generation · <span class="demo-label">SIMULATED</span>`;
+    return;
+  }
+  // Demo project
+  set('tstat-coverage-value', '67%'); if (covEl) covEl.style.color = 'var(--yellow2)'; bar(67, 'yellow');
+  set('tstat-coverage-label', 'Overall Coverage');
+  set('tstat-tests-value', '127'); set('tstat-tests-label', 'Tests Passing'); set('tstat-tests-sub', '19 test files');
+  set('tstat-gaps-value', '5'); set('tstat-gaps-sub', 'High-risk untested areas');
+  if (sub) sub.innerHTML = `Coverage analysis · missing tests · test generation · <span class="demo-label">DEMO</span>`;
+}
+
+// Clicking a summary card opens the matching view
+function openTestingView(view) {
+  const targets = { coverage: 't-overview', gaps: 't-gaps', results: 't-results' };
+  const tab = [...document.querySelectorAll('#page-testing .tab')].find(t => (t.getAttribute('onclick') || '').includes(`'${targets[view]}'`));
+  if (tab) switchTab(tab, targets[view]);
+  const focus = { coverage: 'coverage-by-module', gaps: 'testing-gaps', results: 'test-results-panel' }[view];
+  const el = document.getElementById(focus);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function initCoverageByModule() {
