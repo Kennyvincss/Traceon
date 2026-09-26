@@ -189,7 +189,7 @@ const SP = process.env.E2E_SCREENSHOTS || os.tmpdir();
       if (n) for (let i = 0; i < n; i++) { await tabs.nth(i).click(); all += await p.locator(`#page-${pg}`).innerText(); }
       else all += await p.locator(`#page-${pg}`).innerText();
     }
-    all += await p.locator('#sidebar').innerText() + await p.locator('#header').innerText();
+    all += await p.locator('#header').innerText();
     const hits = ['ShopCore', 'DEMO', 'SIMULATED', 'Developer Impact', 'Stripe', 'jsonwebtoken', 'paymentService'].filter(w => all.includes(w));
     if (hits.length) throw new Error('demo content found: ' + hits.join(', '));
   });

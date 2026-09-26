@@ -387,6 +387,112 @@ body{background:var(--bg);letter-spacing:-.011em;-webkit-font-smoothing:antialia
   .nb-hero{padding:70px 16px 90px}.nb-langs{gap:10px 22px;font-size:15px}
   .nb-main{padding-top:60px}
 }
+/* ================================================================
+   APP — the landing page's design carried through every page
+   ================================================================ */
+:root{
+  --green:#8fd1a6;--green2:rgba(143,209,166,.14);--teal:#8fd1a6;
+  --yellow:#e5c07b;--yellow2:#e5c07b;--orange:#eda36b;
+  --red:#f08a80;--red2:#f08a80;--purple:#c3b4f5;
+  --accent:#f4f4f5;--accent2:#c9d8d0;
+}
+body{background:#050506}
+#app{background:#050506;padding:0 18px 18px}
+#header{height:76px;background:transparent;border:none;backdrop-filter:none;-webkit-backdrop-filter:none;display:grid;grid-template-columns:auto 1fr auto;gap:18px;padding:0 10px}
+#logo{display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-size:16px;font-weight:600;letter-spacing:-.02em;color:var(--text);text-decoration:none}
+#app-nav{justify-self:center;display:flex;align-items:center;gap:2px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:999px;padding:5px;backdrop-filter:blur(10px);overflow-x:auto;scrollbar-width:none;max-width:100%}
+#app-nav::-webkit-scrollbar{display:none}
+#app-nav .nav-item{display:inline-flex;align-items:center;gap:6px;margin:0;border:none;border-radius:999px;padding:7px 13px;font-size:13px;color:var(--text2);white-space:nowrap;cursor:pointer;background:transparent;box-shadow:none}
+#app-nav .nav-item:hover{color:#fff;background:rgba(255,255,255,.06)}
+#app-nav .nav-item.active{background:rgba(255,255,255,.1);color:#fff;box-shadow:inset 0 0 0 1px var(--border2)}
+#app-nav .nav-badge{margin:0;padding:0 6px;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:999px;font-size:10px;font-weight:600;background:rgba(240,138,128,.18);color:var(--red)}
+#app-nav .nav-badge.warn{background:rgba(229,192,123,.16);color:var(--yellow)}
+#app-nav .nav-badge.ok{background:rgba(143,209,166,.14);color:var(--green)}
+#app-nav .nav-badge:empty{display:none}
+#header-right{display:flex;align-items:center;gap:10px;justify-self:end;min-width:0}
+#header-project{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:13px;cursor:pointer;white-space:nowrap}
+#header-project .proj-name{font-weight:500;color:#fff}
+#header-project .proj-ver{color:var(--text3);font-size:11px}
+#header-source-pill{white-space:nowrap}
+.health-badge{background:rgba(255,255,255,.06);color:#fff;border:1px solid var(--border2);border-radius:999px;padding:5px 12px;font-weight:500;font-size:12px;white-space:nowrap}
+.health-badge.ok{color:var(--green)}.health-badge.warn{color:var(--yellow)}.health-badge.crit{color:var(--red)}
+#header-right .nb-signin{white-space:nowrap}
+
+/* every page sits in the framed stage */
+#body{border:1px solid rgba(255,255,255,.07);border-radius:26px;overflow:hidden;position:relative;background:#060607}
+#main{position:relative;isolation:isolate;padding:44px clamp(18px,4vw,56px) 60px;background:
+  radial-gradient(760px 520px at 92% -6%,rgba(214,226,230,.16),rgba(160,185,172,.07) 45%,transparent 70%),
+  radial-gradient(620px 460px at -6% 104%,rgba(170,186,196,.1),transparent 65%),
+  radial-gradient(520px 380px at 98% 100%,rgba(172,196,160,.07),transparent 65%),#060607}
+#main::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.35;background-image:
+  radial-gradient(1px 1px at 12% 22%,#fff 50%,transparent),radial-gradient(1px 1px at 28% 78%,#fff 50%,transparent),
+  radial-gradient(1px 1px at 44% 64%,#ddd 50%,transparent),radial-gradient(1px 1px at 58% 88%,#fff 50%,transparent),
+  radial-gradient(1px 1px at 71% 70%,#ccc 50%,transparent),radial-gradient(1px 1px at 86% 58%,#fff 50%,transparent),
+  radial-gradient(1px 1px at 35% 40%,#bbb 50%,transparent),radial-gradient(1px 1px at 64% 30%,#fff 50%,transparent)}
+.page{max-width:1320px;margin:0 auto}
+
+/* headings like the hero */
+.section-header{margin-bottom:34px;align-items:flex-end}
+.section-title{font-size:clamp(30px,3.4vw,48px);font-weight:400;letter-spacing:-.045em;line-height:1.05;
+  background:linear-gradient(90deg,#fff 0%,#e7ece9 45%,rgba(255,255,255,.4) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.section-subtitle{font-size:14px;color:var(--text2);margin-top:10px}
+.stat-number{font-weight:300;font-size:40px;letter-spacing:-.04em;line-height:1.05}
+.stat-label{font-size:12px;color:var(--text2)}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.012));border:1px solid var(--border);border-radius:22px;backdrop-filter:blur(6px)}
+.card:hover{border-color:rgba(255,255,255,.12)}
+.card-header{border-bottom:1px solid var(--border);padding:16px 22px}
+.card-title{font-size:14px;font-weight:500;color:#fff}
+.card-subtitle{color:var(--text3)}
+.grid2,.grid3,.grid4{gap:14px}
+.mb-20{margin-bottom:14px}.mb-16{margin-bottom:14px}
+
+/* buttons, tabs, pills */
+.btn{border-radius:999px;font-weight:500;padding:9px 18px}
+.btn-sm{padding:7px 14px}
+.btn-primary,.btn-green{background:#fff;color:#0a0a0b;border-color:#fff}
+.btn-primary:hover,.btn-green:hover{background:#e9ecea;border-color:#e9ecea}
+.btn-secondary{background:rgba(12,12,14,.6);color:#fff;border-color:var(--border2);backdrop-filter:blur(8px)}
+.btn-secondary:hover{background:rgba(30,30,34,.8);border-color:rgba(255,255,255,.2)}
+.tabs{display:inline-flex;gap:2px;border:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(255,255,255,.04);border-radius:999px;padding:5px;margin-bottom:24px;flex-wrap:wrap}
+.tab{border:none;margin:0;border-radius:999px;padding:7px 16px;font-weight:500;color:var(--text2)}
+.tab:hover{color:#fff;background:rgba(255,255,255,.05)}
+.tab.active{color:#fff;background:rgba(255,255,255,.1);border:none;box-shadow:inset 0 0 0 1px var(--border2)}
+.badge{border-radius:999px;font-weight:500}
+.badge-red{background:rgba(240,138,128,.12);color:var(--red)}
+.badge-yellow{background:rgba(229,192,123,.12);color:var(--yellow)}
+.badge-orange{background:rgba(237,163,107,.12);color:var(--orange)}
+.badge-green{background:rgba(143,209,166,.12);color:var(--green)}
+.badge-blue,.badge-purple{background:rgba(201,216,208,.1);color:var(--accent2)}
+.badge-gray{background:rgba(255,255,255,.06);color:var(--text2)}
+.source-pill.live{background:rgba(143,209,166,.08);color:var(--green);border-color:rgba(143,209,166,.25)}
+.ev-verified{background:rgba(143,209,166,.1)!important;color:var(--green)!important;border-color:rgba(143,209,166,.25)!important;border-radius:999px!important}
+.ev-ai{background:rgba(201,216,208,.08)!important;color:var(--accent2)!important;border-color:rgba(201,216,208,.22)!important;border-radius:999px!important}
+.ev-needs{border-radius:999px!important}
+.progress-bar{background:rgba(255,255,255,.07);border-radius:999px}
+.progress-fill{border-radius:999px}
+.progress-fill.green{background:var(--green)}.progress-fill.yellow{background:var(--yellow)}.progress-fill.red{background:var(--red)}.progress-fill.blue{background:var(--accent2)}
+.file-path{background:rgba(255,255,255,.05);color:#dfe7e2;border-radius:8px}
+.code-block{background:rgba(0,0,0,.45);border:1px solid var(--border);border-radius:16px;color:#dfe7e2}
+.data-table th{color:var(--text3);border-bottom-color:var(--border)}
+.data-table td{border-bottom-color:var(--border)}
+.data-table tr:hover td{background:rgba(255,255,255,.02)}
+.expandable-header,.expandable-body{border-bottom-color:var(--border)}
+.expandable-header:hover,.issue-item:hover{background:rgba(255,255,255,.025)}
+.impact-file{background:rgba(255,255,255,.035);border-radius:12px}
+.step-number{background:#fff;color:#0a0a0b}
+.agent-box{border-radius:999px;background:rgba(255,255,255,.03);border-color:var(--border)}
+.agent-box.running{border-color:var(--border2);background:rgba(255,255,255,.07);color:#fff}
+.agent-box.done{border-color:rgba(143,209,166,.3);background:rgba(143,209,166,.06);color:var(--green)}
+.readiness-item{background:rgba(255,255,255,.03);border-color:var(--border);border-radius:16px}
+.map-detail{background:rgba(255,255,255,.02);border-left-color:var(--border)}
+#map-svg-container{background:rgba(0,0,0,.25)!important;border-color:var(--border)!important;border-radius:22px!important}
+.modal{background:rgba(18,18,20,.96);backdrop-filter:blur(14px);border-radius:24px}
+.modal-overlay{background:rgba(0,0,0,.6);backdrop-filter:blur(3px)}
+.separator{border-top-color:var(--border)}
+
+@media (max-width:1400px){#header-source-pill{display:none}}
+@media (max-width:1440px){#header{grid-template-columns:auto 1fr;height:auto;padding:12px 6px;row-gap:10px}#app-nav{grid-column:1/-1;grid-row:2;justify-self:stretch}#header-right{grid-column:2;grid-row:1}}
+@media (max-width:640px){#app{padding:0 8px 8px}#header-project,.health-badge{display:none}#main{padding:28px 14px 40px}.section-header{flex-wrap:wrap}}
 </style>
 </head>
 <body>
@@ -571,7 +677,7 @@ body{background:var(--bg);letter-spacing:-.011em;-webkit-font-smoothing:antialia
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('gen-modal')">Close</button>
-      <button class="btn btn-green" onclick="copyCode()">📋 Copy to Clipboard</button>
+      <button class="btn btn-green" onclick="copyCode()">Copy to Clipboard</button>
     </div>
   </div>
 </div>
@@ -586,7 +692,7 @@ body{background:var(--bg);letter-spacing:-.011em;-webkit-font-smoothing:antialia
     <div class="modal-body" id="report-modal-body"></div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('report-modal')">Close</button>
-      <button class="btn btn-primary" onclick="showToast('Report copied to clipboard')">📋 Copy Report</button>
+      <button class="btn btn-primary" onclick="showToast('Report copied to clipboard')">Copy Report</button>
     </div>
   </div>
 </div>
@@ -596,45 +702,29 @@ body{background:var(--bg);letter-spacing:-.011em;-webkit-font-smoothing:antialia
 
 <!-- MAIN APP -->
 <div id="app" style="display:none">
-  <!-- HEADER -->
+  <!-- HEADER — logo · centred pill navigation · project and account -->
   <div id="header">
-    <div id="logo">Trace<span class="dot">on</span></div>
-    <div id="header-project" onclick="navigate('overview')">
-      <span>📦</span>
-      <span class="proj-name"></span>
-      <span style="color:var(--text3);font-size:11px">v2.4.1</span>
+    <a id="logo" onclick="navigate('overview')" title="Traceon"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#f4f4f5"/><circle cx="19.5" cy="19.5" r="7.5" fill="#0a0a0b"/><circle cx="19.5" cy="19.5" r="3.2" fill="#9fb8a9"/></svg><span>Traceon</span></a>
+    <nav id="app-nav" aria-label="Traceon pages">
+      <a class="nav-item" data-page="overview" onclick="navigate('overview')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')navigate('overview')">Overview</a>
+      <a class="nav-item" data-page="map" onclick="navigate('map')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')navigate('map')">Project Map</a>
+      <a class="nav-item" data-page="onboarding" onclick="navigate('onboarding')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')navigate('onboarding')">Onboarding</a>
+      <a class="nav-item" data-page="maintenance" onclick="navigate('maintenance')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')navigate('maintenance')">Maintenance<span class="nav-badge"></span></a>
+      <a class="nav-item" data-page="testing" onclick="navigate('testing')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')navigate('testing')">Testing<span class="nav-badge warn"></span></a>
+      <a class="nav-item" data-page="impact" onclick="navigate('impact')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')navigate('impact')">Change Impact</a>
+      <a class="nav-item" data-page="release" onclick="navigate('release')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')navigate('release')">Release</a>
+      <a class="nav-item" data-page="reports" onclick="navigate('reports')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')navigate('reports')">Reports</a>
+    </nav>
+    <div id="header-right">
+      <span id="header-source-pill" class="source-pill live"><span class="dot"></span> LIVE PROJECT · GITHUB REPOSITORY</span>
+      <div id="header-project" onclick="navigate('overview')" title="Current repository"><span class="proj-name"></span></div>
+      <span class="health-badge" id="header-health-badge" title="Health score"></span>
+      <button class="nb-signin" onclick="showConnect()" title="Analyze another repository"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg> Switch project</button>
     </div>
-    <div id="header-spacer"></div>
-    <span id="header-source-pill" class="source-pill live"><span class="dot"></span> LIVE PROJECT · GITHUB REPOSITORY</span>
-    <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2)">
-      Health <span class="health-badge warn" id="header-health-badge">74 / 100</span>
-    </div>
-    <button class="btn btn-secondary btn-sm" onclick="showConnect()">🔀 Switch Project</button>
   </div>
 
   <!-- BODY -->
   <div id="body">
-    <!-- SIDEBAR -->
-    <div id="sidebar">
-      <div class="sidebar-section">
-        <div class="sidebar-label">Workspace</div>
-        <div class="nav-item" data-page="overview" onclick="navigate('overview')"><span class="nav-icon">📊</span> Overview</div>
-        <div class="nav-item" data-page="map" onclick="navigate('map')"><span class="nav-icon">🗺️</span> Project Map</div>
-      </div>
-      <div class="sidebar-section">
-        <div class="sidebar-label">Workflows</div>
-        <div class="nav-item" data-page="onboarding" onclick="navigate('onboarding')"><span class="nav-icon">🚀</span> Onboarding</div>
-        <div class="nav-item" data-page="maintenance" onclick="navigate('maintenance')"><span class="nav-icon">🔧</span> Maintenance <span class="nav-badge">8</span></div>
-        <div class="nav-item" data-page="testing" onclick="navigate('testing')"><span class="nav-icon">🧪</span> Testing <span class="nav-badge warn">5</span></div>
-        <div class="nav-item" data-page="impact" onclick="navigate('impact')"><span class="nav-icon">⚡</span> Change Impact</div>
-        <div class="nav-item" data-page="release" onclick="navigate('release')"><span class="nav-icon">🚢</span> Release</div>
-      </div>
-      <div class="sidebar-section">
-        <div class="sidebar-label">Insights</div>
-        <div class="nav-item" data-page="reports" onclick="navigate('reports')"><span class="nav-icon">📋</span> Reports</div>
-      </div>
-    </div>
-
     <!-- MAIN -->
     <div id="main">
 
@@ -646,8 +736,8 @@ body{background:var(--bg);letter-spacing:-.011em;-webkit-font-smoothing:antialia
             <div class="section-subtitle" id="overview-subtitle"></div>
           </div>
           <div style="margin-left:auto;display:flex;gap:10px">
-            <button class="btn btn-secondary btn-sm" onclick="navigate('reports')">📋 Generate Report</button>
-            <button class="btn btn-primary btn-sm" onclick="navigate('release')">🚢 Prepare Release</button>
+            <button class="btn btn-secondary btn-sm" onclick="navigate('reports')">Generate Report</button>
+            <button class="btn btn-primary btn-sm" onclick="navigate('release')">Prepare Release</button>
           </div>
         </div>
 
@@ -853,7 +943,7 @@ body{background:var(--bg);letter-spacing:-.011em;-webkit-font-smoothing:antialia
             <div class="section-subtitle">Click any component to inspect it</div>
           </div>
           <div style="margin-left:auto">
-            <button class="btn btn-secondary btn-sm" onclick="navigate('impact')">⚡ Analyse Change Impact</button>
+            <button class="btn btn-secondary btn-sm" onclick="navigate('impact')">Analyse Change Impact</button>
           </div>
         </div>
         <div style="display:flex;gap:0;height:calc(100vh - 180px)">
@@ -914,7 +1004,7 @@ body{background:var(--bg);letter-spacing:-.011em;-webkit-font-smoothing:antialia
             <div class="section-subtitle">Technical debt · code quality · documentation gaps · <span class="source-pill live" style="font-size:10px;padding:2px 8px"><span class="dot"></span> LIVE</span></div>
           </div>
           <div style="margin-left:auto;display:flex;gap:10px">
-            <button class="btn btn-secondary btn-sm" onclick="showReport('maintenance')">📋 Export Report</button>
+            <button class="btn btn-secondary btn-sm" onclick="showReport('maintenance')">Export Report</button>
           </div>
         </div>
 
@@ -1022,7 +1112,7 @@ body{background:var(--bg);letter-spacing:-.011em;-webkit-font-smoothing:antialia
             <div class="section-subtitle">Release readiness · deployment checks · <span class="source-pill live" style="font-size:10px;padding:2px 8px"><span class="dot"></span> LIVE</span></div>
           </div>
           <div style="margin-left:auto">
-            <button class="btn btn-primary" id="prepare-release-btn" onclick="prepareRelease()">🚢 Prepare Release</button>
+            <button class="btn btn-primary" id="prepare-release-btn" onclick="prepareRelease()">Prepare Release</button>
           </div>
         </div>
         <div id="release-content">
@@ -1030,7 +1120,7 @@ body{background:var(--bg);letter-spacing:-.011em;-webkit-font-smoothing:antialia
             <div style="font-size:48px;margin-bottom:16px">🚢</div>
             <div style="font-size:18px;font-weight:700;margin-bottom:8px">Ready to Prepare Release?</div>
             <div style="font-size:14px;color:var(--text2);margin-bottom:24px;max-width:400px;margin-left:auto;margin-right:auto">Traceon will run a comprehensive release analysis across code, tests, maintenance, documentation, dependencies, configuration, and deployment.</div>
-            <button class="btn btn-primary" onclick="prepareRelease()">🚢 Prepare Release</button>
+            <button class="btn btn-primary" onclick="prepareRelease()">Prepare Release</button>
           </div>
         </div>
       </div>
@@ -1045,7 +1135,7 @@ body{background:var(--bg);letter-spacing:-.011em;-webkit-font-smoothing:antialia
         </div>
         <div class="grid2">
           <div class="card">
-            <div class="card-header"><span class="card-title">📊 Project Health Report</span></div>
+            <div class="card-header"><span class="card-title">Project Health Report</span></div>
             <div class="card-body">
               <p class="fs-13 col-muted mb-16">A complete overview of the project's architecture, maintenance health, test coverage, dependencies, and recommended actions.</p>
               <div style="margin-bottom:16px">
@@ -1062,7 +1152,7 @@ body{background:var(--bg);letter-spacing:-.011em;-webkit-font-smoothing:antialia
             </div>
           </div>
           <div class="card">
-            <div class="card-header"><span class="card-title">🚢 Release Report</span></div>
+            <div class="card-header"><span class="card-title">Release Report</span></div>
             <div class="card-body">
               <p class="fs-13 col-muted mb-16">A pre-release summary covering what changed, test results, known warnings, and deployment requirements.</p>
               <div style="margin-bottom:16px">
@@ -1159,7 +1249,7 @@ function switchTab(tabEl, targetId) {
 
 function updateHeaderForProject(name, version, sourceType, healthStr, healthCls) {
   document.getElementById('header-project').innerHTML =
-    `<span>📦</span><span class="proj-name">${name}</span>${version?`<span style="color:var(--text3);font-size:11px">${version}</span>`:''}`;
+    `<span class="proj-name">${name}</span>${version?`<span class="proj-ver">${version}</span>`:''}`;
   const pill = document.getElementById('header-source-pill');
   pill.className = 'source-pill live';
   pill.innerHTML = '<span class="dot"></span> LIVE PROJECT · GITHUB REPOSITORY';
@@ -1359,10 +1449,10 @@ function updateSidebarBadges(prof) {
   const maintBadge = document.querySelector('[data-page="maintenance"] .nav-badge');
   const testBadge  = document.querySelector('[data-page="testing"] .nav-badge');
   const total = prof.findings ? (prof.findings.critical + prof.findings.high) : 0;
-  if (maintBadge) maintBadge.textContent = total;
+  if (maintBadge) maintBadge.textContent = total || '';
   if (testBadge) {
     const gaps = prof.testingGaps ? prof.testingGaps.length : 0;
-    testBadge.textContent = gaps;
+    testBadge.textContent = gaps || '';
     testBadge.className = gaps > 0 ? 'nav-badge warn' : 'nav-badge ok';
   }
 }
@@ -1416,12 +1506,12 @@ function showConnect() {
 // ============================================================
 const PRISTINE_VIEWS = {
   overview: document.getElementById('page-overview').innerHTML,
-  sidebar: document.getElementById('sidebar').innerHTML,
+  nav: document.getElementById('app-nav').innerHTML,
 };
 
 function resetProjectViews() {
   document.getElementById('page-overview').innerHTML = PRISTINE_VIEWS.overview;
-  document.getElementById('sidebar').innerHTML = PRISTINE_VIEWS.sidebar;
+  document.getElementById('app-nav').innerHTML = PRISTINE_VIEWS.nav;
   ['maintenance-findings','coverage-by-module','testing-gaps','test-results-panel',
    'test-generate-panel','impact-component-buttons','important-files-list',
    'ob-overview','ob-arch','ob-setup','ob-firstday','map-detail-content'].forEach(id => {
@@ -1740,8 +1830,7 @@ function showRepoConfirm(repo) {
       <strong style="color:var(--accent2)">What Traceon will read:</strong> a read-only snapshot of the <strong>${escHtml(repo.default_branch || 'main')}</strong> branch — folder structure, source and test files, dependency manifests and lockfiles, README and docs, configuration, Dockerfiles and CI/CD workflows.
       <strong>Traceon never commits, pushes, opens pull requests or changes settings.</strong> Values in <code class="inline-code">.env</code> files are not read.
     </div>
-    <button class="btn btn-primary" style="width:100%;justify-content:center;padding:12px;font-size:14px" onclick="startRealScan()">
-      🔍 Analyze Repository
+    <button class="btn btn-primary" style="width:100%;justify-content:center;padding:12px;font-size:14px" onclick="startRealScan()">Analyze Repository
     </button>`;
   showConnectPanel('repo-confirm');
 }
@@ -2172,8 +2261,8 @@ function buildMapNodesFromModules(m) {
           id: mod.id,
           label: `${moduleIcon(mod.id)} ${short.length > 20 ? '…' + short.slice(-19) : short}\n${mod.fileCount} files · ${mod.reachPct}% tested`,
           x, y, w: W, h: H,
-          color: risk === 'HIGH' ? '#2a1515' : risk === 'MEDIUM' ? '#2a2210' : '#1c2a3a',
-          border: risk === 'HIGH' ? '#f85149' : risk === 'MEDIUM' ? '#d29922' : '#388bfd',
+          color: risk === 'HIGH' ? '#1a1211' : risk === 'MEDIUM' ? '#17140e' : '#0f1211',
+          border: risk === 'HIGH' ? '#f08a80' : risk === 'MEDIUM' ? '#e5c07b' : '#a9c3b3',
           risk,
         });
         x += W + GAP;
@@ -2419,7 +2508,7 @@ function initMap() {
     const line = document.createElementNS(ns,'line');
     line.setAttribute('x1',x1); line.setAttribute('y1',y1);
     line.setAttribute('x2',x2); line.setAttribute('y2',y2);
-    line.setAttribute('stroke','#444c56'); line.setAttribute('stroke-width','1.5');
+    line.setAttribute('stroke','rgba(255,255,255,.22)'); line.setAttribute('stroke-width','1');
     line.setAttribute('opacity','0.6');
     svg.appendChild(line);
   });
@@ -2433,10 +2522,10 @@ function initMap() {
     const rect = document.createElementNS(ns,'rect');
     rect.setAttribute('x', node.x); rect.setAttribute('y', node.y);
     rect.setAttribute('width', node.w); rect.setAttribute('height', node.h);
-    rect.setAttribute('rx','6'); rect.setAttribute('ry','6');
+    rect.setAttribute('rx','22'); rect.setAttribute('ry','22');
     rect.setAttribute('fill', node.color);
     rect.setAttribute('stroke', node.border);
-    rect.setAttribute('stroke-width','1.5');
+    rect.setAttribute('stroke-width','1');
 
     const lines = node.label.split('\n');
     const text = document.createElementNS(ns,'text');
@@ -2444,10 +2533,10 @@ function initMap() {
     text.setAttribute('y', node.y + node.h/2 - (lines.length>1?7:0));
     text.setAttribute('text-anchor','middle');
     text.setAttribute('dominant-baseline','middle');
-    text.setAttribute('fill','#e6edf3');
+    text.setAttribute('fill','#f4f4f5');
     text.setAttribute('font-size','12');
     text.setAttribute('font-family','-apple-system,sans-serif');
-    text.setAttribute('font-weight','600');
+    text.setAttribute('font-weight','500');
 
     if (lines.length > 1) {
       lines.forEach((line, i) => {
@@ -2750,8 +2839,8 @@ function renderRepoModuleDetail(id) {
   if (mod.testFiles.length) html += section('Test Files', `<div style="display:flex;flex-direction:column;gap:4px">${capList(mod.testFiles, 5, t => `<span class="file-path">${escHtml(t)}</span>`)}</div>`);
   if (issues.length) html += section(`Issues (${issues.length})`, `<div style="display:flex;flex-direction:column;gap:6px">${issues.map(i => `<div style="font-size:12px;padding:6px 8px;background:rgba(218,54,51,.08);border-left:3px solid var(--red2);border-radius:4px">${escHtml(i.title)}</div>`).join('')}</div>`);
   html += `<div style="margin-top:16px;display:flex;flex-direction:column;gap:8px">
-    <button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center" onclick="navigate('impact');selectImpactComponent(${jsArg(id)})">⚡ Analyse Change Impact</button>
-    <button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center" onclick="navigate('testing')">🧪 View Tests</button>
+    <button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center" onclick="navigate('impact');selectImpactComponent(${jsArg(id)})">Analyse Change Impact</button>
+    <button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center" onclick="navigate('testing')">View Tests</button>
   </div>`;
   content.innerHTML = html;
 }
@@ -2824,7 +2913,7 @@ function renderRepoTestingGaps(el) {
           </div>`)}
           ${routes.length ? `<div class="fs-12 col-muted" style="margin-top:4px">Untested endpoints: ${escHtml(routes.slice(0, 4).map(r => r.method + ' ' + r.path).join(' · '))}${routes.length > 4 ? ' …' : ''}</div>` : ''}
         </div>
-        <button class="btn btn-primary btn-sm" onclick="openGenModal(${jsArg(x.id)})">⚡ Generate Test Stub for ${escHtml(x.id.split('/').pop())}</button>
+        <button class="btn btn-primary btn-sm" onclick="openGenModal(${jsArg(x.id)})">Generate Test Stub for ${escHtml(x.id.split('/').pop())}</button>
       </div>
     </div>`;
   });
@@ -2982,7 +3071,7 @@ function renderRepoImpact(id) {
   </div>
   <div class="grid2 mb-16">
     ${card('Related Tests', `${relatedTests.length} test files`, relatedTests.length ? capList(relatedTests, 20, f => `<div class="impact-file test-f">${escHtml(f)}</div>`) : none('No tests import this module or its dependents.'))}
-    ${card('⚠️ Missing Regression Tests', `${untested.length} files`, untested.length ? capList(untested, 15, f => `<div style="padding:8px;margin-bottom:6px;background:rgba(218,54,51,.06);border-left:3px solid var(--red2);border-radius:4px;font-size:13px">No test reaches <span class="file-path">${escHtml(f)}</span></div>`) + `<button class="btn btn-primary btn-sm" style="margin-top:6px" onclick="openGenModal(${jsArg(id)})">⚡ Generate Test Stub</button>` : none('Every file in this module is reached by at least one test.'), `border-color:${untested.length ? 'var(--red2)' : 'var(--border)'}`)}
+    ${card('⚠️ Missing Regression Tests', `${untested.length} files`, untested.length ? capList(untested, 15, f => `<div style="padding:8px;margin-bottom:6px;background:rgba(218,54,51,.06);border-left:3px solid var(--red2);border-radius:4px;font-size:13px">No test reaches <span class="file-path">${escHtml(f)}</span></div>`) + `<button class="btn btn-primary btn-sm" style="margin-top:6px" onclick="openGenModal(${jsArg(id)})">Generate Test Stub</button>` : none('Every file in this module is reached by at least one test.'), `border-color:${untested.length ? 'var(--red2)' : 'var(--border)'}`)}
   </div>`;
   const extra = [];
   if (endpoints.length) extra.push(card('🔌 Affected Endpoints', `${endpoints.length} routes`, capList(endpoints, 15, r => `<div class="impact-file indirect">${escHtml(r.method)} ${escHtml(r.path)}<span class="col-muted" style="margin-left:auto">${escHtml(r.file)}</span></div>`)));
@@ -3112,7 +3201,7 @@ function showReleaseReport() {
     </div>
 
     ${warnings.length > 0 ? `<div class="card mb-16">
-      <div class="card-header"><span class="card-title">⚠️ Warnings (${warnings.length})</span></div>
+      <div class="card-header"><span class="card-title">Warnings (${warnings.length})</span></div>
       <div class="card-body" style="padding:0">
         ${warnings.map((w,i)=>`<div class="issue-item" style="padding:14px 18px${i===warnings.length-1?';border:none':''}">
           <span style="font-size:18px">⚠️</span>
