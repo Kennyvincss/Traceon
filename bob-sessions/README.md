@@ -17,6 +17,8 @@ part of the submission requirements.
 | [08-fix-bootstrap-and-real-repo-pages.png](08-fix-bootstrap-and-real-repo-pages.png) | Bob fixes the page bootstrap and `selectDemo()`, then updates Maintenance, Testing Gaps, Generate Test and Change Impact to handle real repositories |
 | [09-dynamic-onboarding-for-real-repos.png](09-dynamic-onboarding-for-real-repos.png) | Onboarding tabs switched from hardcoded HTML to content generated from the analysed repository, with caching reset when switching projects |
 | [10-verify-onboarding-and-syntax-check.png](10-verify-onboarding-and-syntax-check.png) | Bob verifies the onboarding render caching, opens the page for a visual spot-check and checks the large template literals for syntax errors |
+| [11-review-nested-template-literals.png](11-review-nested-template-literals.png) | Targeted review of `initOnboarding`: confirms the nested template literal that builds the `git clone` command is valid and produces the intended newline |
+| [12-review-tab-switching-logic.png](12-review-tab-switching-logic.png) | Bob checks the multi-line ternaries and walks through `switchTab` to confirm the onboarding tab panels show and hide correctly |
 
 ## Naming
 
