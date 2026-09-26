@@ -37,15 +37,15 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 #header-project .proj-name{color:var(--text);font-weight:600}
 #header-spacer{flex:1}
 .health-badge{background:var(--green2);color:var(--teal);border-radius:20px;padding:2px 10px;font-weight:700;font-size:13px}
-.health-badge.warn{background:rgba(217,119,6,.2);color:var(--yellow2)}
-.health-badge.crit{background:rgba(229,72,77,.15);color:var(--red2)}
+.health-badge.warn{background:rgba(255,154,31,.2);color:var(--yellow2)}
+.health-badge.crit{background:rgba(255,77,79,.15);color:var(--red2)}
 #body{display:flex;flex:1;overflow:hidden}
 #sidebar{width:var(--sidebar-w);background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;flex-shrink:0}
 .sidebar-section{padding:8px 0}
 .sidebar-label{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;padding:8px 16px 4px}
 .nav-item{display:flex;align-items:center;gap:10px;padding:7px 16px;cursor:pointer;color:var(--text2);font-size:13px;transition:background .12s,color .12s;border-left:2px solid transparent;user-select:none}
 .nav-item:hover{background:var(--bg3);color:var(--text)}
-.nav-item.active{background:rgba(109,74,255,.1);color:var(--accent2);border-left-color:var(--accent2)}
+.nav-item.active{background:rgba(184,242,92,.1);color:var(--accent2);border-left-color:var(--accent2)}
 .nav-item .nav-icon{font-size:15px;width:18px;text-align:center}
 .nav-item .nav-badge{margin-left:auto;background:var(--red);color:#fff;border-radius:10px;padding:1px 6px;font-size:10px;font-weight:700}
 .nav-item .nav-badge.warn{background:var(--yellow);color:#000}
@@ -60,13 +60,13 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
 .grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px}
 .badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600}
-.badge-red{background:rgba(229,72,77,.15);color:var(--red2)}
-.badge-yellow{background:rgba(217,119,6,.15);color:var(--yellow2)}
-.badge-green{background:rgba(109,74,255,.15);color:var(--teal)}
-.badge-blue{background:rgba(109,74,255,.15);color:var(--accent2)}
+.badge-red{background:rgba(255,77,79,.15);color:var(--red2)}
+.badge-yellow{background:rgba(255,154,31,.15);color:var(--yellow2)}
+.badge-green{background:rgba(184,242,92,.15);color:var(--teal)}
+.badge-blue{background:rgba(184,242,92,.15);color:var(--accent2)}
 .badge-purple{background:rgba(137,87,229,.15);color:var(--purple)}
 .badge-gray{background:var(--bg3);color:var(--text2)}
-.badge-orange{background:rgba(234,88,12,.15);color:var(--orange)}
+.badge-orange{background:rgba(255,122,61,.15);color:var(--orange)}
 .btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:var(--radius);border:1px solid transparent;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;white-space:nowrap;font-family:var(--font)}
 .btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
 .btn-primary:hover{background:#1f6feb}
@@ -74,7 +74,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .btn-secondary:hover{background:var(--bg3);border-color:var(--text2)}
 .btn-green{background:var(--green2);color:#fff;border-color:var(--green2)}
 .btn-green:hover{background:#2ea043}
-.btn-danger{background:rgba(229,72,77,.15);color:var(--red2);border-color:rgba(229,72,77,.3)}
+.btn-danger{background:rgba(255,77,79,.15);color:var(--red2);border-color:rgba(255,77,79,.3)}
 .btn-sm{padding:4px 10px;font-size:12px}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 .progress-bar{height:6px;background:var(--bg4);border-radius:3px;overflow:hidden}
@@ -89,9 +89,9 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .data-table th{text-align:left;padding:8px 12px;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border)}
 .data-table td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
 .data-table tr:last-child td{border-bottom:none}
-.data-table tr:hover td{background:rgba(18,18,23,.02)}
+.data-table tr:hover td{background:rgba(255,255,255,.02)}
 .code-block{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;font-family:var(--mono);font-size:12px;color:#d7f7a6;white-space:pre;overflow-x:auto;line-height:1.7}
-.file-path{font-family:var(--mono);font-size:12px;color:var(--accent2);background:rgba(109,74,255,.08);padding:2px 6px;border-radius:4px}
+.file-path{font-family:var(--mono);font-size:12px;color:var(--accent2);background:rgba(184,242,92,.08);padding:2px 6px;border-radius:4px}
 .section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
 .section-title{font-size:20px;font-weight:700}
 .section-subtitle{font-size:13px;color:var(--text2);margin-top:2px}
@@ -99,14 +99,14 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .spinner{width:14px;height:14px;border:2px solid var(--bg4);border-top-color:var(--accent2);border-radius:50%;animation:spin .7s linear infinite;display:inline-block;flex-shrink:0}
 .issue-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:background .1s}
 .issue-item:last-child{border-bottom:none}
-.issue-item:hover{background:rgba(18,18,23,.02);margin:0 -18px;padding:12px 18px}
+.issue-item:hover{background:rgba(255,255,255,.02);margin:0 -18px;padding:12px 18px}
 .issue-severity{flex-shrink:0;margin-top:2px}
 .issue-content{flex:1}
 .issue-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px}
 .issue-desc{font-size:12px;color:var(--text2);line-height:1.5}
 .issue-meta{display:flex;gap:8px;margin-top:6px;align-items:center}
 .expandable-header{display:flex;align-items:center;gap:10px;cursor:pointer;padding:12px 18px;border-bottom:1px solid var(--border);transition:background .1s;user-select:none}
-.expandable-header:hover{background:rgba(18,18,23,.02)}
+.expandable-header:hover{background:rgba(255,255,255,.02)}
 .expandable-body{display:none;padding:16px 18px;border-bottom:1px solid var(--border)}
 .expandable-body.open{display:block}
 .expand-arrow{color:var(--text3);transition:transform .2s}
@@ -124,13 +124,13 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .demo-label{display:inline-flex;align-items:center;gap:4px;background:rgba(137,87,229,.15);color:var(--purple);border:1px solid rgba(137,87,229,.3);border-radius:20px;padding:2px 10px;font-size:11px;font-weight:600}
 /* ---- PROJECT SOURCE INDICATOR ---- */
 .source-pill{display:inline-flex;align-items:center;gap:6px;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:700;letter-spacing:.3px}
-.source-pill.live{background:rgba(109,74,255,.12);color:var(--teal);border:1px solid rgba(109,74,255,.3)}
+.source-pill.live{background:rgba(184,242,92,.12);color:var(--teal);border:1px solid rgba(184,242,92,.3)}
 .source-pill.demo{background:rgba(137,87,229,.12);color:var(--purple);border:1px solid rgba(137,87,229,.3)}
 .source-pill .dot{width:6px;height:6px;border-radius:50%;background:currentColor;display:inline-block}
 /* ---- EVIDENCE LABELS ---- */
-.ev-verified{display:inline-flex;align-items:center;gap:4px;background:rgba(109,74,255,.1);color:var(--teal);border:1px solid rgba(109,74,255,.25);border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700}
-.ev-ai{display:inline-flex;align-items:center;gap:4px;background:rgba(109,74,255,.1);color:var(--accent2);border:1px solid rgba(109,74,255,.25);border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700}
-.ev-needs{display:inline-flex;align-items:center;gap:4px;background:rgba(217,119,6,.1);color:var(--yellow2);border:1px solid rgba(217,119,6,.25);border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700}
+.ev-verified{display:inline-flex;align-items:center;gap:4px;background:rgba(184,242,92,.1);color:var(--teal);border:1px solid rgba(184,242,92,.25);border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700}
+.ev-ai{display:inline-flex;align-items:center;gap:4px;background:rgba(184,242,92,.1);color:var(--accent2);border:1px solid rgba(184,242,92,.25);border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700}
+.ev-needs{display:inline-flex;align-items:center;gap:4px;background:rgba(255,154,31,.1);color:var(--yellow2);border:1px solid rgba(255,154,31,.25);border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700}
 /* ---- URL ANALYSIS PROGRESS ---- */
 .ua-stage{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid var(--border)}
 .ua-stage:last-child{border-bottom:none}
@@ -158,8 +158,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .connect-logo span{color:var(--accent2)}
 .connect-tagline{font-size:14px;color:var(--text2);margin-bottom:32px}
 .connect-option{background:var(--bg3);border:2px solid var(--border);border-radius:var(--radius2);padding:20px;cursor:pointer;margin-bottom:12px;transition:border-color .15s,background .15s;display:flex;gap:16px;align-items:flex-start}
-.connect-option:hover{border-color:var(--accent);background:rgba(109,74,255,.05)}
-.connect-option.selected{border-color:var(--accent2);background:rgba(109,74,255,.1)}
+.connect-option:hover{border-color:var(--accent);background:rgba(184,242,92,.05)}
+.connect-option.selected{border-color:var(--accent2);background:rgba(184,242,92,.1)}
 .connect-option-icon{font-size:24px;flex-shrink:0;margin-top:2px}
 .connect-option-title{font-weight:700;font-size:15px;margin-bottom:4px}
 .connect-option-desc{font-size:13px;color:var(--text2);line-height:1.5}
@@ -192,8 +192,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .readiness-icon{font-size:20px}
 .readiness-label{flex:1;font-size:13px;font-weight:600}
 .agent-box{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:8px 14px;font-size:12px;font-weight:600;display:flex;align-items:center;gap:8px;min-width:160px}
-.agent-box.running{border-color:var(--accent);background:rgba(109,74,255,.08);color:var(--accent2)}
-.agent-box.done{border-color:var(--green);background:rgba(109,74,255,.08);color:var(--teal)}
+.agent-box.running{border-color:var(--accent);background:rgba(184,242,92,.08);color:var(--accent2)}
+.agent-box.done{border-color:var(--green);background:rgba(184,242,92,.08);color:var(--teal)}
 .agent-box.pending{color:var(--text3)}
 .separator{border:none;border-top:1px solid var(--border);margin:16px 0}
 .muted{color:var(--text2)}
@@ -212,139 +212,129 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .report-section{margin-bottom:28px}
 .report-section h3{font-size:14px;font-weight:700;margin-bottom:12px;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:8px}
 /* ================================================================
-   TRACEON THEME — light, lavender, purple accent, black pill CTAs
+   TRACEON THEME — black canvas, lime / orange / white, condensed type
    ================================================================ */
 :root{
-  --bg:#f6f5fb;--bg2:#ffffff;--bg3:#f1f0f7;--bg4:#e7e5f0;
-  --border:#ebe9f3;--border2:#dcd9e8;
-  --text:#121217;--text2:#6b6a7b;--text3:#9c9aab;
-  --brand:#6d4aff;--brand-soft:#efeaff;--ink:#121217;
-  --c1:#6d4aff;--c2:#d97706;--c3:#0f9d8f;            /* validated chart palette: reached / untested / tests */
-  --danger:#e5484d;--good:#1f9d55;
-  --accent:#6d4aff;--accent2:#6d4aff;
-  --green:#1f9d55;--green2:#1f9d55;--teal:#1f9d55;
-  --yellow:#d97706;--yellow2:#d97706;
-  --orange:#ea580c;--red:#e5484d;--red2:#e5484d;--purple:#6d4aff;
-  --radius:14px;--radius2:22px;
-  --shadow:0 1px 2px rgba(18,18,23,.04),0 8px 24px -12px rgba(38,20,120,.12);
+  --bg:#000;--bg2:#1a1a1c;--bg3:#262628;--bg4:#343437;
+  --border:#29292c;--border2:#3a3a3e;
+  --text:#fafafa;--text2:#9d9da3;--text3:#6c6c72;
+  --lime:#b8f25c;--lime-ink:#0b0b0b;--amber:#ff9a1f;--coral:#ff5f57;
+  --accent:#b8f25c;--accent2:#b8f25c;
+  --green:#b8f25c;--green2:#b8f25c;--teal:#b8f25c;
+  --yellow:#ff9a1f;--yellow2:#ff9a1f;
+  --orange:#ff7a3d;--red:#ff4d4f;--red2:#ff5f57;--purple:#c3a6ff;
+  --radius:14px;--radius2:24px;
   --font:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
-  --display:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
-  --header-h:80px;--sidebar-w:84px;
+  --display:"Oswald","Arial Narrow","Roboto Condensed",Impact,sans-serif;
+  --header-h:84px;--sidebar-w:84px;
 }
-body{background:var(--bg);color:var(--text);letter-spacing:-.006em}
-a{color:var(--brand)}
-::selection{background:var(--brand);color:#fff}
-::-webkit-scrollbar-thumb{background:#d6d3e4}
+body{background:#000;letter-spacing:-.005em}
+a{color:var(--lime)}
+::selection{background:var(--lime);color:#000}
 
 /* ---- buttons ---- */
 .btn{border-radius:999px;padding:9px 18px;font-weight:600;border:1px solid transparent}
 .btn-sm{padding:6px 14px}
 .btn-lg{padding:14px 26px;font-size:15px}
-.btn-primary,.btn-black{background:var(--ink);color:#fff;border-color:var(--ink)}
-.btn-primary:hover,.btn-black:hover{background:#2a2a33;border-color:#2a2a33}
-.btn-green{background:var(--brand);color:#fff;border-color:var(--brand)}
-.btn-green:hover{background:#5a36f0}
-.btn-secondary{background:#fff;color:var(--text);border-color:var(--border2)}
-.btn-secondary:hover{background:var(--bg3);border-color:var(--border2)}
-.btn-ghost{background:#fff;color:var(--text);border-color:var(--border2);text-decoration:none}
-.btn-ghost:hover{background:var(--bg3)}
+.btn-primary,.btn-green{background:var(--lime);color:var(--lime-ink);border-color:var(--lime)}
+.btn-primary:hover,.btn-green:hover{background:#cdf985;border-color:#cdf985}
+.btn-secondary{background:var(--bg3);color:var(--text);border-color:transparent}
+.btn-secondary:hover{background:var(--bg4);border-color:transparent}
+.btn-ghost{background:transparent;color:var(--text);border-color:var(--border2);text-decoration:none}
+.btn-ghost:hover{border-color:var(--text2)}
+.btn-dark{background:#111;color:#fff;border-color:#111}
+.btn-dark:hover{background:#222}
 .btn-pill{border-radius:999px}
 .btn svg{flex-shrink:0}
 
 /* ---- cards & type ---- */
-.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);box-shadow:var(--shadow)}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2)}
 .card-header{border-bottom:1px solid var(--border);padding:18px 22px}
 .card-body{padding:20px 22px}
-.card-title{font-size:15px;font-weight:600;letter-spacing:-.01em}
-.section-title{font-size:30px;font-weight:650;letter-spacing:-.025em;line-height:1.15}
-.section-subtitle{font-size:13px;margin-top:6px}
+.card-title,.section-title,.stat-number,.page-title{font-family:var(--display)}
+.card-title{font-size:15px;font-weight:600;letter-spacing:.6px;text-transform:uppercase}
+.section-title{font-size:40px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;line-height:1.05}
+.section-subtitle{font-size:13px;margin-top:8px}
 .section-header{margin-bottom:24px;flex-wrap:wrap}
-.stat-number{font-weight:650;font-size:30px;letter-spacing:-.02em}
+.stat-number{font-weight:600;font-size:32px;letter-spacing:.3px}
 .kicker{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
 .badge{border-radius:999px}
-.badge-green{background:rgba(31,157,85,.1);color:var(--good)}
-.badge-yellow{background:rgba(217,119,6,.1);color:#b45309}
-.badge-orange{background:rgba(234,88,12,.1);color:var(--orange)}
-.badge-red{background:rgba(229,72,77,.1);color:var(--danger)}
-.badge-blue,.badge-purple{background:var(--brand-soft);color:var(--brand)}
+.badge-green{background:rgba(184,242,92,.14);color:var(--lime)}
+.badge-yellow{background:rgba(255,154,31,.14);color:var(--amber)}
+.badge-orange{background:rgba(255,122,61,.15);color:var(--orange)}
+.badge-red{background:rgba(255,77,79,.15);color:var(--red2)}
+.badge-blue{background:rgba(184,242,92,.12);color:var(--lime)}
 .badge-gray{background:var(--bg3);color:var(--text2)}
-.source-pill.live{background:rgba(31,157,85,.08);color:var(--good);border-color:rgba(31,157,85,.25)}
-.ev-verified{background:rgba(31,157,85,.1)!important;color:var(--good)!important}
-.ev-ai{background:var(--brand-soft)!important;color:var(--brand)!important}
-.health-badge{background:var(--brand-soft);color:var(--brand);border-radius:999px;padding:7px 14px;font-weight:650;font-size:13px}
-.health-badge.ok{background:rgba(31,157,85,.1);color:var(--good)}
-.health-badge.warn{background:rgba(217,119,6,.12);color:#b45309}
-.health-badge.crit{background:rgba(229,72,77,.1);color:var(--danger)}
-.file-path{color:#4c2fd6;background:var(--brand-soft)}
-.code-block{background:#16161d;color:#e9e4ff;border-color:#16161d;border-radius:var(--radius)}
-.step-number{background:var(--ink);color:#fff}
+.source-pill.live{background:rgba(184,242,92,.1);color:var(--lime);border-color:rgba(184,242,92,.3)}
+.health-badge{background:rgba(184,242,92,.14);color:var(--lime);border-radius:999px;padding:6px 14px;font-family:var(--display);font-size:15px;letter-spacing:.4px}
+.health-badge.warn{background:rgba(255,154,31,.15);color:var(--amber)}
+.health-badge.crit{background:rgba(255,77,79,.15);color:var(--red2)}
+.file-path{color:#d7f7a6;background:rgba(184,242,92,.07)}
+.code-block{background:#0c0c0d;color:#d7f7a6;border-radius:var(--radius)}
+.step-number{background:var(--lime);color:var(--lime-ink)}
 .progress-bar{background:var(--bg4);border-radius:999px;height:8px}
 .progress-fill{border-radius:999px}
-.progress-fill.green{background:var(--c1)}
-.progress-fill.yellow{background:var(--c2)}
-.progress-fill.red{background:var(--danger)}
+.progress-fill.green{background:var(--lime)}
+.progress-fill.yellow{background:var(--amber)}
+.progress-fill.red{background:var(--coral)}
 .tabs{border-bottom:none;gap:8px;margin-bottom:24px;flex-wrap:wrap}
-.tab{border:1px solid var(--border);border-radius:999px;background:#fff;padding:8px 18px;margin:0;color:var(--text2)}
+.tab{border:none;border-radius:999px;background:var(--bg2);padding:9px 18px;margin:0;color:var(--text2)}
 .tab:hover{color:var(--text);background:var(--bg3)}
-.tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
-.spinner{border-color:var(--bg4);border-top-color:var(--brand)}
+.tab.active{background:var(--lime);color:var(--lime-ink)}
+.spinner{border-color:var(--bg4);border-top-color:var(--lime)}
 .data-table td{border-bottom-color:var(--border)}
-.data-table tr:hover td{background:#faf9fd}
 .impact-file{background:var(--bg3);border-radius:10px}
-.issue-item:hover{background:#faf9fd}
-.expandable-header:hover{background:#faf9fd}
-.modal{background:#fff;border-radius:var(--radius2);border-color:var(--border);box-shadow:0 30px 80px -20px rgba(18,18,23,.35)}
-.modal-overlay{background:rgba(18,18,23,.45)}
-.toast{background:var(--ink);color:#fff;border-color:var(--ink);border-radius:16px}
-.url-input{background:#fff!important;border:1px solid var(--border2)!important;border-radius:999px!important;color:var(--text)}
-.url-input:focus{border-color:var(--brand)!important;outline:none;box-shadow:0 0 0 4px var(--brand-soft)}
-.agent-box{border-radius:999px;background:#fff}
-.agent-box.running{border-color:var(--brand);background:var(--brand-soft);color:var(--brand)}
-.agent-box.done{border-color:rgba(31,157,85,.35);background:rgba(31,157,85,.06);color:var(--good)}
-.demo-label{background:var(--brand-soft);color:var(--brand);border-color:rgba(109,74,255,.25)}
-.inline-code{background:var(--bg3)}
+.issue-item:hover{background:rgba(255,255,255,.03)}
+.modal{background:var(--bg2);border-radius:var(--radius2);border-color:var(--border2)}
+.toast{background:#111;border-color:var(--border2);border-radius:16px}
+.url-input{background:var(--bg3)!important;border:1px solid var(--border2)!important;border-radius:999px!important;color:var(--text)}
+.url-input:focus{border-color:var(--lime)!important;outline:none}
+.agent-box{border-radius:999px}
+.agent-box.running{border-color:var(--lime);background:rgba(184,242,92,.08);color:var(--lime)}
+.agent-box.done{border-color:rgba(184,242,92,.4);background:rgba(184,242,92,.06);color:var(--lime)}
 
-/* ---- app shell ---- */
-#app{background:var(--bg)}
-#header{height:var(--header-h);background:transparent;border-bottom:none;padding:0 28px;gap:12px}
-.logo-mark{width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+/* ---- app shell: top bar + icon rail ---- */
+#app{background:#000}
+#header{height:var(--header-h);background:#000;border-bottom:none;padding:0 28px;gap:12px}
+.logo-mark{width:48px;height:48px;border-radius:50%;background:#fff;color:#000;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
 .logo-mark.sm{width:28px;height:28px}
 .logo-mark.sm svg{width:15px;height:15px}
 #logo{cursor:pointer;margin-right:8px}
-.top-nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;min-width:0;background:#fff;border:1px solid var(--border);border-radius:999px;padding:5px;box-shadow:var(--shadow)}
+.top-nav{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;min-width:0}
 .top-nav::-webkit-scrollbar{display:none}
-.nav-pill{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text2);border:none;border-radius:999px;padding:9px 16px;font:600 13px var(--font);cursor:pointer;white-space:nowrap;flex-shrink:0}
-.nav-pill:hover{color:var(--text);background:var(--bg3)}
-.nav-pill.active{background:var(--ink);color:#fff}
+.nav-pill{display:inline-flex;align-items:center;gap:8px;background:var(--bg2);color:var(--text);border:1px solid var(--border);border-radius:999px;padding:11px 16px;flex-shrink:0;font:600 13px var(--font);cursor:pointer;white-space:nowrap;border-left:1px solid var(--border)}
+.nav-pill:hover{background:var(--bg3)}
+.nav-pill.active{background:var(--lime);color:var(--lime-ink);border-color:var(--lime)}
+.nav-pill .nav-badge{margin-left:2px}
 .nav-pill .nav-badge:empty,.rail-btn .nav-badge:empty{display:none}
-#header-project{background:transparent;border:none;padding:0 6px;font-size:15px;font-weight:650;letter-spacing:-.01em;white-space:nowrap;flex-shrink:0}
-#header-project .proj-name{color:var(--text)}
-#header-source-pill{white-space:nowrap}
+#header-project{background:transparent;border:none;padding:0 6px;font-family:var(--display);font-size:17px;letter-spacing:.4px;text-transform:uppercase;white-space:nowrap;flex-shrink:0}
 .health-badge,.user-text b,.user-text span{white-space:nowrap}
 .user-chip,.health-badge{flex-shrink:0}
+#header-project .proj-name{color:var(--text)}
+#header-source-pill{white-space:nowrap}
 .user-chip{display:flex;align-items:center;gap:12px;margin-left:6px}
 .user-text{display:flex;flex-direction:column;align-items:flex-end;line-height:1.25}
 .user-text b{font-size:13px}
 .user-text span{font-size:12px;color:var(--text2)}
 .avatar-wrap{position:relative}
-.avatar-wrap img{width:42px;height:42px;border-radius:50%;background:var(--bg4);display:block;object-fit:cover;border:2px solid #fff;box-shadow:var(--shadow)}
-.avatar-badge{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;border-radius:9px;background:var(--danger);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 4px;border:2px solid var(--bg)}
-#sidebar{width:var(--sidebar-w);background:transparent;border-right:none;align-items:center;gap:12px;padding:14px 0 22px}
-.rail-btn{position:relative;width:46px;height:46px;border-radius:50%;background:#fff;border:1px solid var(--border);color:var(--text2);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;padding:0;box-shadow:var(--shadow)}
-.rail-btn:hover{color:var(--text);background:var(--bg3)}
-.rail-btn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
-.rail-btn .nav-badge{position:absolute;top:-4px;right:-4px;margin:0;border:2px solid var(--bg)}
+.avatar-wrap img{width:42px;height:42px;border-radius:50%;background:var(--bg3);display:block;object-fit:cover}
+.avatar-badge{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;border-radius:9px;background:var(--red);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 4px;border:2px solid #000}
+#sidebar{width:var(--sidebar-w);background:#000;border-right:none;align-items:center;gap:14px;padding:18px 0 22px}
+.rail-btn{position:relative;width:48px;height:48px;border-radius:50%;background:var(--bg2);border:1px solid var(--border);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;padding:0;border-left:1px solid var(--border)}
+.rail-btn:hover{background:var(--bg3)}
+.rail-btn.active{background:var(--lime);color:var(--lime-ink);border-color:var(--lime)}
+.rail-btn .nav-badge{position:absolute;top:-4px;right:-4px;margin:0;border:2px solid #000}
 .rail-spacer{flex:1}
-.nav-item .nav-badge{background:var(--danger);color:#fff;border-radius:999px;padding:1px 6px;font-size:10px;font-weight:700}
-.nav-item .nav-badge.warn{background:var(--c2);color:#fff}
-.nav-item .nav-badge.ok{background:var(--good);color:#fff}
-#main{background:var(--bg);padding:10px 32px 40px 8px}
+.nav-item .nav-badge{background:var(--red);color:#fff;border-radius:999px;padding:1px 6px;font-size:10px;font-weight:700}
+.nav-item .nav-badge.warn{background:var(--amber);color:#000}
+.nav-item .nav-badge.ok{background:var(--lime);color:#000}
+#main{background:#000;padding:10px 32px 40px 8px}
 .page-head{display:flex;align-items:flex-end;gap:16px;margin-bottom:24px;flex-wrap:wrap}
 .filter-row{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.filter-pill{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--border);border-radius:999px;padding:9px 16px;font-size:13px;color:var(--text2);white-space:nowrap;box-shadow:var(--shadow)}
+.filter-pill{display:inline-flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border);border-radius:999px;padding:10px 16px;font-size:13px;color:var(--text2);white-space:nowrap}
 .filter-pill b{color:var(--text);font-weight:600}
-.icon-circle{width:40px;height:40px;border-radius:50%;background:var(--ink);border:none;color:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
-.icon-circle:hover{background:#2a2a33}
+.icon-circle{width:42px;height:42px;border-radius:50%;background:var(--bg2);border:1px solid var(--border);color:var(--text);display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.icon-circle:hover{background:var(--bg3)}
 
 /* ---- overview bento ---- */
 .bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:18px;margin-bottom:20px}
@@ -354,125 +344,110 @@ a{color:var(--brand)}
 .b-half{grid-column:span 6}
 .bento .card{display:flex;flex-direction:column;min-width:0}
 .bento .card-header{border-bottom:none;padding:20px 22px 4px}
-.bento .card-header .more{margin-left:auto;color:var(--text3);letter-spacing:2px;font-weight:700}
+.bento .card-header .more{margin-left:auto;color:var(--text2);letter-spacing:2px;font-weight:700}
 .kpi-nums{display:flex;gap:26px;padding:10px 22px 0}
 .kpi-num .tri{display:block;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;margin-bottom:6px}
-.tri.up{border-bottom:9px solid var(--good)}
-.tri.down{border-top:9px solid var(--c2)}
-.kpi-num b{font:650 32px/1 var(--display);letter-spacing:-.02em;display:block}
+.tri.up{border-bottom:9px solid var(--lime)}
+.tri.down{border-top:9px solid var(--amber)}
+.kpi-num b{font:600 34px/1 var(--display);letter-spacing:.3px;display:block}
 .kpi-num small{font-size:11px;color:var(--text2);font-weight:600}
 .kpi-foot{margin-top:auto;padding:12px 18px 16px}
 .spark{width:100%;height:64px;display:block}
-.gauge{display:block;width:100%;max-width:230px;margin:6px auto 0}
 .dotgrid{display:grid;grid-template-columns:repeat(auto-fill,10px);gap:7px;padding:4px 0}
 .dotgrid i{width:10px;height:10px;border-radius:50%;display:block}
-.dot-g{background:var(--c1)}.dot-o{background:var(--c2)}.dot-w{background:var(--c3)}
+.dot-g{background:var(--lime)}.dot-o{background:var(--amber)}.dot-w{background:#f2f2f2}
 .legend{display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--text2);padding:14px 22px 18px;margin-top:auto}
-.legend .sw{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px;border:0}
-.legend .total{margin-left:auto}
+.legend .sw{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-2px;border:3px solid;background:#1a1a1c}
+.legend .total{margin-left:auto;color:var(--text2)}
 .legend .total b{color:var(--text)}
 .tl{padding:10px 22px 0;display:grid;grid-template-columns:auto 1fr;column-gap:14px;row-gap:12px;align-items:center;align-content:space-evenly;flex:1}
 .tl-label{font-size:12px;color:var(--text);font-weight:600;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:right}
-.tl-track{position:relative;height:34px;background-image:repeating-linear-gradient(90deg,transparent 0 calc(20% - 1px),#eceaf4 calc(20% - 1px) 20%)}
-.tl-bar{position:absolute;top:0;height:34px;border-radius:999px;display:flex;align-items:center;justify-content:space-between;padding:0 12px 0 4px;min-width:64px;cursor:pointer;font-size:11px;font-weight:700;color:#fff;transition:transform .15s}
+.tl-track{position:relative;height:34px;background-image:repeating-linear-gradient(90deg,transparent 0 calc(20% - 1px),#2c2c30 calc(20% - 1px) 20%)}
+.tl-bar{position:absolute;top:0;height:34px;border-radius:999px;display:flex;align-items:center;justify-content:space-between;padding:0 12px 0 4px;min-width:64px;cursor:pointer;font-size:11px;font-weight:700;color:#0b0b0b;transition:transform .15s}
 .tl-bar:hover{transform:translateY(-1px)}
-.tl-bar .tl-ico{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;font-size:13px}
-.tl-bar.low{background:var(--c1)}.tl-bar.medium{background:var(--c2)}.tl-bar.high{background:var(--danger)}
-.tl-axis{display:flex;justify-content:space-between;font-size:11px;color:var(--text3);padding:8px 0 0}
+.tl-bar .tl-ico{width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;font-size:13px}
+.tl-bar.low{background:var(--lime)}.tl-bar.medium{background:var(--amber)}.tl-bar.high{background:#f2f2f2}
+.tl-axis{display:flex;justify-content:space-between;font-size:11px;color:var(--text2);padding:8px 0 0}
 .caps{display:flex;gap:10px;justify-content:space-around;align-items:flex-start;padding:14px 22px 4px;min-height:230px;overflow-x:auto}
 .cap-col{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:44px;cursor:pointer;position:relative}
-.cap-col::before{content:"";position:absolute;top:0;bottom:22px;left:50%;border-left:1px dashed #e3e1ee;z-index:0}
-.cap{position:relative;z-index:1;width:40px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;min-height:30px}
-.cap.w{background:var(--c3)}.cap.g{background:var(--c1)}.cap.o{background:var(--c2)}
-.cap-dot{position:relative;z-index:1;width:8px;height:8px;border-radius:50%}
-.cap-name{position:relative;z-index:1;font-size:10px;color:var(--text2);max-width:64px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:auto;background:#fff;padding:0 2px}
+.cap-col::before{content:"";position:absolute;top:0;bottom:22px;left:50%;border-left:1px dashed #2f2f33;z-index:0}
+.cap{position:relative;z-index:1;width:40px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#0b0b0b;min-height:30px}
+.cap.w{background:#f2f2f2}.cap.g{background:var(--lime)}.cap.o{background:var(--amber)}
+.cap-dot{position:relative;z-index:1;width:9px;height:9px;border-radius:50%}
+.cap-name{position:relative;z-index:1;font-size:10px;color:var(--text2);max-width:64px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:auto;background:var(--bg2);padding:0 2px}
 .sev-row{display:flex;align-items:center;gap:12px}
 .sev-track{flex:1;height:10px;background:var(--bg4);border-radius:999px;overflow:hidden}
 .sev-fill{height:100%;border-radius:999px}
 
 /* ---- connect screen & landing ---- */
-#connect-screen{background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;overflow-y:auto;padding:0}
-#connect-screen .connect-card{margin:auto;background:#fff;border:1px solid var(--border);border-radius:28px;max-width:calc(100% - 32px);box-shadow:var(--shadow)}
-#connect-screen .connect-card:not(.landing){margin:40px auto}
-.landing{width:100%;margin:0;padding:0}
-.lp-top{background:radial-gradient(120% 70% at 50% 0%,#e6defe 0%,#f1ecff 38%,rgba(246,245,251,0) 72%),var(--bg);padding:0 24px 40px}
-.lp-wrap{max-width:1180px;margin:0 auto}
-.lp-nav{display:flex;align-items:center;gap:20px;padding:22px 0}
-.lp-brand{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:700;letter-spacing:-.02em}
-.lp-links{display:flex;gap:4px;margin:0 auto}
-.lp-links a{color:var(--text2);text-decoration:none;font-size:14px;font-weight:500;padding:9px 14px;border-radius:999px}
-.lp-links a:hover{color:var(--text);background:rgba(255,255,255,.7)}
-.lp-hero{text-align:center;padding:56px 0 44px;max-width:860px;margin:0 auto}
-.lp-badge{display:inline-flex;align-items:center;gap:8px;background:var(--brand);color:#fff;border-radius:999px;padding:7px 16px;font-size:13px;font-weight:600;margin-bottom:18px;box-shadow:0 8px 20px -8px rgba(109,74,255,.6)}
-.lp-eyebrow{font-size:12px;font-weight:700;letter-spacing:1.4px;color:var(--brand);margin-bottom:12px}
-.lp-title{font-weight:650;font-size:clamp(40px,6vw,76px);line-height:1.04;letter-spacing:-.035em;margin-bottom:20px}
-.lp-lead{font-size:18px;color:var(--text);margin:0 auto 8px;max-width:620px}
-.lp-sub{font-size:15px;color:var(--text2);margin:0 auto 28px;max-width:620px;line-height:1.7}
-.lp-cta-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:14px}
-.lp-trust{display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:var(--text3)}
-#cs-landing-notice{max-width:560px;margin-left:auto;margin-right:auto}
-.lp-device{max-width:1080px;margin:10px auto 0;background:#fff;border:1px solid var(--border);border-radius:24px;box-shadow:0 40px 80px -30px rgba(38,20,120,.35);padding:14px}
-.dv-bar{display:flex;align-items:center;gap:8px;padding:6px 8px 14px}
-.dv-bar .dv-logo{width:24px;height:24px;border-radius:50%;background:var(--ink)}
-.dv-tabs{display:flex;gap:6px;margin:0 auto;background:var(--bg3);border-radius:999px;padding:4px}
-.dv-tabs span{font-size:11px;color:var(--text2);padding:5px 12px;border-radius:999px}
-.dv-tabs span.on{background:var(--ink);color:#fff}
-.dv-av{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#c4b5fd,#6d4aff)}
-.dv-body{background:var(--bg);border-radius:16px;padding:18px;text-align:left}
-.dv-greet{font-size:22px;font-weight:650;letter-spacing:-.02em;margin-bottom:14px}
-.dv-grid{display:grid;grid-template-columns:1.1fr 1.1fr 1fr;gap:12px}
-.dv-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:14px}
-.dv-card h4{font-size:12px;font-weight:600;color:var(--text2);margin-bottom:10px}
-.dv-purple{background:linear-gradient(145deg,#8b6dff,#5b34f5);color:#fff;border:none}
-.dv-purple h4{color:rgba(255,255,255,.8)}
-.dv-big{font-size:30px;font-weight:700;letter-spacing:-.03em;line-height:1}
-.dv-small{font-size:11px;opacity:.75}
-.dv-bars{display:flex;align-items:flex-end;gap:7px;height:86px;margin-top:10px}
-.dv-bars i{flex:1;border-radius:6px;background:var(--brand-soft)}
-.dv-bars i.on{background:var(--brand)}
-.dv-rows div{display:flex;justify-content:space-between;font-size:11px;padding:6px 0;border-bottom:1px solid var(--border);color:var(--text2)}
-.dv-rows div:last-child{border:none}
-.dv-rows b{color:var(--text)}
-.lp-main{max-width:1180px;margin:0 auto;padding:40px 24px 0}
-.lp-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:84px}
-.lp-strip div{background:#fff;border:1px solid var(--border);border-radius:20px;padding:18px 20px;box-shadow:var(--shadow)}
-.lp-strip b{display:block;font-size:18px;font-weight:650;letter-spacing:-.02em;color:var(--text)}
+#connect-screen{background:#000;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;overflow-y:auto;padding:24px}
+#connect-screen .connect-card{margin:auto;background:var(--bg2);border:1px solid var(--border);border-radius:28px;max-width:100%}
+.landing{width:100%;max-width:1240px;margin:0 auto;padding:0 8px}
+.lp-nav{display:flex;align-items:center;gap:20px;padding:6px 0 30px}
+.lp-brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-size:22px;letter-spacing:.6px;text-transform:uppercase}
+.lp-links{display:flex;gap:6px;margin-left:auto}
+.lp-links a{color:var(--text2);text-decoration:none;font-size:14px;font-weight:500;padding:10px 14px;border-radius:999px}
+.lp-links a:hover{color:var(--text);background:var(--bg2)}
+.lp-hero{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center;padding:40px 0 56px}
+.lp-eyebrow{font-size:12px;font-weight:700;letter-spacing:1.6px;color:var(--lime);margin-bottom:14px}
+.lp-title{font-family:var(--display);font-weight:700;font-size:clamp(44px,6.2vw,84px);line-height:.98;text-transform:uppercase;letter-spacing:.5px;margin-bottom:22px}
+.lp-accent{color:var(--lime)}
+.lp-lead{font-size:18px;color:var(--text);margin-bottom:10px;max-width:560px}
+.lp-sub{font-size:15px;color:var(--text2);margin-bottom:28px;max-width:560px;line-height:1.7}
+.lp-cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.lp-trust{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text3)}
+.lp-hero-visual{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:#0d0d0e;border:1px solid var(--border);border-radius:32px;padding:18px}
+.hv-card{background:var(--bg2);border-radius:22px;padding:16px 18px;border:1px solid var(--border)}
+.hv-label{font-family:var(--display);font-size:13px;letter-spacing:.6px;margin-bottom:10px}
+.hv-nums{display:flex;gap:18px}
+.hv-nums b{display:block;font:600 26px/1 var(--display)}
+.hv-nums small{font-size:10px;color:var(--text2)}
+.hv-nums .tri{display:block;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;margin-bottom:5px}
+.hv-spark{width:100%;height:50px;margin-top:10px}
+.hv-dotgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:8px}
+.hv-dotgrid i{width:9px;height:9px;border-radius:50%;background:#f2f2f2}
+.hv-dotgrid i.g{background:var(--lime)}.hv-dotgrid i.o{background:var(--amber)}
+.hv-timeline{grid-column:span 2}
+.hv-bar{height:26px;border-radius:999px;margin-bottom:9px;display:flex;align-items:center;padding-left:3px}
+.hv-bar i{width:20px;height:20px;border-radius:50%;background:rgba(0,0,0,.8)}
+.hv-bar.g{background:var(--lime)}.hv-bar.o{background:var(--amber)}.hv-bar.w{background:#f2f2f2}
+.lp-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:80px}
+.lp-strip div{background:var(--bg2);border:1px solid var(--border);border-radius:22px;padding:18px 20px}
+.lp-strip b{display:block;font:600 22px var(--display);text-transform:uppercase;letter-spacing:.4px;color:var(--lime)}
 .lp-strip span{font-size:13px;color:var(--text2)}
 .lp-section{margin-bottom:84px;scroll-margin-top:24px}
-.lp-section-head{margin-bottom:28px;text-align:center}
-.lp-h2{font-size:clamp(28px,3.4vw,44px);font-weight:650;letter-spacing:-.03em;line-height:1.1;max-width:760px;margin:0 auto}
+.lp-section-head{margin-bottom:28px}
+.lp-h2{font-family:var(--display);font-size:clamp(30px,3.6vw,46px);text-transform:uppercase;letter-spacing:.4px;line-height:1.05;max-width:760px}
 .lp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.lp-feature{background:#fff;border:1px solid var(--border);border-radius:22px;padding:22px;box-shadow:var(--shadow)}
-.lp-feature h3{font-size:16px;font-weight:650;letter-spacing:-.01em;margin:16px 0 6px}
+.lp-feature{background:var(--bg2);border:1px solid var(--border);border-radius:24px;padding:22px}
+.lp-feature h3{font:600 18px var(--display);text-transform:uppercase;letter-spacing:.4px;margin:16px 0 6px}
 .lp-feature p{font-size:13px;color:var(--text2);line-height:1.6}
-.lp-ico{width:44px;height:44px;border-radius:14px;background:var(--brand-soft);display:inline-flex;align-items:center;justify-content:center;color:var(--brand);flex-shrink:0}
+.lp-ico{width:46px;height:46px;border-radius:50%;background:var(--bg3);display:inline-flex;align-items:center;justify-content:center;color:var(--lime);flex-shrink:0}
 .lp-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.lp-step{background:#fff;border:1px solid var(--border);border-radius:22px;padding:26px;box-shadow:var(--shadow)}
-.lp-step-n{display:inline-flex;width:40px;height:40px;border-radius:50%;background:var(--ink);color:#fff;align-items:center;justify-content:center;font-weight:700;font-size:14px}
-.lp-step h3{font-size:18px;font-weight:650;letter-spacing:-.01em;margin:16px 0 6px}
+.lp-step{background:var(--bg2);border:1px solid var(--border);border-radius:24px;padding:26px}
+.lp-step-n{font:700 44px/1 var(--display);color:var(--lime)}
+.lp-step h3{font:600 20px var(--display);text-transform:uppercase;letter-spacing:.4px;margin:14px 0 6px}
 .lp-step p{font-size:14px;color:var(--text2);line-height:1.6}
-.lp-final{background:linear-gradient(135deg,#7c5cff 0%,#5b34f5 100%);color:#fff;border-radius:28px;padding:56px 32px;text-align:center;margin-bottom:40px}
-.lp-final h2{font-size:clamp(28px,3.6vw,46px);font-weight:650;letter-spacing:-.03em;line-height:1.1;margin-bottom:24px}
-.lp-final .btn{background:#fff;color:var(--ink);border-color:#fff}
-.lp-final .btn:hover{background:#f1f0f7}
+.lp-final{background:var(--lime);color:#0b0b0b;border-radius:32px;padding:56px 32px;text-align:center;margin-bottom:40px}
+.lp-final h2{font:700 clamp(30px,4vw,52px)/1.05 var(--display);text-transform:uppercase;letter-spacing:.4px;margin-bottom:24px}
 .lp-footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--text3);font-size:13px;padding:6px 0 30px}
-.lp-footer .lp-brand{font-size:15px;color:var(--text)}
+.lp-footer .lp-brand{font-size:16px;color:var(--text)}
 
 /* ---- responsive ---- */
 @media (max-width:1560px){#header-source-pill{display:none}}
 @media (max-width:1320px){#header-project{display:none}}
 @media (max-width:1100px){
   .b-kpi{grid-column:span 6}.b-timeline,.b-capsules,.b-half{grid-column:span 12}.b-timeline{grid-row:auto}
-  .lp-grid{grid-template-columns:repeat(2,1fr)}.dv-grid{grid-template-columns:1fr 1fr}.dv-grid>:last-child{display:none}
-  .user-text{display:none}
+  .lp-hero{grid-template-columns:1fr}.lp-grid{grid-template-columns:repeat(2,1fr)}
+  #header-source-pill,.user-text{display:none}
 }
 @media (max-width:720px){
   .b-kpi{grid-column:span 12}
-  .lp-grid,.lp-steps,.lp-strip,.dv-grid{grid-template-columns:1fr}.lp-links,.dv-tabs{display:none}
+  .lp-grid,.lp-steps,.lp-strip{grid-template-columns:1fr}.lp-links{display:none}
   .grid2,.grid3,.grid4{grid-template-columns:1fr}
   #header{padding:0 14px}#sidebar{width:64px}#main{padding:6px 14px 30px 4px}
-  .section-title{font-size:24px}.health-badge,#header-project{display:none}
-  .lp-top{padding:0 16px 30px}.lp-main{padding:30px 16px 0}
+  .section-title{font-size:30px}.health-badge,#header-project{display:none}
+  .lp-hero-visual{grid-template-columns:1fr}.hv-timeline{grid-column:auto}
 }
 </style>
 </head>
@@ -483,88 +458,93 @@ a{color:var(--brand)}
 
   <!-- PANEL 0: Landing page -->
   <div id="cs-landing" class="landing">
-    <div class="lp-top">
-      <div class="lp-wrap">
-        <header class="lp-nav">
-          <div class="lp-brand"><span class="logo-mark sm"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 6h14M12 6v13"/><circle cx="12" cy="19" r="1.6" fill="currentColor" stroke="none"/></svg></span>Traceon</div>
-          <nav class="lp-links">
-            <a href="#lp-features">Features</a>
-            <a href="#lp-how">How it works</a>
-            <a href="#lp-security">Security</a>
-          </nav>
-          <button class="btn btn-pill btn-black" onclick="continueWithGitHub()">Sign in</button>
-        </header>
+    <header class="lp-nav">
+      <div class="lp-brand"><span class="logo-mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 6h14M12 6v13"/><circle cx="12" cy="19" r="1.6" fill="currentColor" stroke="none"/></svg></span><span class="lp-brand-name">Traceon</span></div>
+      <nav class="lp-links">
+        <a href="#lp-features">Features</a>
+        <a href="#lp-how">How it works</a>
+        <a href="#lp-security">Security</a>
+      </nav>
+      <button class="btn btn-pill btn-dark" onclick="continueWithGitHub()"><svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> Sign in</button>
+    </header>
 
-        <section class="lp-hero">
-          <span class="lp-badge">✦ Read-only GitHub analysis</span>
-          <div class="lp-eyebrow">CONNECT YOUR PROJECT</div>
-          <h1 class="lp-title">Understand your codebase before you change it</h1>
-          <p class="lp-lead">Sign in with GitHub to securely access repositories you authorize for analysis.</p>
-          <p class="lp-sub">Traceon maps your architecture, finds untested code and risky dependencies, shows what a change will break, and checks you are ready to release, straight from your real repository.</p>
-          <div id="cs-landing-notice" style="display:none;margin-bottom:16px;text-align:left"></div>
-          <div class="lp-cta-row">
-            <button class="btn btn-pill btn-black btn-lg" id="gh-continue-btn" onclick="continueWithGitHub()"><svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span id="gh-continue-label">Continue with GitHub</span></button>
-            <a class="btn btn-pill btn-ghost btn-lg" href="#lp-how">How it works</a>
-          </div>
-          <div class="lp-trust"><svg class="ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Read-only access · Traceon never writes to your repositories</div>
-        </section>
-
-        <div class="lp-device" aria-hidden="true">
-          <div class="dv-bar"><span class="dv-logo"></span><div class="dv-tabs"><span class="on">Overview</span><span>Project Map</span><span>Testing</span><span>Change Impact</span><span>Release</span></div><span class="dv-av"></span></div>
-          <div class="dv-body">
-            <div class="dv-greet">Good morning 👋</div>
-            <div class="dv-grid">
-              <div class="dv-card dv-purple"><h4>Files reached by tests</h4><div class="dv-big">64%</div><div class="dv-small">128 of 200 source files</div>
-                <div class="dv-bars"><i style="height:40%;background:rgba(255,255,255,.35)"></i><i style="height:65%;background:rgba(255,255,255,.35)"></i><i style="height:52%;background:rgba(255,255,255,.35)"></i><i style="height:80%;background:#fff"></i><i style="height:60%;background:rgba(255,255,255,.35)"></i><i style="height:72%;background:rgba(255,255,255,.35)"></i></div></div>
-              <div class="dv-card"><h4>Modules by size</h4><div class="dv-bars"><i class="on" style="height:90%"></i><i style="height:62%"></i><i class="on" style="height:74%"></i><i style="height:48%"></i><i style="height:36%"></i><i class="on" style="height:58%"></i><i style="height:28%"></i></div>
-                <div class="dv-rows" style="margin-top:10px"><div><span>API routes</span><b>24</b></div><div><span>Findings</span><b>7</b></div></div></div>
-              <div class="dv-card"><h4>Project health</h4><svg viewBox="0 0 200 120" class="gauge" aria-hidden="true">
-            <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#eeecf5" stroke-width="16" stroke-linecap="round"/>
-            <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="url(#lpg)" stroke-width="16" stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="50"/>
-            <defs><linearGradient id="lpg" x1="0" x2="1"><stop offset="0" stop-color="#e5484d"/><stop offset=".5" stop-color="#d97706"/><stop offset="1" stop-color="#1f9d55"/></linearGradient></defs>
-            <text x="100" y="92" text-anchor="middle" font-size="30" font-weight="700" fill="#121217" font-family="Inter,system-ui,sans-serif">82</text>
-            <text x="100" y="112" text-anchor="middle" font-size="11" fill="#6b6a7b" font-family="Inter,system-ui,sans-serif">Health score</text>
-          </svg></div>
-            </div>
-          </div>
+    <section class="lp-hero">
+      <div class="lp-hero-copy">
+        <div class="lp-eyebrow">CONNECT YOUR PROJECT</div>
+        <h1 class="lp-title">Understand your codebase <span class="lp-accent">before you change it.</span></h1>
+        <p class="lp-lead">Sign in with GitHub to securely access repositories you authorize for analysis.</p>
+        <p class="lp-sub">Traceon maps your architecture, finds untested code and risky dependencies, shows what a change will break, and checks you are ready to release, straight from your real repository.</p>
+        <div id="cs-landing-notice" style="display:none;margin-bottom:16px;text-align:left"></div>
+        <div class="lp-cta-row">
+          <button class="btn btn-pill btn-primary btn-lg" id="gh-continue-btn" onclick="continueWithGitHub()"><svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span id="gh-continue-label">Continue with GitHub</span></button>
+          <a class="btn btn-pill btn-ghost btn-lg" href="#lp-how">How it works</a>
+        </div>
+        <div class="lp-trust"><svg class="ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Read-only access · Traceon never writes to your repositories</div>
+      </div>
+      <div class="lp-hero-visual" aria-hidden="true">
+        <div class="hv-card hv-kpi">
+          <div class="hv-label">HEALTH</div>
+          <div class="hv-nums"><div><span class="tri up"></span><b>82</b><small>Score</small></div><div><span class="tri down"></span><b>64%</b><small>Files tested</small></div></div>
+          <svg class="hv-spark" viewBox="0 0 200 50" preserveAspectRatio="none"><polyline points="0,38 25,30 50,34 75,18 100,26 125,12 150,22 175,16 200,20" fill="none" stroke="#b8f25c" stroke-width="2"/><polyline points="0,20 25,26 50,16 75,30 100,22 125,32 150,24 175,34 200,28" fill="none" stroke="#ff9a1f" stroke-width="2"/></svg>
+        </div>
+        <div class="hv-card hv-dots"><div class="hv-label">TESTS</div><div class="hv-dotgrid"><i class="g"></i><i class="w"></i><i class="w"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="w"></i><i class="w"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="w"></i><i class="o"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="o"></i><i class="w"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="w"></i><i class="w"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="w"></i><i class="w"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="w"></i><i class="o"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="o"></i><i class="w"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="w"></i><i class="w"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="w"></i><i class="w"></i></div></div>
+        <div class="hv-card hv-timeline">
+          <div class="hv-label">MODULES</div>
+          <div class="hv-bar g" style="width:62%"><i></i></div>
+          <div class="hv-bar o" style="width:48%;margin-left:30%"><i></i></div>
+          <div class="hv-bar w" style="width:40%;margin-left:12%"><i></i></div>
+          <div class="hv-bar g" style="width:55%;margin-left:22%"><i></i></div>
+          <div class="hv-bar o" style="width:36%;margin-left:6%"><i></i></div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="lp-main">
-      <section class="lp-strip">
-        <div><b>Read-only</b><span>Contents &amp; metadata permissions only</span></div>
-        <div><b>No tokens</b><span>Sign in with GitHub, nothing to paste</span></div>
-        <div><b>Any stack</b><span>JS/TS, Python, Go, Java, Ruby, PHP, Rust…</span></div>
-        <div><b>8 workflows</b><span>From onboarding to release</span></div>
-      </section>
+    <section class="lp-strip">
+      <div><b>Read-only</b><span>Contents &amp; metadata permissions only</span></div>
+      <div><b>No tokens</b><span>Sign in with GitHub, nothing to paste</span></div>
+      <div><b>Any stack</b><span>JS/TS, Python, Go, Java, Ruby, PHP, Rust…</span></div>
+      <div><b>8 workflows</b><span>From onboarding to release</span></div>
+    </section>
 
-      <section class="lp-section" id="lp-features">
-        <div class="lp-section-head"><div class="lp-eyebrow">FEATURES</div><h2 class="lp-h2">Everything you need before you touch the code</h2></div>
-        <div class="lp-grid"><div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></span><h3>Project Map</h3><p>Modules and how they depend on each other, built from the real import graph.</p></div><div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span><h3>Onboarding</h3><p>Entry points, API routes, setup commands and a first-day guide for new developers.</p></div><div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><h3>Maintenance</h3><p>Vulnerable dependencies, missing lockfiles, undocumented env vars, Docker and CI gaps.</p></div><div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><h3>Testing</h3><p>Which files your tests actually reach, per module, and which endpoints have none.</p></div><div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><h3>Generate Tests</h3><p>Test stubs built from each file's real exports, in your framework and folder layout.</p></div><div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><h3>Change Impact</h3><p>Everything that depends on a module, the endpoints affected and the tests to run.</p></div><div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span><h3>Release</h3><p>A readiness check across tests, CI, configuration, dependencies and deployment.</p></div><div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><h3>Reports</h3><p>Health, release and maintenance reports you can share with your team.</p></div></div>
-      </section>
+    <section class="lp-section" id="lp-features">
+      <div class="lp-section-head"><div class="lp-eyebrow">FEATURES</div><h2 class="lp-h2">Everything you need before you touch the code</h2></div>
+      <div class="lp-grid">
+        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></span><h3>Project Map</h3><p>Modules and how they depend on each other, built from the real import graph.</p></div>
+        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span><h3>Onboarding</h3><p>Entry points, API routes, setup commands and a first-day guide for new developers.</p></div>
+        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><h3>Maintenance</h3><p>Vulnerable dependencies, missing lockfiles, undocumented env vars, Docker and CI gaps.</p></div>
+        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><h3>Testing</h3><p>Which files your tests actually reach, per module, and which endpoints have none.</p></div>
+        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><h3>Generate Tests</h3><p>Test stubs built from each file's real exports, in your framework and folder layout.</p></div>
+        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><h3>Change Impact</h3><p>Everything that depends on a module, the endpoints affected and the tests to run.</p></div>
+        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span><h3>Release</h3><p>A readiness check across tests, CI, configuration, dependencies and deployment.</p></div>
+        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><h3>Reports</h3><p>Health, release and maintenance reports you can share with your team.</p></div>
+      </div>
+    </section>
 
-      <section class="lp-section" id="lp-how">
-        <div class="lp-section-head"><div class="lp-eyebrow">HOW IT WORKS</div><h2 class="lp-h2">From sign-in to findings in three steps</h2></div>
-        <div class="lp-steps">
-          <div class="lp-step"><span class="lp-step-n">1</span><h3>Continue with GitHub</h3><p>Approve Traceon on GitHub's own sign-in page. There is no token to create or paste.</p></div>
-          <div class="lp-step"><span class="lp-step-n">2</span><h3>Choose repositories</h3><p>Pick exactly which repositories Traceon may read. Change your choice any time on GitHub.</p></div>
-          <div class="lp-step"><span class="lp-step-n">3</span><h3>Analyze</h3><p>Traceon reads a snapshot of the branch and fills every page with your project's real data.</p></div>
-        </div>
-      </section>
+    <section class="lp-section" id="lp-how">
+      <div class="lp-section-head"><div class="lp-eyebrow">HOW IT WORKS</div><h2 class="lp-h2">From sign-in to findings in three steps</h2></div>
+      <div class="lp-steps">
+        <div class="lp-step"><span class="lp-step-n">01</span><h3>Continue with GitHub</h3><p>Approve Traceon on GitHub's own sign-in page. There is no token to create or paste.</p></div>
+        <div class="lp-step"><span class="lp-step-n">02</span><h3>Choose repositories</h3><p>Pick exactly which repositories Traceon may read. Change your choice any time on GitHub.</p></div>
+        <div class="lp-step"><span class="lp-step-n">03</span><h3>Analyze</h3><p>Traceon reads a snapshot of the branch and fills every page with your project's real data.</p></div>
+      </div>
+    </section>
 
-      <section class="lp-section" id="lp-security">
-        <div class="lp-section-head"><div class="lp-eyebrow">SECURITY</div><h2 class="lp-h2">Built to be trusted with your code</h2></div>
-        <div class="lp-grid"><div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span><h3>Read-only</h3><p>Traceon never commits, pushes, opens pull requests or changes settings.</p></div><div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></span><h3>No tokens in your browser</h3><p>GitHub credentials stay on the Traceon server. Your browser only holds a secure session.</p></div><div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><h3>Secrets untouched</h3><p>Real .env files are never read. Only variable names from templates are checked.</p></div><div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span><h3>You stay in control</h3><p>Signing out revokes Traceon's access token on GitHub immediately.</p></div></div>
-      </section>
+    <section class="lp-section" id="lp-security">
+      <div class="lp-section-head"><div class="lp-eyebrow">SECURITY</div><h2 class="lp-h2">Built to be trusted with your code</h2></div>
+      <div class="lp-grid lp-grid-4">
+        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span><h3>Read-only</h3><p>Traceon never commits, pushes, opens pull requests or changes settings.</p></div>
+        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></span><h3>No tokens in your browser</h3><p>GitHub credentials stay on the Traceon server. Your browser only holds a secure session.</p></div>
+        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><h3>Secrets untouched</h3><p>Real .env files are never read. Only variable names from templates are checked.</p></div>
+        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span><h3>You stay in control</h3><p>Signing out revokes Traceon's access token on GitHub immediately.</p></div>
+      </div>
+    </section>
 
-      <section class="lp-final">
-        <h2>Ready to see your codebase clearly?</h2>
-        <button class="btn btn-pill btn-lg" onclick="continueWithGitHub()"><svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> Continue with GitHub</button>
-      </section>
+    <section class="lp-final">
+      <h2>Ready to see your codebase clearly?</h2>
+      <button class="btn btn-pill btn-dark btn-lg" onclick="continueWithGitHub()"><svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> Continue with GitHub</button>
+    </section>
 
-      <footer class="lp-footer"><span class="lp-brand"><span class="logo-mark sm"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 6h14M12 6v13"/><circle cx="12" cy="19" r="1.6" fill="currentColor" stroke="none"/></svg></span>Traceon</span><span>Read-only repository analysis for development teams.</span></footer>
-    </div>
+    <footer class="lp-footer"><span class="lp-brand"><span class="logo-mark sm"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 6h14M12 6v13"/><circle cx="12" cy="19" r="1.6" fill="currentColor" stroke="none"/></svg></span>Traceon</span><span>Read-only repository analysis for development teams.</span></footer>
   </div>
 
   <!-- PANEL 1: GitHub sign-in status (errors, setup required) -->
@@ -578,7 +558,7 @@ a{color:var(--brand)}
 
   <!-- PANEL 2: Repo browser -->
   <div id="cs-repo-browser" class="connect-card" style="width:680px;display:none">
-    <div id="cs-gh-connected" style="display:none;margin-bottom:16px;padding:12px 14px;background:rgba(109,74,255,.06);border:1px solid rgba(109,74,255,.3);border-radius:var(--radius)"></div>
+    <div id="cs-gh-connected" style="display:none;margin-bottom:16px;padding:12px 14px;background:rgba(184,242,92,.06);border:1px solid rgba(184,242,92,.3);border-radius:var(--radius)"></div>
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
       <button class="btn btn-secondary btn-sm" onclick="showConnectPanel('landing')">← Back</button>
       <div>
@@ -604,7 +584,7 @@ a{color:var(--brand)}
     <div id="cs-repo-loading" style="text-align:center;padding:32px;color:var(--text2);font-size:13px;display:none">
       <div class="spinner" style="margin:0 auto 10px"></div>Loading your repositories…
     </div>
-    <div id="cs-repo-error" style="display:none;padding:16px;background:rgba(229,72,77,.06);border:1px solid rgba(229,72,77,.2);border-radius:var(--radius);font-size:13px;color:var(--red2)"></div>
+    <div id="cs-repo-error" style="display:none;padding:16px;background:rgba(255,77,79,.06);border:1px solid rgba(255,77,79,.2);border-radius:var(--radius);font-size:13px;color:var(--red2)"></div>
   </div>
 
   <!-- PANEL 3: Repo confirm -->
@@ -1103,7 +1083,7 @@ function overviewCard(cls, title, body, footer = '') {
 }
 
 function legendHtml(items, total) {
-  return `<div class="legend">${items.map(([c, l]) => `<span><span class="sw" style="background:${c}"></span>${escHtml(l)}</span>`).join('')}${total ? `<span class="total">Total: <b>${total}</b></span>` : ''}</div>`;
+  return `<div class="legend">${items.map(([c, l]) => `<span><span class="sw" style="border-color:${c}"></span>${escHtml(l)}</span>`).join('')}${total ? `<span class="total">Total: <b>${total}</b></span>` : ''}</div>`;
 }
 
 function renderOverviewFilters(m) {
@@ -1122,6 +1102,18 @@ function rescanRepository() {
   startRealScan();
 }
 
+// Two lines on one axis (files): reached vs untested per module
+function sparklineSvg(mods) {
+  if (mods.length < 2) return '<div class="fs-12 col-muted" style="padding:12px 4px">Not enough modules to chart.</div>';
+  const W = 300, H = 64, pad = 6;
+  const max = Math.max(1, ...mods.map(x => Math.max(x.reachedFiles, x.fileCount - x.reachedFiles)));
+  const X = i => pad + i * (W - 2 * pad) / (mods.length - 1);
+  const Y = v => H - pad - v / max * (H - 2 * pad);
+  const line = (vals, color) => `<polyline points="${vals.map((v, i) => `${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(' ')}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+  const hits = mods.map((x, i) => `<rect x="${(X(i) - (W / mods.length) / 2).toFixed(1)}" y="0" width="${(W / mods.length).toFixed(1)}" height="${H}" fill="transparent"><title>${escHtml(x.label)}: ${x.reachedFiles} reached · ${x.fileCount - x.reachedFiles} untested</title></rect>`).join('');
+  return `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Files reached and untested per module">
+    ${line(mods.map(x => x.fileCount - x.reachedFiles), 'var(--amber)')}${line(mods.map(x => x.reachedFiles), 'var(--lime)')}${hits}</svg>`;
+}
 
 function renderOverviewDashboard(prof) {
   const m = prof._repoData;
@@ -1133,24 +1125,14 @@ function renderOverviewDashboard(prof) {
   const cases = Object.values(m.testCases || {}).reduce((s, n) => s + n, 0);
   const reachPct = prof.testReachPct || 0;
 
-  // KPI: health gauge (0–100); arc colour follows the score band
-  const h = Math.max(0, Math.min(100, prof.health || 0));
-  const arcLen = 251.3;
-  const hColor = h >= 85 ? 'var(--good)' : h >= 65 ? 'var(--c2)' : 'var(--danger)';
+  // KPI: health
   const kpiHealth = overviewCard('b-kpi', 'Health', `
-    <div style="padding:6px 22px 0">
-      <svg viewBox="0 0 200 120" class="gauge" role="img" aria-label="Health score ${h} out of 100">
-        <title>Health score ${h} / 100</title>
-        <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="var(--bg4)" stroke-width="16" stroke-linecap="round"/>
-        <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="${hColor}" stroke-width="16" stroke-linecap="round" stroke-dasharray="${arcLen}" stroke-dashoffset="${(arcLen * (1 - h / 100)).toFixed(1)}"/>
-        <text x="100" y="92" text-anchor="middle" font-size="32" font-weight="700" fill="var(--text)" font-family="Inter,system-ui,sans-serif">${h}</text>
-        <text x="100" y="112" text-anchor="middle" font-size="11" fill="var(--text2)" font-family="Inter,system-ui,sans-serif">Health score / 100</text>
-      </svg>
+    <div class="kpi-nums">
+      <div class="kpi-num"><span class="tri ${prof.health >= 70 ? 'up' : 'down'}"></span><b>${prof.health}</b><small>Health Score</small></div>
+      <div class="kpi-num"><span class="tri ${reachPct >= 50 ? 'up' : 'down'}"></span><b>${reachPct}%</b><small>Files Reached by Tests</small></div>
     </div>
-    <div class="kpi-nums" style="padding-top:4px;padding-bottom:18px">
-      <div class="kpi-num"><span class="tri ${reachPct >= 50 ? 'up' : 'down'}"></span><b style="font-size:24px">${reachPct}%</b><small>Files Reached by Tests</small></div>
-      <div class="kpi-num"><span class="tri ${(prof.findings.critical + prof.findings.high) ? 'down' : 'up'}"></span><b style="font-size:24px">${prof.findings.critical + prof.findings.high}</b><small>Critical + high issues</small></div>
-    </div>`);
+    <div class="kpi-foot">${sparklineSvg(mods.slice(0, 12))}</div>`,
+    legendHtml([['var(--lime)', 'Reached'], ['var(--amber)', 'Untested']]));
 
   // KPI: tests with a dot grid (one dot per file, or per N files for large repos)
   const files = m.sourceFiles.map(f => reached.has(f) ? 'g' : 'o').sort().concat(m.testFiles.map(() => 'w'));
@@ -1163,7 +1145,7 @@ function renderOverviewDashboard(prof) {
       <div class="kpi-num"><span class="tri ${cases ? 'up' : 'down'}"></span><b>${cases}</b><small>Tests Found</small></div>
     </div>
     <div class="kpi-foot"><div class="dotgrid" role="img" aria-label="Source files reached or untested, and test files" title="${per > 1 ? `1 dot ≈ ${per} files` : '1 dot = 1 file'}">${dots.map(c => `<i class="dot-${c}"></i>`).join('')}</div></div>`,
-    legendHtml([['var(--c1)', 'Reached'], ['var(--c2)', 'Untested'], ['var(--c3)', 'Tests']]));
+    legendHtml([['var(--lime)', 'Reached'], ['var(--amber)', 'Untested'], ['#f2f2f2', 'Tests']]));
 
   // Modules: horizontal pill bars, coloured by risk
   const top = mods.slice(0, 10);
@@ -1181,12 +1163,12 @@ function renderOverviewDashboard(prof) {
   const timeline = overviewCard('b-timeline', 'Modules', `
     <div class="tl">${rows || '<div class="col-muted fs-13">No source modules detected.</div>'}
       <div></div><div class="tl-axis">${[0, 1, 2, 3, 4, 5].map(i => `<span>${i * step}</span>`).join('')}</div></div>`,
-    legendHtml([['var(--c1)', 'Low risk'], ['var(--c2)', 'Medium'], ['var(--danger)', 'High']], `${m.sourceFiles.length} files`));
+    legendHtml([['var(--lime)', 'Low risk'], ['var(--amber)', 'Medium'], ['#f2f2f2', 'High']], `${m.sourceFiles.length} files`));
 
   // Test reach: capsule columns per module
   const capMods = mods.filter(x => !x.id.startsWith('(other')).slice(0, 9);
   const capMax = Math.max(1, ...capMods.map(x => Math.max(x.testFiles.length, x.reachedFiles, x.fileCount - x.reachedFiles)));
-  const segColor = { w: 'var(--c3)', g: 'var(--c1)', o: 'var(--c2)' };
+  const segColor = { w: '#f2f2f2', g: 'var(--lime)', o: 'var(--amber)' };
   const caps = capMods.map(x => {
     const segs = [[x.testFiles.length, 'w', 'Test files'], [x.reachedFiles, 'g', 'Reached files'], [x.fileCount - x.reachedFiles, 'o', 'Untested files']]
       .filter(([v]) => v > 0)
@@ -1195,7 +1177,7 @@ function renderOverviewDashboard(prof) {
     return `<div class="cap-col" onclick="navigate('testing')" title="${escHtml(x.label)}">${segs}<span class="cap-name">${escHtml(x.id.split('/').pop())}</span></div>`;
   }).join('');
   const capsules = overviewCard('b-capsules', 'Test Reach', `<div class="caps">${caps || '<div class="col-muted fs-13">No source modules detected.</div>'}</div>`,
-    legendHtml([['var(--c3)', 'Test files'], ['var(--c1)', 'Reached'], ['var(--c2)', 'Untested']], `${m.sourceFiles.length} files`));
+    legendHtml([['#f2f2f2', 'Test files'], ['var(--lime)', 'Reached'], ['var(--amber)', 'Untested']], `${m.sourceFiles.length} files`));
 
   // Issues by severity + recommended actions
   const f = prof.findings;
@@ -1205,7 +1187,7 @@ function renderOverviewDashboard(prof) {
     <div class="sev-track"><div class="sev-fill" style="width:${n / maxSev * 100}%;background:${color}"></div></div><b style="width:24px;text-align:right">${n}</b></div>`;
   const issues = overviewCard('b-half', 'Issues Found', `<div class="card-body" style="display:flex;flex-direction:column;gap:14px">
       ${sev('CRITICAL', f.critical, 'var(--red2)', 'badge-red')}${sev('HIGH', f.high, 'var(--orange)', 'badge-orange')}
-      ${sev('MEDIUM', f.medium, 'var(--c2)', 'badge-yellow')}${sev('LOW', f.low, 'var(--c1)', 'badge-green')}
+      ${sev('MEDIUM', f.medium, 'var(--amber)', 'badge-yellow')}${sev('LOW', f.low, 'var(--lime)', 'badge-green')}
       <button class="btn btn-secondary btn-sm" style="justify-content:center;margin-top:4px" onclick="navigate('maintenance')">${total ? `View all ${total} issues →` : 'Open Maintenance →'}</button></div>`);
   const acts = buildActionsForProfile(prof);
   const actions = overviewCard('b-half', 'Recommended Actions', `<div class="card-body" style="padding:6px 0">${acts.length
@@ -1215,13 +1197,6 @@ function renderOverviewDashboard(prof) {
 
   el.innerHTML = kpiHealth + kpiTests + timeline + capsules + issues + actions;
   updateSidebarBadges(prof);
-}
-
-function greetingTitle() {
-  const hr = new Date().getHours();
-  const part = hr < 12 ? 'Good morning' : hr < 18 ? 'Good afternoon' : 'Good evening';
-  const who = GH.user ? (GH.user.name || GH.user.login).split(' ')[0] : '';
-  return who ? `${part}, ${who}!` : part;
 }
 
 // Signed-in user in the top bar; the badge counts critical + high findings
@@ -1435,8 +1410,8 @@ function showLandingNotice(msg, tone = 'error') {
   if (!el) return;
   if (!msg) { el.style.display = 'none'; el.innerHTML = ''; return; }
   const c = tone === 'info'
-    ? 'background:rgba(109,74,255,.06);border:1px solid rgba(109,74,255,.25);color:var(--accent2)'
-    : 'background:rgba(229,72,77,.06);border:1px solid rgba(229,72,77,.3);color:var(--red2)';
+    ? 'background:rgba(184,242,92,.06);border:1px solid rgba(184,242,92,.25);color:var(--accent2)'
+    : 'background:rgba(255,77,79,.06);border:1px solid rgba(255,77,79,.3);color:var(--red2)';
   el.innerHTML = `<div style="padding:10px 14px;border-radius:var(--radius);font-size:13px;${c}">${escHtml(msg)}</div>`;
   el.style.display = 'block';
 }
@@ -1451,7 +1426,7 @@ function showGitHubSetupRequired(kind) {
     ? `Start Traceon with <code class="inline-code">npm start</code> and open <code class="inline-code">http://localhost:3000</code>.`
     : `An administrator needs to register a GitHub App and set <code class="inline-code">GITHUB_CLIENT_ID</code> and <code class="inline-code">GITHUB_CLIENT_SECRET</code> on the server.`;
   body.innerHTML = `
-    <div style="padding:16px;background:rgba(217,119,6,.06);border:1px solid rgba(217,119,6,.25);border-radius:var(--radius);margin-bottom:16px">
+    <div style="padding:16px;background:rgba(255,154,31,.06);border:1px solid rgba(255,154,31,.25);border-radius:var(--radius);margin-bottom:16px">
       <div style="font-weight:700;color:var(--yellow2);margin-bottom:6px">GitHub sign-in is not available yet</div>
       <div style="font-size:13px;color:var(--text2);line-height:1.7">
         ${intro}<br><br>
@@ -1576,7 +1551,7 @@ function renderRepoList(repos, query) {
     const lang = repo.language || 'Unknown';
     const vis = (repo.visibility || (repo.private ? 'private' : 'public')).toLowerCase();
     const visLabel = vis.charAt(0).toUpperCase() + vis.slice(1);
-    const badge = repo.private ? 'background:rgba(229,72,77,.12);color:var(--red2)' : 'background:rgba(109,74,255,.1);color:var(--teal)';
+    const badge = repo.private ? 'background:rgba(255,77,79,.12);color:var(--red2)' : 'background:rgba(184,242,92,.1);color:var(--teal)';
     return `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius2);padding:14px 16px;display:flex;gap:14px;align-items:flex-start;transition:border-color .15s" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
       <div style="flex:1;min-width:0">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px;flex-wrap:wrap">
@@ -1632,7 +1607,7 @@ function showRepoConfirm(repo) {
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
         <svg height="24" width="24" viewBox="0 0 16 16" fill="var(--text2)"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
         <span style="font-weight:700;font-size:16px">${escHtml(repo.full_name)}</span>
-        <span style="font-size:10px;padding:1px 7px;border-radius:10px;font-weight:600;${repo.private ? 'background:rgba(229,72,77,.12);color:var(--red2)' : 'background:rgba(109,74,255,.1);color:var(--teal)'}">${repo.private ? 'Private' : 'Public'}</span>
+        <span style="font-size:10px;padding:1px 7px;border-radius:10px;font-weight:600;${repo.private ? 'background:rgba(255,77,79,.12);color:var(--red2)' : 'background:rgba(184,242,92,.1);color:var(--teal)'}">${repo.private ? 'Private' : 'Public'}</span>
       </div>
       <table class="data-table" style="font-size:13px">
         <tr><td class="col-muted" style="width:130px">Owner</td><td>${escHtml(repo.owner || '')}</td></tr>
@@ -1642,7 +1617,7 @@ function showRepoConfirm(repo) {
         ${repo.description ? `<tr><td class="col-muted">Description</td><td>${escHtml(repo.description)}</td></tr>` : ''}
       </table>
     </div>
-    <div style="padding:12px 14px;background:rgba(109,74,255,.05);border:1px solid rgba(109,74,255,.15);border-radius:var(--radius);margin-bottom:16px;font-size:12px;color:var(--text2);line-height:1.6">
+    <div style="padding:12px 14px;background:rgba(184,242,92,.05);border:1px solid rgba(184,242,92,.15);border-radius:var(--radius);margin-bottom:16px;font-size:12px;color:var(--text2);line-height:1.6">
       <strong style="color:var(--accent2)">What Traceon will read:</strong> a read-only snapshot of the <strong>${escHtml(repo.default_branch || 'main')}</strong> branch — folder structure, source and test files, dependency manifests and lockfiles, README and docs, configuration, Dockerfiles and CI/CD workflows.
       <strong>Traceon never commits, pushes, opens pull requests or changes settings.</strong> Values in <code class="inline-code">.env</code> files are not read.
     </div>
@@ -1773,7 +1748,7 @@ async function startRealScan() {
     Object.entries(stageState).forEach(([id, st]) => { if (st === 'running') setStage(id, 'error'); });
     document.getElementById('cs-scan-title').innerHTML = '<span style="color:var(--red2)">✗</span> Analysis stopped';
     const reauth = code === 'not_authenticated';
-    body.insertAdjacentHTML('beforeend', `<div style="margin-top:12px;padding:12px 14px;background:rgba(229,72,77,.06);border:1px solid rgba(229,72,77,.25);border-radius:var(--radius);color:var(--red2);font-size:13px">
+    body.insertAdjacentHTML('beforeend', `<div style="margin-top:12px;padding:12px 14px;background:rgba(255,77,79,.06);border:1px solid rgba(255,77,79,.25);border-radius:var(--radius);color:var(--red2);font-size:13px">
       ${escHtml(GH_MESSAGES[code] || GH_MESSAGES.unavailable)}
       <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
         ${reauth
@@ -2015,7 +1990,7 @@ function finishGitHubScan(m) {
 
   const commit = m.commit ? ` @ <span class="file-path" style="font-size:11px">${escHtml(m.commit.sha.slice(0, 7))}</span>` : '';
   updateHeaderForProject(escHtml(name), activeUrlProfile.version, 'github', health + ' / 100', healthCls);
-  updateOverviewMeta(greetingTitle(),
+  updateOverviewMeta('Overview',
     `${escHtml(m.fullName)} · ${escHtml(m.branch)}${commit} · Last analysed just now · <span class="ev-verified">VERIFIED</span> <span class="ev-ai">AI ANALYSIS</span>`);
   updateProjectSource('GitHub Repository', m.url, 'GitHub Repository Analysis', today, 'github');
 
@@ -2079,8 +2054,8 @@ function buildMapNodesFromModules(m) {
           id: mod.id,
           label: `${moduleIcon(mod.id)} ${short.length > 20 ? '…' + short.slice(-19) : short}\n${mod.fileCount} files · ${mod.reachPct}% tested`,
           x, y, w: W, h: H,
-          color: '#ffffff',
-          border: risk === 'HIGH' ? '#e5484d' : risk === 'MEDIUM' ? '#d97706' : '#6d4aff',
+          color: '#1a1a1c',
+          border: risk === 'HIGH' ? '#ff5f57' : risk === 'MEDIUM' ? '#ff9a1f' : '#b8f25c',
           risk,
         });
         x += W + GAP;
@@ -2109,12 +2084,12 @@ function moduleRisk(mod) {
 function buildFlatRepoNodes(m) {
   const nodes = [];
   const groups = [
-    { id:'source', label:'📂 Source Files', color:'#ffffff', border:'#6d4aff' },
+    { id:'source', label:'📂 Source Files', color:'#1a1a1c', border:'#b8f25c' },
   ];
-  if (m.testFiles.length)  groups.push({ id:'tests',  label:'🧪 Tests',        color:'#ffffff', border:'#0f9d8f' });
-  if (m.docFiles.length)   groups.push({ id:'docs',   label:'📄 Docs',          color:'#ffffff', border:'#6d4aff' });
-  if (m.deployFiles.length)groups.push({ id:'deploy', label:'🚀 Deployment',    color:'#ffffff', border:'#6d4aff' });
-  if (m.configFiles.length)groups.push({ id:'config', label:'⚙️ Config',        color:'#ffffff', border:'#d97706' });
+  if (m.testFiles.length)  groups.push({ id:'tests',  label:'🧪 Tests',        color:'#1a1a1c', border:'#f2f2f2' });
+  if (m.docFiles.length)   groups.push({ id:'docs',   label:'📄 Docs',          color:'#1a1a1c', border:'#b8f25c' });
+  if (m.deployFiles.length)groups.push({ id:'deploy', label:'🚀 Deployment',    color:'#1a1a1c', border:'#b8f25c' });
+  if (m.configFiles.length)groups.push({ id:'config', label:'⚙️ Config',        color:'#1a1a1c', border:'#ff9a1f' });
   groups.forEach((g, i) => nodes.push({ ...g, x: 60 + (i%3)*200, y: 40 + Math.floor(i/3)*100, w: 160, h: 44 }));
   return nodes;
 }
@@ -2326,7 +2301,7 @@ function initMap() {
     const line = document.createElementNS(ns,'line');
     line.setAttribute('x1',x1); line.setAttribute('y1',y1);
     line.setAttribute('x2',x2); line.setAttribute('y2',y2);
-    line.setAttribute('stroke','#d4d1e3'); line.setAttribute('stroke-width','1.5');
+    line.setAttribute('stroke','#3a3a3e'); line.setAttribute('stroke-width','1.5');
     line.setAttribute('opacity','0.6');
     svg.appendChild(line);
   });
@@ -2351,7 +2326,7 @@ function initMap() {
     text.setAttribute('y', node.y + node.h/2 - (lines.length>1?7:0));
     text.setAttribute('text-anchor','middle');
     text.setAttribute('dominant-baseline','middle');
-    text.setAttribute('fill','#121217');
+    text.setAttribute('fill','#e6edf3');
     text.setAttribute('font-size','12');
     text.setAttribute('font-family','-apple-system,sans-serif');
     text.setAttribute('font-weight','600');
@@ -2426,7 +2401,7 @@ function initMaintenance() {
     const medCount   = items.filter(i=>i.sev==='MEDIUM').length;
     const lowCount   = items.filter(i=>i.sev==='LOW').length;
 
-    let h = `<div class="card mb-16" style="border-color:var(--accent2);background:rgba(109,74,255,.04)">
+    let h = `<div class="card mb-16" style="border-color:var(--accent2);background:rgba(184,242,92,.04)">
       <div class="card-body" style="padding:12px 18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center">
         <span class="source-pill live"><span class="dot"></span> LIVE PROJECT</span>
         <span class="ev-ai">AI ANALYSIS</span>
@@ -2655,7 +2630,7 @@ function renderRepoModuleDetail(id) {
   if (mod.importedBy.length) html += section('Used By', `<div style="display:flex;flex-wrap:wrap;gap:6px">${mod.importedBy.map(x => `<span class="badge badge-blue">${escHtml(x)}</span>`).join('')}</div>`);
   if (routes.length) html += section(`API Routes (${routes.length})`, `<div style="display:flex;flex-direction:column;gap:4px">${capList(routes, 5, r => `<span class="file-path">${escHtml(r.method)} ${escHtml(r.path)}</span>`)}</div>`);
   if (mod.testFiles.length) html += section('Test Files', `<div style="display:flex;flex-direction:column;gap:4px">${capList(mod.testFiles, 5, t => `<span class="file-path">${escHtml(t)}</span>`)}</div>`);
-  if (issues.length) html += section(`Issues (${issues.length})`, `<div style="display:flex;flex-direction:column;gap:6px">${issues.map(i => `<div style="font-size:12px;padding:6px 8px;background:rgba(229,72,77,.08);border-left:3px solid var(--red2);border-radius:4px">${escHtml(i.title)}</div>`).join('')}</div>`);
+  if (issues.length) html += section(`Issues (${issues.length})`, `<div style="display:flex;flex-direction:column;gap:6px">${issues.map(i => `<div style="font-size:12px;padding:6px 8px;background:rgba(255,77,79,.08);border-left:3px solid var(--red2);border-radius:4px">${escHtml(i.title)}</div>`).join('')}</div>`);
   html += `<div style="margin-top:16px;display:flex;flex-direction:column;gap:8px">
     <button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center" onclick="navigate('impact');selectImpactComponent(${jsArg(id)})">⚡ Analyse Change Impact</button>
     <button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center" onclick="navigate('testing')">🧪 View Tests</button>
@@ -2725,7 +2700,7 @@ function renderRepoTestingGaps(el) {
       <div class="card-body">
         <div style="font-size:12px;font-weight:600;color:var(--text3);text-transform:uppercase;margin-bottom:10px">Files no test reaches</div>
         <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px">
-          ${capList(untested, 6, f => `<div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(229,72,77,.06);border-left:3px solid var(--red2);border-radius:4px">
+          ${capList(untested, 6, f => `<div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(255,77,79,.06);border-left:3px solid var(--red2);border-radius:4px">
             <span style="color:var(--red2)">⚠</span><span class="file-path">${escHtml(f)}</span>
             ${(m.symbols[f] || []).length ? `<span class="fs-12 col-muted">exports ${escHtml(m.symbols[f].slice(0, 4).join(', '))}</span>` : ''}
           </div>`)}
@@ -2889,7 +2864,7 @@ function renderRepoImpact(id) {
   </div>
   <div class="grid2 mb-16">
     ${card('Related Tests', `${relatedTests.length} test files`, relatedTests.length ? capList(relatedTests, 20, f => `<div class="impact-file test-f">${escHtml(f)}</div>`) : none('No tests import this module or its dependents.'))}
-    ${card('⚠️ Missing Regression Tests', `${untested.length} files`, untested.length ? capList(untested, 15, f => `<div style="padding:8px;margin-bottom:6px;background:rgba(229,72,77,.06);border-left:3px solid var(--red2);border-radius:4px;font-size:13px">No test reaches <span class="file-path">${escHtml(f)}</span></div>`) + `<button class="btn btn-primary btn-sm" style="margin-top:6px" onclick="openGenModal(${jsArg(id)})">⚡ Generate Test Stub</button>` : none('Every file in this module is reached by at least one test.'), `border-color:${untested.length ? 'var(--red2)' : 'var(--border)'}`)}
+    ${card('⚠️ Missing Regression Tests', `${untested.length} files`, untested.length ? capList(untested, 15, f => `<div style="padding:8px;margin-bottom:6px;background:rgba(255,77,79,.06);border-left:3px solid var(--red2);border-radius:4px;font-size:13px">No test reaches <span class="file-path">${escHtml(f)}</span></div>`) + `<button class="btn btn-primary btn-sm" style="margin-top:6px" onclick="openGenModal(${jsArg(id)})">⚡ Generate Test Stub</button>` : none('Every file in this module is reached by at least one test.'), `border-color:${untested.length ? 'var(--red2)' : 'var(--border)'}`)}
   </div>`;
   const extra = [];
   if (endpoints.length) extra.push(card('🔌 Affected Endpoints', `${endpoints.length} routes`, capList(endpoints, 15, r => `<div class="impact-file indirect">${escHtml(r.method)} ${escHtml(r.path)}<span class="col-muted" style="margin-left:auto">${escHtml(r.file)}</span></div>`)));
@@ -3143,7 +3118,7 @@ function initOnboarding() {
           </div>
         </div>
       </div>
-      <div class="card mb-16" style="border-color:rgba(109,74,255,.3);background:rgba(109,74,255,.04)">
+      <div class="card mb-16" style="border-color:rgba(184,242,92,.3);background:rgba(184,242,92,.04)">
         <div class="card-body" style="padding:12px 18px;font-size:13px;color:var(--text2)">
           <span class="ev-verified">VERIFIED</span> · Module dependencies come from the import graph (${Object.keys(m.importGraph || {}).length} files with internal imports). Use the <strong>Project Map</strong> to explore them visually.
         </div>
@@ -3189,7 +3164,7 @@ function initOnboarding() {
           <div class="mb-16"><div style="font-weight:600;margin-bottom:8px">Run Tests</div>
             <div class="code-block">${escHtml(testCmd)}</div>
           </div>
-          ${m.readmeContent ? `<div class="card" style="border-color:var(--green);background:rgba(109,74,255,.04)"><div class="card-body" style="padding:12px 16px">
+          ${m.readmeContent ? `<div class="card" style="border-color:var(--green);background:rgba(184,242,92,.04)"><div class="card-body" style="padding:12px 16px">
             <span style="color:var(--teal);font-weight:700">✅ README present</span>
             <span style="font-size:13px;color:var(--text2);margin-left:8px">Full setup instructions may be in the README. <span class="ev-verified">VERIFIED</span></span>
           </div></div>` : ''}
@@ -3267,7 +3242,7 @@ function openGenModal(module) {
         <span class="demo-label">GENERATED STUB — verify before use</span>
       </div>
       <div style="font-size:12px;font-weight:600;color:var(--text3);margin-bottom:8px">${escHtml(stub.testPath)}</div>
-      <pre style="background:#16161d;border:1px solid var(--border);border-radius:6px;padding:14px;font-family:var(--mono);font-size:12px;color:#e9e4ff;overflow-x:auto;line-height:1.7;white-space:pre">${escHtml(stub.code)}</pre>
+      <pre style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:14px;font-family:var(--mono);font-size:12px;color:#d7f7a6;overflow-x:auto;line-height:1.7;white-space:pre">${escHtml(stub.code)}</pre>
       <div class="fs-12 col-muted" style="margin-top:10px">Built from the exported names Traceon found in the file. The assertions are placeholders — fill in the TODOs with real inputs and expected results. Traceon does not write to your repository.</div>`;
     document.getElementById('gen-modal').classList.remove('hidden');
     return;
