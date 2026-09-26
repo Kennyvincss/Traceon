@@ -66,6 +66,18 @@ test('serves the UI with security headers', async () => {
   assert.strictEqual(r.resp.headers.get('referrer-policy'), 'no-referrer');
 });
 
+test('serves the favicon and home-screen icons', async () => {
+  const b = new Browser(app.base);
+  for (const [path, type] of [['/favicon.svg', 'image/svg+xml'], ['/favicon.ico', 'image/png'], ['/apple-touch-icon.png', 'image/png']]) {
+    const r = await b.get(path);
+    assert.strictEqual(r.resp.status, 200, path);
+    assert.strictEqual(r.resp.headers.get('content-type'), type, path);
+  }
+  const html = (await b.get('/')).text;
+  assert.match(html, /<link rel="icon" type="image\/svg\+xml"/);
+  assert.match(html, /<link rel="apple-touch-icon"/);
+});
+
 test('login redirects to GitHub with state + PKCE and no secret', async () => {
   const b = new Browser(app.base);
   const r = await b.get('/auth/github/login');

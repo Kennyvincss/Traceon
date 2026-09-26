@@ -21,6 +21,7 @@ const gh = require('./github');
 const { scanRepository } = require('./scanner');
 
 const HTML_PATH = path.join(__dirname, '..', 'traceon.html');
+const PUBLIC_DIR = path.join(__dirname, '..', 'public');
 const SID = 'traceon_sid';
 const OAUTH = 'traceon_oauth';
 const NAME_RE = /^[A-Za-z0-9_.-]{1,100}$/;
@@ -105,6 +106,20 @@ function createApp({ cfg = loadConfig(), fetchImpl = fetch, store } = {}) {
         ].join('; '),
       }));
       return res.end(html);
+    }
+
+    // ---- Icons (favicon, home-screen icon) ----
+    const ICONS = {
+      '/favicon.svg': ['favicon.svg', 'image/svg+xml'],
+      '/favicon.ico': ['favicon-32.png', 'image/png'],
+      '/favicon-32.png': ['favicon-32.png', 'image/png'],
+      '/apple-touch-icon.png': ['apple-touch-icon.png', 'image/png'],
+      '/icon-512.png': ['icon-512.png', 'image/png'],
+    };
+    if (req.method === 'GET' && ICONS[p]) {
+      const [file, type] = ICONS[p];
+      res.writeHead(200, baseHeaders({ 'Content-Type': type, 'Cache-Control': 'public, max-age=86400' }));
+      return res.end(fs.readFileSync(path.join(PUBLIC_DIR, file)));
     }
 
     // ---- OAuth: start ----
