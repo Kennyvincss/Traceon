@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Traceon — Developer Workflow Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -208,6 +211,178 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .inline-code{background:var(--bg3);padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:.92em}
 .report-section{margin-bottom:28px}
 .report-section h3{font-size:14px;font-weight:700;margin-bottom:12px;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:8px}
+/* ================================================================
+   TRACEON "NEBULA" THEME — near-black, misty sage glow, white pills
+   (restyles the original layout; landing page styles below)
+   ================================================================ */
+:root{
+  --bg:#0a0a0b;--bg2:#131315;--bg3:#1b1b1e;--bg4:#26262a;
+  --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);
+  --text:#f4f4f5;--text2:#a1a1aa;--text3:#71717a;
+  --sage:#a9c3b3;--sage-soft:rgba(169,195,179,.12);--mist:#c9d8d0;
+  --accent:#e8eeea;--accent2:#b6cfc0;
+  --radius:10px;--radius2:18px;
+  --font:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+}
+body{background:var(--bg);letter-spacing:-.011em;-webkit-font-smoothing:antialiased}
+::selection{background:var(--mist);color:#0a0a0b}
+::-webkit-scrollbar-thumb{background:#2a2a2e}
+
+/* app surfaces keep the original layout */
+#header{background:rgba(10,10,11,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+#logo{font-weight:600;letter-spacing:-.02em}
+#logo .dot{color:var(--sage)}
+#header-project{background:rgba(255,255,255,.04);border-color:var(--border);border-radius:999px;padding:5px 14px}
+#sidebar{background:rgba(12,12,13,.6);border-right:1px solid var(--border)}
+.sidebar-label{color:var(--text3);letter-spacing:.8px}
+.nav-item{border-left:none;margin:1px 10px;border-radius:999px;padding:8px 14px}
+.nav-item:hover{background:rgba(255,255,255,.05)}
+.nav-item.active{background:rgba(255,255,255,.09);color:#fff;box-shadow:inset 0 0 0 1px var(--border2)}
+#main{background:
+  radial-gradient(900px 480px at 88% -8%,rgba(169,195,179,.13),transparent 60%),
+  radial-gradient(700px 420px at 0% 110%,rgba(150,170,190,.08),transparent 60%),var(--bg);background-attachment:fixed}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.015)),var(--bg2);border:1px solid var(--border);border-radius:var(--radius2)}
+.card-header{border-bottom:1px solid var(--border)}
+.card-title{font-weight:600;letter-spacing:-.01em}
+.section-title{font-size:26px;font-weight:500;letter-spacing:-.03em;background:linear-gradient(90deg,#fff 55%,rgba(255,255,255,.45));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat-number{font-weight:500;letter-spacing:-.03em}
+.btn{border-radius:999px;font-weight:500}
+.btn-primary,.btn-green{background:#f4f4f5;color:#0a0a0b;border-color:#f4f4f5}
+.btn-primary:hover,.btn-green:hover{background:#fff;border-color:#fff}
+.btn-secondary{background:rgba(255,255,255,.04);border-color:var(--border2);color:var(--text)}
+.btn-secondary:hover{background:rgba(255,255,255,.08);border-color:var(--border2)}
+.tabs{border-bottom-color:var(--border)}
+.tab.active{color:#fff;border-bottom-color:var(--mist)}
+.file-path{color:var(--accent2);background:var(--sage-soft)}
+.badge-blue{background:var(--sage-soft);color:var(--accent2)}
+.progress-fill.blue{background:var(--sage)}
+.step-number{background:#f4f4f5;color:#0a0a0b}
+.spinner{border-top-color:var(--mist)}
+.modal{background:#121214;border-color:var(--border2);border-radius:var(--radius2)}
+.toast{background:rgba(20,20,22,.92);backdrop-filter:blur(10px);border-color:var(--border2);border-radius:14px}
+.health-badge{background:var(--sage-soft);color:var(--mist)}
+.url-input{background:rgba(255,255,255,.04)!important;border:1px solid var(--border2)!important;border-radius:999px!important}
+.url-input:focus{border-color:var(--sage)!important;outline:none}
+
+/* connect screen: other panels stay centred cards; landing scrolls */
+#connect-screen{flex-direction:column;align-items:center;justify-content:flex-start;overflow-y:auto;background:var(--bg)}
+#connect-screen>.nb-landing{align-self:stretch}
+#connect-screen .connect-card{margin:auto;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015)),#111113;border-color:var(--border2);border-radius:24px}
+
+/* ---------------- landing ---------------- */
+.nb-landing{width:100%;min-height:100%;padding:18px;color:var(--text)}
+.nb-frame{max-width:1400px;margin:0 auto;background:#060607;border:1px solid var(--border);border-radius:30px;padding:18px 18px 26px}
+.nb-nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;padding:4px 10px 18px}
+.nb-logo{display:inline-flex;align-items:center;gap:10px;color:var(--text);text-decoration:none;font-weight:600;letter-spacing:-.02em;font-size:16px}
+.nb-menu{display:flex;align-items:center;gap:2px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:999px;padding:5px 6px 5px 10px;backdrop-filter:blur(10px)}
+.nb-menu a{color:var(--text2);text-decoration:none;font-size:13px;padding:6px 11px;border-radius:999px}
+.nb-menu a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.nb-menu-pill{display:inline-flex;align-items:center;gap:6px;margin-left:8px;font-size:12px;color:var(--text);background:rgba(255,255,255,.07);border:1px solid var(--border2);border-radius:999px;padding:6px 12px}
+.nb-signin{justify-self:end;display:inline-flex;align-items:center;gap:8px;background:none;border:none;color:var(--text);font:500 14px var(--font);cursor:pointer;padding:8px 10px;border-radius:999px}
+.nb-signin:hover{background:rgba(255,255,255,.06)}
+
+.nb-stage{position:relative;overflow:hidden;border-radius:24px;min-height:min(78vh,720px);background:#050506;border:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;isolation:isolate}
+.nb-mist{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.nb-mist i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.9}
+.nb-mist .m1{width:62%;height:78%;right:-8%;top:-22%;background:radial-gradient(closest-side,rgba(214,226,230,.85),rgba(160,185,172,.45) 55%,transparent)}
+.nb-mist .m2{width:44%;height:58%;left:-14%;bottom:-26%;background:radial-gradient(closest-side,rgba(170,186,196,.55),transparent)}
+.nb-mist .m3{width:30%;height:46%;right:4%;bottom:-18%;background:radial-gradient(closest-side,rgba(172,196,160,.35),transparent)}
+.nb-stars{position:absolute;inset:0;z-index:-1;opacity:.55;background-image:
+  radial-gradient(1px 1px at 12% 22%,#fff 50%,transparent),radial-gradient(1px 1px at 28% 78%,#fff 50%,transparent),
+  radial-gradient(1px 1px at 44% 64%,#ddd 50%,transparent),radial-gradient(1px 1px at 58% 88%,#fff 50%,transparent),
+  radial-gradient(1px 1px at 71% 70%,#ccc 50%,transparent),radial-gradient(1px 1px at 86% 58%,#fff 50%,transparent),
+  radial-gradient(1px 1px at 35% 40%,#bbb 50%,transparent),radial-gradient(1px 1px at 64% 30%,#fff 50%,transparent),
+  radial-gradient(1px 1px at 20% 52%,#aaa 50%,transparent),radial-gradient(1px 1px at 92% 84%,#ddd 50%,transparent)}
+.nb-streaks{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:120px;height:15%;z-index:-1;display:flex;justify-content:space-between}
+.nb-streaks i{width:1px;height:100%;background:linear-gradient(180deg,transparent,rgba(255,255,255,.08) 30%,rgba(255,255,255,.08));position:relative;overflow:hidden}
+.nb-streaks i::after{content:"";position:absolute;left:0;width:2px;margin-left:-.5px;height:38px;background:linear-gradient(180deg,transparent,#fff);border-radius:2px;animation:nb-streak 4.5s linear infinite}
+.nb-streaks i:nth-child(2)::after{animation-delay:1.3s;animation-duration:5.2s}
+.nb-streaks i:nth-child(3)::after{animation-delay:.6s;animation-duration:3.8s}
+.nb-streaks i:nth-child(4)::after{animation-delay:2.2s;animation-duration:4.9s}
+.nb-streaks i:nth-child(5)::after{animation-delay:3.1s}
+@keyframes nb-streak{from{top:-40px}to{top:100%}}
+.nb-lines{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.nb-lines path{fill:none;stroke:rgba(255,255,255,.14);stroke-width:1;vector-effect:non-scaling-stroke}
+.nb-node{position:absolute;display:flex;align-items:flex-start;gap:12px}
+.nb-dot{width:38px;height:38px;border-radius:50%;background:#0d0d0f;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 0 0 6px rgba(10,10,11,.5)}
+.nb-tag{padding-top:22px}
+.nb-tag b{display:block;font-size:13px;font-weight:500;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.nb-tag b::before{content:"";display:inline-block;width:4px;height:4px;border-radius:50%;background:#fff;margin:0 8px 2px 0;vertical-align:middle}
+.nb-tag small{display:block;font-size:11px;color:rgba(228,228,231,.62);margin-left:12px;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.nb-node.n1{left:10%;top:13%}
+.nb-node.n2{right:10%;top:10%;flex-direction:row-reverse;text-align:right}
+.nb-node.n2 .nb-tag b::before{display:none}
+.nb-node.n3{left:7%;bottom:22%;flex-direction:column-reverse}
+.nb-node.n3 .nb-tag{padding:0 0 10px}
+.nb-node.n4{right:6%;bottom:22%;flex-direction:column-reverse;align-items:flex-end}
+.nb-node.n4 .nb-tag{padding:0 0 10px}
+.nb-play{position:absolute;left:50%;top:9%;transform:translateX(-50%);width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid var(--border2);color:#fff;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
+.nb-hero{text-align:center;max-width:860px;padding:80px 24px;position:relative}
+.nb-badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--text);text-decoration:none;background:rgba(255,255,255,.06);border:1px solid var(--border2);border-radius:999px;padding:7px 14px;backdrop-filter:blur(8px);margin-bottom:18px}
+.nb-badge-dot{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 60% 60%,#0a0a0b 38%,#f4f4f5 40%)}
+.nb-eyebrow{font-size:11px;letter-spacing:2px;color:var(--text3);margin-bottom:14px}
+.nb-title{font-size:clamp(38px,5.6vw,74px);font-weight:400;letter-spacing:-.045em;line-height:1.04;margin-bottom:18px;color:#fff}
+.nb-fade{background:linear-gradient(90deg,#fff 0%,#e7ece9 40%,rgba(255,255,255,.35) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nb-lead{font-size:16px;color:#d4d4d8;max-width:600px;margin:0 auto 30px;line-height:1.6}
+.nb-cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.nb-btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:12px 22px;font:500 14px var(--font);cursor:pointer;text-decoration:none;border:1px solid transparent;transition:background .15s,transform .15s}
+.nb-btn:hover{transform:translateY(-1px)}
+.nb-btn-dark{background:rgba(12,12,14,.7);color:#fff;border-color:var(--border2);backdrop-filter:blur(8px)}
+.nb-btn-dark:hover{background:rgba(30,30,34,.8)}
+.nb-btn-light{background:#fff;color:#0a0a0b}
+.nb-btn-light:hover{background:#e9ecea}
+.nb-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.nb-trust{display:flex;align-items:center;justify-content:center;gap:7px;font-size:12px;color:var(--text3)}
+.nb-scroll{position:absolute;left:24px;bottom:24px;display:inline-flex;align-items:center;gap:10px;font-size:12px;color:#fff;text-decoration:none;background:rgba(255,255,255,.08);border:1px solid var(--border2);border-radius:999px;padding:5px 14px 5px 5px;backdrop-filter:blur(8px)}
+.nb-scroll span{width:26px;height:26px;border-radius:50%;background:#fff;color:#0a0a0b;display:flex;align-items:center;justify-content:center}
+.nb-corner{position:absolute;right:28px;bottom:28px;text-align:left}
+.nb-corner span{display:block;font-size:14px;color:var(--mist);margin-bottom:10px}
+.nb-dashes{display:flex;gap:4px}
+.nb-dashes i{width:26px;height:3px;border-radius:2px;background:rgba(255,255,255,.14)}
+.nb-dashes i.on{background:#fff}
+.nb-langs{display:flex;justify-content:center;flex-wrap:wrap;gap:14px 44px;padding:28px 10px 6px;color:#6b6b73;font-size:18px;font-weight:600;letter-spacing:-.02em}
+.nb-langs span{transition:color .2s}
+.nb-langs span:hover{color:#d4d4d8}
+
+.nb-main{max-width:1180px;margin:0 auto;padding:90px 22px 10px}
+.nb-section{margin-bottom:100px;scroll-margin-top:20px}
+.nb-head{text-align:center;margin-bottom:34px}
+.nb-kicker{display:inline-block;font-size:12px;color:var(--text2);border:1px solid var(--border2);border-radius:999px;padding:5px 12px;margin-bottom:16px;background:rgba(255,255,255,.03)}
+.nb-head h2,.nb-final h2{font-size:clamp(28px,3.6vw,48px);font-weight:400;letter-spacing:-.04em;line-height:1.1;color:#fff}
+.nb-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.nb-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.nb-card{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.01));border:1px solid var(--border);border-radius:20px;padding:22px;transition:border-color .2s}
+.nb-card:hover{border-color:var(--border2)}
+.nb-card h3{font-size:16px;font-weight:500;letter-spacing:-.02em;margin:16px 0 6px;color:#fff}
+.nb-card p{font-size:13px;color:var(--text2);line-height:1.6}
+.nb-ico{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid var(--border2);display:inline-flex;align-items:center;justify-content:center;color:var(--mist)}
+.nb-step{font-size:34px;font-weight:300;letter-spacing:-.04em;color:var(--mist)}
+.nb-faq{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.nb-faq details{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:16px;padding:16px 20px}
+.nb-faq summary{cursor:pointer;font-size:15px;color:#fff;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.nb-faq summary::after{content:"+";color:var(--text2);font-size:18px;line-height:1}
+.nb-faq details[open] summary::after{content:"–"}
+.nb-faq summary::-webkit-details-marker{display:none}
+.nb-faq p{font-size:14px;color:var(--text2);line-height:1.7;margin-top:10px}
+.nb-final{position:relative;overflow:hidden;isolation:isolate;text-align:center;border:1px solid var(--border);border-radius:28px;padding:80px 24px;margin-bottom:40px;background:#060607}
+.nb-final h2{margin-bottom:26px}
+.nb-footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--text3);font-size:13px;padding:10px 0 30px}
+.nb-footer .nb-logo{font-size:14px}
+.nb-footer .nb-logo svg{width:22px;height:22px}
+
+@media (prefers-reduced-motion:reduce){.nb-streaks i::after{animation:none;display:none}.nb-btn:hover{transform:none}}
+@media (max-width:1000px){
+  .nb-grid{grid-template-columns:repeat(2,1fr)}
+  .nb-node,.nb-lines,.nb-corner,.nb-play{display:none}
+  .nb-menu a:not(:first-child){display:none}
+}
+@media (max-width:640px){
+  .nb-landing{padding:8px}.nb-frame{padding:10px;border-radius:22px}
+  .nb-nav{grid-template-columns:auto 1fr auto}.nb-menu{display:none}
+  .nb-grid,.nb-steps{grid-template-columns:1fr}
+  .nb-hero{padding:70px 16px 90px}.nb-langs{gap:10px 22px;font-size:15px}
+  .nb-main{padding-top:60px}
+}
 </style>
 </head>
 <body>
@@ -215,22 +390,108 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 <!-- CONNECT SCREEN — multi-panel, GitHub-first -->
 <div id="connect-screen">
 
-  <!-- PANEL 0: Landing -->
-  <div id="cs-landing" class="connect-card" style="width:520px;text-align:center">
-    <div class="connect-logo" style="font-size:32px;margin-bottom:10px">Trace<span>on</span></div>
-    <div style="font-size:11px;font-weight:700;letter-spacing:1.2px;color:var(--text3);margin-bottom:10px">CONNECT YOUR PROJECT</div>
-    <div style="font-size:18px;font-weight:700;margin-bottom:8px">Understand your codebase<br>before you change it.</div>
-    <div style="font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:24px">Sign in with GitHub to securely access repositories you authorize for analysis.</div>
+  <!-- PANEL 0: Landing page -->
+  <div id="cs-landing" class="nb-landing">
+    <div class="nb-frame" id="nb-top">
+      <header class="nb-nav">
+        <a class="nb-logo" href="#nb-top" aria-label="Traceon"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#f4f4f5"/><circle cx="19.5" cy="19.5" r="7.5" fill="#0a0a0b"/><circle cx="19.5" cy="19.5" r="3.2" fill="#9fb8a9"/></svg><span>Traceon</span></a>
+        <nav class="nb-menu" aria-label="Page sections">
+          <a href="#nb-top">Home</a><a href="#nb-features">Features</a><a href="#nb-how">How it works</a><a href="#nb-security">Security</a><a href="#nb-faq">FAQ</a>
+          <span class="nb-menu-pill">Read-only <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg></span>
+        </nav>
+        <button class="nb-signin" onclick="continueWithGitHub()"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg> Sign in</button>
+      </header>
 
-    <div id="cs-landing-notice" style="display:none;margin-bottom:14px;text-align:left"></div>
+      <section class="nb-stage">
+        <div class="nb-mist" aria-hidden="true"><i class="m1"></i><i class="m2"></i><i class="m3"></i></div>
+        <div class="nb-stars" aria-hidden="true"></div>
+        <div class="nb-streaks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
 
-    <!-- GitHub sign-in (standard OAuth, handled by the Traceon server) -->
-    <button class="btn" id="gh-continue-btn" onclick="continueWithGitHub()" style="width:100%;justify-content:center;padding:13px;font-size:15px;font-weight:700;background:#24292f;color:#fff;border:1px solid #444c56;border-radius:var(--radius);margin-bottom:8px;gap:10px">
-      <svg height="20" width="20" viewBox="0 0 16 16" fill="#fff"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-      <span id="gh-continue-label">Continue with GitHub</span>
-    </button>
-    <div style="font-size:11px;color:var(--text3)">Read-only access · Traceon never writes to your repositories</div>
+        <svg class="nb-lines" viewBox="0 0 1000 560" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 120 H90 Q115 120 128 104 L170 70"/><path d="M1000 110 H900 Q875 110 862 96 L820 60"/>
+          <path d="M0 360 H70 Q95 360 110 376 L150 420"/><path d="M1000 360 H900 Q875 360 860 376 L820 420"/>
+        </svg>
+        <div class="nb-node n1"><span class="nb-dot"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><line x1="7.8" y1="7.8" x2="10.6" y2="16"/><line x1="16.2" y1="7.8" x2="13.4" y2="16"/></svg></span><div class="nb-tag"><b>Architecture</b><small>import graph</small></div></div>
+        <div class="nb-node n2"><span class="nb-dot"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div class="nb-tag"><b>Tests</b><small>files reached</small></div></div>
+        <div class="nb-node n3"><span class="nb-dot"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/></svg></span><div class="nb-tag"><b>Dependencies</b><small>manifests &amp; lockfiles</small></div></div>
+        <div class="nb-node n4"><span class="nb-dot"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15c-1.5 1.3-2 4-2 4s2.7-.5 4-2"/><path d="M9 12a13 13 0 0 1 11-9 13 13 0 0 1-9 11l-2-2z"/><path d="M9 12H5l2-4h4"/><path d="M12 15v4l4-2v-4"/></svg></span><div class="nb-tag"><b>Release</b><small>CI &amp; Docker</small></div></div>
 
+        <a class="nb-play" href="#nb-how" aria-label="See how it works"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="7 4 20 12 7 20 7 4" fill="currentColor"/></svg></a>
+
+        <div class="nb-hero">
+          <a class="nb-badge" href="#nb-security"><span class="nb-badge-dot"></span>Read-only GitHub analysis <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <div class="nb-eyebrow">CONNECT YOUR PROJECT</div>
+          <h1 class="nb-title">Understand your codebase <span class="nb-fade">before you change it</span></h1>
+          <p class="nb-lead">Sign in with GitHub to securely access repositories you authorize for analysis.</p>
+          <div id="cs-landing-notice" style="display:none;margin:0 auto 16px;max-width:520px;text-align:left"></div>
+          <div class="nb-cta">
+            <a class="nb-btn nb-btn-dark" href="#nb-how">How it works <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg></a>
+            <button class="nb-btn nb-btn-light" id="gh-continue-btn" onclick="continueWithGitHub()"><svg height="18" width="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span id="gh-continue-label">Continue with GitHub</span></button>
+          </div>
+          <div class="nb-trust"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Read-only access · Traceon never writes to your repositories</div>
+        </div>
+
+        <a class="nb-scroll" href="#nb-features"><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></span>Scroll down</a>
+        <div class="nb-corner"><span>From sign-in to findings</span><div class="nb-dashes"><i class="on"></i><i></i><i></i><i></i></div></div>
+      </section>
+
+      <div class="nb-langs" aria-label="Languages Traceon analyses">
+        <span>JavaScript</span><span>TypeScript</span><span>Python</span><span>Go</span><span>Rust</span><span>Java</span><span>Ruby</span><span>PHP</span>
+      </div>
+    </div>
+
+    <main class="nb-main">
+      <section class="nb-section" id="nb-features">
+        <div class="nb-head"><span class="nb-kicker">Features</span><h2>Everything you need <span class="nb-fade">before you touch the code</span></h2></div>
+        <div class="nb-grid">
+          <div class="nb-card"><span class="nb-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></span><h3>Project Map</h3><p>Modules and how they depend on each other, built from the real import graph.</p></div>
+          <div class="nb-card"><span class="nb-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span><h3>Onboarding</h3><p>Entry points, API routes, setup commands and a first-day guide for new developers.</p></div>
+          <div class="nb-card"><span class="nb-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><h3>Maintenance</h3><p>Vulnerable dependencies, missing lockfiles, undocumented env vars, Docker and CI gaps.</p></div>
+          <div class="nb-card"><span class="nb-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><h3>Testing</h3><p>Which files your tests actually reach, per module, and which endpoints have none.</p></div>
+          <div class="nb-card"><span class="nb-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><h3>Generate Tests</h3><p>Test stubs built from each file&#39;s real exports, in your framework and folder layout.</p></div>
+          <div class="nb-card"><span class="nb-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><h3>Change Impact</h3><p>Everything that depends on a module, the endpoints affected and the tests to run.</p></div>
+          <div class="nb-card"><span class="nb-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15c-1.5 1.3-2 4-2 4s2.7-.5 4-2"/><path d="M9 12a13 13 0 0 1 11-9 13 13 0 0 1-9 11l-2-2z"/><path d="M9 12H5l2-4h4"/><path d="M12 15v4l4-2v-4"/></svg></span><h3>Release</h3><p>A readiness check across tests, CI, configuration, dependencies and deployment.</p></div>
+          <div class="nb-card"><span class="nb-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><h3>Reports</h3><p>Health, release and maintenance reports you can share with your team.</p></div>
+        </div>
+      </section>
+
+      <section class="nb-section" id="nb-how">
+        <div class="nb-head"><span class="nb-kicker">How it works</span><h2>From sign-in to findings <span class="nb-fade">in three steps</span></h2></div>
+        <div class="nb-steps">
+          <div class="nb-card"><span class="nb-step">01</span><h3>Continue with GitHub</h3><p>Approve Traceon on GitHub&#39;s own sign-in page. There is no token to create or paste.</p></div>
+          <div class="nb-card"><span class="nb-step">02</span><h3>Choose repositories</h3><p>Pick exactly which repositories Traceon may read. Change your choice any time on GitHub.</p></div>
+          <div class="nb-card"><span class="nb-step">03</span><h3>Analyze</h3><p>Traceon reads a snapshot of the branch and fills every page with your project&#39;s real data.</p></div>
+        </div>
+      </section>
+
+      <section class="nb-section" id="nb-security">
+        <div class="nb-head"><span class="nb-kicker">Security</span><h2>Built to be trusted <span class="nb-fade">with your code</span></h2></div>
+        <div class="nb-grid">
+          <div class="nb-card"><span class="nb-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span><h3>Read-only</h3><p>Traceon never commits, pushes, opens pull requests or changes settings.</p></div>
+          <div class="nb-card"><span class="nb-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="5.5"/><path d="M11.4 11.6 21 2m-3 3 3 3m-6 0 3 3"/></svg></span><h3>No tokens in your browser</h3><p>GitHub credentials stay on the Traceon server. Your browser only holds a secure session.</p></div>
+          <div class="nb-card"><span class="nb-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><h3>Secrets untouched</h3><p>Real .env files are never read. Only variable names from templates are checked.</p></div>
+          <div class="nb-card"><span class="nb-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span><h3>You stay in control</h3><p>Signing out revokes Traceon&#39;s access token on GitHub immediately.</p></div>
+        </div>
+      </section>
+
+      <section class="nb-section" id="nb-faq">
+        <div class="nb-head"><span class="nb-kicker">FAQ</span><h2>Questions, <span class="nb-fade">answered</span></h2></div>
+        <div class="nb-faq">
+          <details><summary>Can Traceon change my code?</summary><p>No. Traceon only asks GitHub for read access to repository contents and metadata, and it never sends write requests.</p></details>
+          <details><summary>Which repositories can Traceon see?</summary><p>Only the ones you choose when you install Traceon on GitHub. You can add or remove repositories at any time in your GitHub settings.</p></details>
+          <details><summary>Do I need to create a token?</summary><p>No. You sign in with GitHub like any other app. Traceon keeps the resulting credentials on its server, never in your browser.</p></details>
+          <details><summary>Does Traceon run my tests?</summary><p>No. Traceon analyses code without executing it. Test figures show which files your tests import, and the Testing page gives you the command to run them yourself.</p></details>
+        </div>
+      </section>
+
+      <section class="nb-final">
+        <div class="nb-mist" aria-hidden="true"><i class="m1"></i><i class="m2"></i></div>
+        <h2>Ready to see your codebase <span class="nb-fade">clearly?</span></h2>
+        <button class="nb-btn nb-btn-light" onclick="continueWithGitHub()"><svg height="18" width="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> Continue with GitHub</button>
+      </section>
+
+      <footer class="nb-footer"><span class="nb-logo"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#f4f4f5"/><circle cx="19.5" cy="19.5" r="7.5" fill="#0a0a0b"/><circle cx="19.5" cy="19.5" r="3.2" fill="#9fb8a9"/></svg><span>Traceon</span></span><span>Read-only repository analysis for development teams.</span></footer>
+    </main>
   </div>
 
   <!-- PANEL 1: GitHub sign-in status (errors, setup required) -->

@@ -28,6 +28,8 @@ const SP = process.env.E2E_SCREENSHOTS || os.tmpdir();
 
   const b = await chromium.launch(process.env.PLAYWRIGHT_CHROMIUM_PATH ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_PATH } : {});
   const ctx = await b.newContext({ viewport: { width: 1360, height: 900 } });
+  // No internet needed: web fonts fall back to system fonts in tests
+  await ctx.route(/fonts\.(googleapis|gstatic)\.com/, r => r.fulfill({ status: 200, contentType: 'text/css', body: '' }));
   await ctx.route('https://avatars.githubusercontent.com/**', r => r.fulfill({ contentType: 'image/svg+xml', body: '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><circle cx="32" cy="32" r="32" fill="#8957e5"/></svg>' }));
   const p = await ctx.newPage();
   const errs = [];
