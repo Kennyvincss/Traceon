@@ -7,7 +7,11 @@ part of the submission requirements.
 
 | File | What it shows |
 |---|---|
-| _add a row per screenshot_ | _short description of the session_ |
+| [01-plan-architecture-and-tech-stack.png](01-plan-architecture-and-tech-stack.png) | Bob plans the prototype: a single self-contained HTML file with vanilla JavaScript and CSS, no build step, interactive routing between sections |
+| [02-create-project-data-and-model.png](02-create-project-data-and-model.png) | Bob creates the project data and Project Model and writes the first version of `traceon.html` (CSS foundation) |
+| [03-build-app-shell-and-verify.png](03-build-app-shell-and-verify.png) | Bob builds the application shell and navigation, adds the JavaScript in chunks, then checks the file's structure and opens it to confirm it renders |
+| [04-user-workflow-summary-part-1.png](04-user-workflow-summary-part-1.png) | Bob's summary of the finished workflow, steps 1–7: Connect, Loading, Overview, Project Map, Onboarding, Maintenance, Testing |
+| [05-user-workflow-summary-part-2.png](05-user-workflow-summary-part-2.png) | Summary continued, steps 8–12: Generate Test, Change Impact, Release, Reports, Developer Impact |
 
 ## Naming
 
