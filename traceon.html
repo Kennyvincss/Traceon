@@ -4,9 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Traceon — Developer Workflow Platform</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -37,15 +34,15 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 #header-project .proj-name{color:var(--text);font-weight:600}
 #header-spacer{flex:1}
 .health-badge{background:var(--green2);color:var(--teal);border-radius:20px;padding:2px 10px;font-weight:700;font-size:13px}
-.health-badge.warn{background:rgba(255,154,31,.2);color:var(--yellow2)}
-.health-badge.crit{background:rgba(255,77,79,.15);color:var(--red2)}
+.health-badge.warn{background:rgba(210,153,34,.2);color:var(--yellow2)}
+.health-badge.crit{background:rgba(218,54,51,.15);color:var(--red2)}
 #body{display:flex;flex:1;overflow:hidden}
 #sidebar{width:var(--sidebar-w);background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;flex-shrink:0}
 .sidebar-section{padding:8px 0}
 .sidebar-label{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;padding:8px 16px 4px}
 .nav-item{display:flex;align-items:center;gap:10px;padding:7px 16px;cursor:pointer;color:var(--text2);font-size:13px;transition:background .12s,color .12s;border-left:2px solid transparent;user-select:none}
 .nav-item:hover{background:var(--bg3);color:var(--text)}
-.nav-item.active{background:rgba(184,242,92,.1);color:var(--accent2);border-left-color:var(--accent2)}
+.nav-item.active{background:rgba(56,139,253,.1);color:var(--accent2);border-left-color:var(--accent2)}
 .nav-item .nav-icon{font-size:15px;width:18px;text-align:center}
 .nav-item .nav-badge{margin-left:auto;background:var(--red);color:#fff;border-radius:10px;padding:1px 6px;font-size:10px;font-weight:700}
 .nav-item .nav-badge.warn{background:var(--yellow);color:#000}
@@ -60,13 +57,13 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
 .grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px}
 .badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600}
-.badge-red{background:rgba(255,77,79,.15);color:var(--red2)}
-.badge-yellow{background:rgba(255,154,31,.15);color:var(--yellow2)}
-.badge-green{background:rgba(184,242,92,.15);color:var(--teal)}
-.badge-blue{background:rgba(184,242,92,.15);color:var(--accent2)}
+.badge-red{background:rgba(218,54,51,.15);color:var(--red2)}
+.badge-yellow{background:rgba(210,153,34,.15);color:var(--yellow2)}
+.badge-green{background:rgba(63,185,80,.15);color:var(--teal)}
+.badge-blue{background:rgba(56,139,253,.15);color:var(--accent2)}
 .badge-purple{background:rgba(137,87,229,.15);color:var(--purple)}
 .badge-gray{background:var(--bg3);color:var(--text2)}
-.badge-orange{background:rgba(255,122,61,.15);color:var(--orange)}
+.badge-orange{background:rgba(219,109,40,.15);color:var(--orange)}
 .btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:var(--radius);border:1px solid transparent;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;white-space:nowrap;font-family:var(--font)}
 .btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
 .btn-primary:hover{background:#1f6feb}
@@ -74,7 +71,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .btn-secondary:hover{background:var(--bg3);border-color:var(--text2)}
 .btn-green{background:var(--green2);color:#fff;border-color:var(--green2)}
 .btn-green:hover{background:#2ea043}
-.btn-danger{background:rgba(255,77,79,.15);color:var(--red2);border-color:rgba(255,77,79,.3)}
+.btn-danger{background:rgba(218,54,51,.15);color:var(--red2);border-color:rgba(218,54,51,.3)}
 .btn-sm{padding:4px 10px;font-size:12px}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 .progress-bar{height:6px;background:var(--bg4);border-radius:3px;overflow:hidden}
@@ -90,8 +87,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .data-table td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
 .data-table tr:last-child td{border-bottom:none}
 .data-table tr:hover td{background:rgba(255,255,255,.02)}
-.code-block{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;font-family:var(--mono);font-size:12px;color:#d7f7a6;white-space:pre;overflow-x:auto;line-height:1.7}
-.file-path{font-family:var(--mono);font-size:12px;color:var(--accent2);background:rgba(184,242,92,.08);padding:2px 6px;border-radius:4px}
+.code-block{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;font-family:var(--mono);font-size:12px;color:#a5d6ff;white-space:pre;overflow-x:auto;line-height:1.7}
+.file-path{font-family:var(--mono);font-size:12px;color:var(--accent2);background:rgba(56,139,253,.08);padding:2px 6px;border-radius:4px}
 .section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
 .section-title{font-size:20px;font-weight:700}
 .section-subtitle{font-size:13px;color:var(--text2);margin-top:2px}
@@ -124,13 +121,13 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .demo-label{display:inline-flex;align-items:center;gap:4px;background:rgba(137,87,229,.15);color:var(--purple);border:1px solid rgba(137,87,229,.3);border-radius:20px;padding:2px 10px;font-size:11px;font-weight:600}
 /* ---- PROJECT SOURCE INDICATOR ---- */
 .source-pill{display:inline-flex;align-items:center;gap:6px;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:700;letter-spacing:.3px}
-.source-pill.live{background:rgba(184,242,92,.12);color:var(--teal);border:1px solid rgba(184,242,92,.3)}
+.source-pill.live{background:rgba(63,185,80,.12);color:var(--teal);border:1px solid rgba(63,185,80,.3)}
 .source-pill.demo{background:rgba(137,87,229,.12);color:var(--purple);border:1px solid rgba(137,87,229,.3)}
 .source-pill .dot{width:6px;height:6px;border-radius:50%;background:currentColor;display:inline-block}
 /* ---- EVIDENCE LABELS ---- */
-.ev-verified{display:inline-flex;align-items:center;gap:4px;background:rgba(184,242,92,.1);color:var(--teal);border:1px solid rgba(184,242,92,.25);border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700}
-.ev-ai{display:inline-flex;align-items:center;gap:4px;background:rgba(184,242,92,.1);color:var(--accent2);border:1px solid rgba(184,242,92,.25);border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700}
-.ev-needs{display:inline-flex;align-items:center;gap:4px;background:rgba(255,154,31,.1);color:var(--yellow2);border:1px solid rgba(255,154,31,.25);border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700}
+.ev-verified{display:inline-flex;align-items:center;gap:4px;background:rgba(63,185,80,.1);color:var(--teal);border:1px solid rgba(63,185,80,.25);border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700}
+.ev-ai{display:inline-flex;align-items:center;gap:4px;background:rgba(56,139,253,.1);color:var(--accent2);border:1px solid rgba(56,139,253,.25);border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700}
+.ev-needs{display:inline-flex;align-items:center;gap:4px;background:rgba(210,153,34,.1);color:var(--yellow2);border:1px solid rgba(210,153,34,.25);border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700}
 /* ---- URL ANALYSIS PROGRESS ---- */
 .ua-stage{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid var(--border)}
 .ua-stage:last-child{border-bottom:none}
@@ -158,8 +155,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .connect-logo span{color:var(--accent2)}
 .connect-tagline{font-size:14px;color:var(--text2);margin-bottom:32px}
 .connect-option{background:var(--bg3);border:2px solid var(--border);border-radius:var(--radius2);padding:20px;cursor:pointer;margin-bottom:12px;transition:border-color .15s,background .15s;display:flex;gap:16px;align-items:flex-start}
-.connect-option:hover{border-color:var(--accent);background:rgba(184,242,92,.05)}
-.connect-option.selected{border-color:var(--accent2);background:rgba(184,242,92,.1)}
+.connect-option:hover{border-color:var(--accent);background:rgba(56,139,253,.05)}
+.connect-option.selected{border-color:var(--accent2);background:rgba(56,139,253,.1)}
 .connect-option-icon{font-size:24px;flex-shrink:0;margin-top:2px}
 .connect-option-title{font-weight:700;font-size:15px;margin-bottom:4px}
 .connect-option-desc{font-size:13px;color:var(--text2);line-height:1.5}
@@ -192,8 +189,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .readiness-icon{font-size:20px}
 .readiness-label{flex:1;font-size:13px;font-weight:600}
 .agent-box{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:8px 14px;font-size:12px;font-weight:600;display:flex;align-items:center;gap:8px;min-width:160px}
-.agent-box.running{border-color:var(--accent);background:rgba(184,242,92,.08);color:var(--accent2)}
-.agent-box.done{border-color:var(--green);background:rgba(184,242,92,.08);color:var(--teal)}
+.agent-box.running{border-color:var(--accent);background:rgba(56,139,253,.08);color:var(--accent2)}
+.agent-box.done{border-color:var(--green);background:rgba(63,185,80,.08);color:var(--teal)}
 .agent-box.pending{color:var(--text3)}
 .separator{border:none;border-top:1px solid var(--border);margin:16px 0}
 .muted{color:var(--text2)}
@@ -211,244 +208,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .inline-code{background:var(--bg3);padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:.92em}
 .report-section{margin-bottom:28px}
 .report-section h3{font-size:14px;font-weight:700;margin-bottom:12px;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:8px}
-/* ================================================================
-   TRACEON THEME — black canvas, lime / orange / white, condensed type
-   ================================================================ */
-:root{
-  --bg:#000;--bg2:#1a1a1c;--bg3:#262628;--bg4:#343437;
-  --border:#29292c;--border2:#3a3a3e;
-  --text:#fafafa;--text2:#9d9da3;--text3:#6c6c72;
-  --lime:#b8f25c;--lime-ink:#0b0b0b;--amber:#ff9a1f;--coral:#ff5f57;
-  --accent:#b8f25c;--accent2:#b8f25c;
-  --green:#b8f25c;--green2:#b8f25c;--teal:#b8f25c;
-  --yellow:#ff9a1f;--yellow2:#ff9a1f;
-  --orange:#ff7a3d;--red:#ff4d4f;--red2:#ff5f57;--purple:#c3a6ff;
-  --radius:14px;--radius2:24px;
-  --font:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
-  --display:"Oswald","Arial Narrow","Roboto Condensed",Impact,sans-serif;
-  --header-h:84px;--sidebar-w:84px;
-}
-body{background:#000;letter-spacing:-.005em}
-a{color:var(--lime)}
-::selection{background:var(--lime);color:#000}
-
-/* ---- buttons ---- */
-.btn{border-radius:999px;padding:9px 18px;font-weight:600;border:1px solid transparent}
-.btn-sm{padding:6px 14px}
-.btn-lg{padding:14px 26px;font-size:15px}
-.btn-primary,.btn-green{background:var(--lime);color:var(--lime-ink);border-color:var(--lime)}
-.btn-primary:hover,.btn-green:hover{background:#cdf985;border-color:#cdf985}
-.btn-secondary{background:var(--bg3);color:var(--text);border-color:transparent}
-.btn-secondary:hover{background:var(--bg4);border-color:transparent}
-.btn-ghost{background:transparent;color:var(--text);border-color:var(--border2);text-decoration:none}
-.btn-ghost:hover{border-color:var(--text2)}
-.btn-dark{background:#111;color:#fff;border-color:#111}
-.btn-dark:hover{background:#222}
-.btn-pill{border-radius:999px}
-.btn svg{flex-shrink:0}
-
-/* ---- cards & type ---- */
-.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2)}
-.card-header{border-bottom:1px solid var(--border);padding:18px 22px}
-.card-body{padding:20px 22px}
-.card-title,.section-title,.stat-number,.page-title{font-family:var(--display)}
-.card-title{font-size:15px;font-weight:600;letter-spacing:.6px;text-transform:uppercase}
-.section-title{font-size:40px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;line-height:1.05}
-.section-subtitle{font-size:13px;margin-top:8px}
-.section-header{margin-bottom:24px;flex-wrap:wrap}
-.stat-number{font-weight:600;font-size:32px;letter-spacing:.3px}
-.kicker{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
-.badge{border-radius:999px}
-.badge-green{background:rgba(184,242,92,.14);color:var(--lime)}
-.badge-yellow{background:rgba(255,154,31,.14);color:var(--amber)}
-.badge-orange{background:rgba(255,122,61,.15);color:var(--orange)}
-.badge-red{background:rgba(255,77,79,.15);color:var(--red2)}
-.badge-blue{background:rgba(184,242,92,.12);color:var(--lime)}
-.badge-gray{background:var(--bg3);color:var(--text2)}
-.source-pill.live{background:rgba(184,242,92,.1);color:var(--lime);border-color:rgba(184,242,92,.3)}
-.health-badge{background:rgba(184,242,92,.14);color:var(--lime);border-radius:999px;padding:6px 14px;font-family:var(--display);font-size:15px;letter-spacing:.4px}
-.health-badge.warn{background:rgba(255,154,31,.15);color:var(--amber)}
-.health-badge.crit{background:rgba(255,77,79,.15);color:var(--red2)}
-.file-path{color:#d7f7a6;background:rgba(184,242,92,.07)}
-.code-block{background:#0c0c0d;color:#d7f7a6;border-radius:var(--radius)}
-.step-number{background:var(--lime);color:var(--lime-ink)}
-.progress-bar{background:var(--bg4);border-radius:999px;height:8px}
-.progress-fill{border-radius:999px}
-.progress-fill.green{background:var(--lime)}
-.progress-fill.yellow{background:var(--amber)}
-.progress-fill.red{background:var(--coral)}
-.tabs{border-bottom:none;gap:8px;margin-bottom:24px;flex-wrap:wrap}
-.tab{border:none;border-radius:999px;background:var(--bg2);padding:9px 18px;margin:0;color:var(--text2)}
-.tab:hover{color:var(--text);background:var(--bg3)}
-.tab.active{background:var(--lime);color:var(--lime-ink)}
-.spinner{border-color:var(--bg4);border-top-color:var(--lime)}
-.data-table td{border-bottom-color:var(--border)}
-.impact-file{background:var(--bg3);border-radius:10px}
-.issue-item:hover{background:rgba(255,255,255,.03)}
-.modal{background:var(--bg2);border-radius:var(--radius2);border-color:var(--border2)}
-.toast{background:#111;border-color:var(--border2);border-radius:16px}
-.url-input{background:var(--bg3)!important;border:1px solid var(--border2)!important;border-radius:999px!important;color:var(--text)}
-.url-input:focus{border-color:var(--lime)!important;outline:none}
-.agent-box{border-radius:999px}
-.agent-box.running{border-color:var(--lime);background:rgba(184,242,92,.08);color:var(--lime)}
-.agent-box.done{border-color:rgba(184,242,92,.4);background:rgba(184,242,92,.06);color:var(--lime)}
-
-/* ---- app shell: top bar + icon rail ---- */
-#app{background:#000}
-#header{height:var(--header-h);background:#000;border-bottom:none;padding:0 28px;gap:12px}
-.logo-mark{width:48px;height:48px;border-radius:50%;background:#fff;color:#000;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
-.logo-mark.sm{width:28px;height:28px}
-.logo-mark.sm svg{width:15px;height:15px}
-#logo{cursor:pointer;margin-right:8px}
-.top-nav{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;min-width:0}
-.top-nav::-webkit-scrollbar{display:none}
-.nav-pill{display:inline-flex;align-items:center;gap:8px;background:var(--bg2);color:var(--text);border:1px solid var(--border);border-radius:999px;padding:11px 16px;flex-shrink:0;font:600 13px var(--font);cursor:pointer;white-space:nowrap;border-left:1px solid var(--border)}
-.nav-pill:hover{background:var(--bg3)}
-.nav-pill.active{background:var(--lime);color:var(--lime-ink);border-color:var(--lime)}
-.nav-pill .nav-badge{margin-left:2px}
-.nav-pill .nav-badge:empty,.rail-btn .nav-badge:empty{display:none}
-#header-project{background:transparent;border:none;padding:0 6px;font-family:var(--display);font-size:17px;letter-spacing:.4px;text-transform:uppercase;white-space:nowrap;flex-shrink:0}
-.health-badge,.user-text b,.user-text span{white-space:nowrap}
-.user-chip,.health-badge{flex-shrink:0}
-#header-project .proj-name{color:var(--text)}
-#header-source-pill{white-space:nowrap}
-.user-chip{display:flex;align-items:center;gap:12px;margin-left:6px}
-.user-text{display:flex;flex-direction:column;align-items:flex-end;line-height:1.25}
-.user-text b{font-size:13px}
-.user-text span{font-size:12px;color:var(--text2)}
-.avatar-wrap{position:relative}
-.avatar-wrap img{width:42px;height:42px;border-radius:50%;background:var(--bg3);display:block;object-fit:cover}
-.avatar-badge{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;border-radius:9px;background:var(--red);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 4px;border:2px solid #000}
-#sidebar{width:var(--sidebar-w);background:#000;border-right:none;align-items:center;gap:14px;padding:18px 0 22px}
-.rail-btn{position:relative;width:48px;height:48px;border-radius:50%;background:var(--bg2);border:1px solid var(--border);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;padding:0;border-left:1px solid var(--border)}
-.rail-btn:hover{background:var(--bg3)}
-.rail-btn.active{background:var(--lime);color:var(--lime-ink);border-color:var(--lime)}
-.rail-btn .nav-badge{position:absolute;top:-4px;right:-4px;margin:0;border:2px solid #000}
-.rail-spacer{flex:1}
-.nav-item .nav-badge{background:var(--red);color:#fff;border-radius:999px;padding:1px 6px;font-size:10px;font-weight:700}
-.nav-item .nav-badge.warn{background:var(--amber);color:#000}
-.nav-item .nav-badge.ok{background:var(--lime);color:#000}
-#main{background:#000;padding:10px 32px 40px 8px}
-.page-head{display:flex;align-items:flex-end;gap:16px;margin-bottom:24px;flex-wrap:wrap}
-.filter-row{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.filter-pill{display:inline-flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border);border-radius:999px;padding:10px 16px;font-size:13px;color:var(--text2);white-space:nowrap}
-.filter-pill b{color:var(--text);font-weight:600}
-.icon-circle{width:42px;height:42px;border-radius:50%;background:var(--bg2);border:1px solid var(--border);color:var(--text);display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
-.icon-circle:hover{background:var(--bg3)}
-
-/* ---- overview bento ---- */
-.bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:18px;margin-bottom:20px}
-.b-kpi{grid-column:span 3}
-.b-timeline{grid-column:span 6;grid-row:span 2}
-.b-capsules{grid-column:span 6}
-.b-half{grid-column:span 6}
-.bento .card{display:flex;flex-direction:column;min-width:0}
-.bento .card-header{border-bottom:none;padding:20px 22px 4px}
-.bento .card-header .more{margin-left:auto;color:var(--text2);letter-spacing:2px;font-weight:700}
-.kpi-nums{display:flex;gap:26px;padding:10px 22px 0}
-.kpi-num .tri{display:block;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;margin-bottom:6px}
-.tri.up{border-bottom:9px solid var(--lime)}
-.tri.down{border-top:9px solid var(--amber)}
-.kpi-num b{font:600 34px/1 var(--display);letter-spacing:.3px;display:block}
-.kpi-num small{font-size:11px;color:var(--text2);font-weight:600}
-.kpi-foot{margin-top:auto;padding:12px 18px 16px}
-.spark{width:100%;height:64px;display:block}
-.dotgrid{display:grid;grid-template-columns:repeat(auto-fill,10px);gap:7px;padding:4px 0}
-.dotgrid i{width:10px;height:10px;border-radius:50%;display:block}
-.dot-g{background:var(--lime)}.dot-o{background:var(--amber)}.dot-w{background:#f2f2f2}
-.legend{display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--text2);padding:14px 22px 18px;margin-top:auto}
-.legend .sw{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-2px;border:3px solid;background:#1a1a1c}
-.legend .total{margin-left:auto;color:var(--text2)}
-.legend .total b{color:var(--text)}
-.tl{padding:10px 22px 0;display:grid;grid-template-columns:auto 1fr;column-gap:14px;row-gap:12px;align-items:center;align-content:space-evenly;flex:1}
-.tl-label{font-size:12px;color:var(--text);font-weight:600;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:right}
-.tl-track{position:relative;height:34px;background-image:repeating-linear-gradient(90deg,transparent 0 calc(20% - 1px),#2c2c30 calc(20% - 1px) 20%)}
-.tl-bar{position:absolute;top:0;height:34px;border-radius:999px;display:flex;align-items:center;justify-content:space-between;padding:0 12px 0 4px;min-width:64px;cursor:pointer;font-size:11px;font-weight:700;color:#0b0b0b;transition:transform .15s}
-.tl-bar:hover{transform:translateY(-1px)}
-.tl-bar .tl-ico{width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;font-size:13px}
-.tl-bar.low{background:var(--lime)}.tl-bar.medium{background:var(--amber)}.tl-bar.high{background:#f2f2f2}
-.tl-axis{display:flex;justify-content:space-between;font-size:11px;color:var(--text2);padding:8px 0 0}
-.caps{display:flex;gap:10px;justify-content:space-around;align-items:flex-start;padding:14px 22px 4px;min-height:230px;overflow-x:auto}
-.cap-col{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:44px;cursor:pointer;position:relative}
-.cap-col::before{content:"";position:absolute;top:0;bottom:22px;left:50%;border-left:1px dashed #2f2f33;z-index:0}
-.cap{position:relative;z-index:1;width:40px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#0b0b0b;min-height:30px}
-.cap.w{background:#f2f2f2}.cap.g{background:var(--lime)}.cap.o{background:var(--amber)}
-.cap-dot{position:relative;z-index:1;width:9px;height:9px;border-radius:50%}
-.cap-name{position:relative;z-index:1;font-size:10px;color:var(--text2);max-width:64px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:auto;background:var(--bg2);padding:0 2px}
-.sev-row{display:flex;align-items:center;gap:12px}
-.sev-track{flex:1;height:10px;background:var(--bg4);border-radius:999px;overflow:hidden}
-.sev-fill{height:100%;border-radius:999px}
-
-/* ---- connect screen & landing ---- */
-#connect-screen{background:#000;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;overflow-y:auto;padding:24px}
-#connect-screen .connect-card{margin:auto;background:var(--bg2);border:1px solid var(--border);border-radius:28px;max-width:100%}
-.landing{width:100%;max-width:1240px;margin:0 auto;padding:0 8px}
-.lp-nav{display:flex;align-items:center;gap:20px;padding:6px 0 30px}
-.lp-brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-size:22px;letter-spacing:.6px;text-transform:uppercase}
-.lp-links{display:flex;gap:6px;margin-left:auto}
-.lp-links a{color:var(--text2);text-decoration:none;font-size:14px;font-weight:500;padding:10px 14px;border-radius:999px}
-.lp-links a:hover{color:var(--text);background:var(--bg2)}
-.lp-hero{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center;padding:40px 0 56px}
-.lp-eyebrow{font-size:12px;font-weight:700;letter-spacing:1.6px;color:var(--lime);margin-bottom:14px}
-.lp-title{font-family:var(--display);font-weight:700;font-size:clamp(44px,6.2vw,84px);line-height:.98;text-transform:uppercase;letter-spacing:.5px;margin-bottom:22px}
-.lp-accent{color:var(--lime)}
-.lp-lead{font-size:18px;color:var(--text);margin-bottom:10px;max-width:560px}
-.lp-sub{font-size:15px;color:var(--text2);margin-bottom:28px;max-width:560px;line-height:1.7}
-.lp-cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
-.lp-trust{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text3)}
-.lp-hero-visual{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:#0d0d0e;border:1px solid var(--border);border-radius:32px;padding:18px}
-.hv-card{background:var(--bg2);border-radius:22px;padding:16px 18px;border:1px solid var(--border)}
-.hv-label{font-family:var(--display);font-size:13px;letter-spacing:.6px;margin-bottom:10px}
-.hv-nums{display:flex;gap:18px}
-.hv-nums b{display:block;font:600 26px/1 var(--display)}
-.hv-nums small{font-size:10px;color:var(--text2)}
-.hv-nums .tri{display:block;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;margin-bottom:5px}
-.hv-spark{width:100%;height:50px;margin-top:10px}
-.hv-dotgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:8px}
-.hv-dotgrid i{width:9px;height:9px;border-radius:50%;background:#f2f2f2}
-.hv-dotgrid i.g{background:var(--lime)}.hv-dotgrid i.o{background:var(--amber)}
-.hv-timeline{grid-column:span 2}
-.hv-bar{height:26px;border-radius:999px;margin-bottom:9px;display:flex;align-items:center;padding-left:3px}
-.hv-bar i{width:20px;height:20px;border-radius:50%;background:rgba(0,0,0,.8)}
-.hv-bar.g{background:var(--lime)}.hv-bar.o{background:var(--amber)}.hv-bar.w{background:#f2f2f2}
-.lp-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:80px}
-.lp-strip div{background:var(--bg2);border:1px solid var(--border);border-radius:22px;padding:18px 20px}
-.lp-strip b{display:block;font:600 22px var(--display);text-transform:uppercase;letter-spacing:.4px;color:var(--lime)}
-.lp-strip span{font-size:13px;color:var(--text2)}
-.lp-section{margin-bottom:84px;scroll-margin-top:24px}
-.lp-section-head{margin-bottom:28px}
-.lp-h2{font-family:var(--display);font-size:clamp(30px,3.6vw,46px);text-transform:uppercase;letter-spacing:.4px;line-height:1.05;max-width:760px}
-.lp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.lp-feature{background:var(--bg2);border:1px solid var(--border);border-radius:24px;padding:22px}
-.lp-feature h3{font:600 18px var(--display);text-transform:uppercase;letter-spacing:.4px;margin:16px 0 6px}
-.lp-feature p{font-size:13px;color:var(--text2);line-height:1.6}
-.lp-ico{width:46px;height:46px;border-radius:50%;background:var(--bg3);display:inline-flex;align-items:center;justify-content:center;color:var(--lime);flex-shrink:0}
-.lp-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.lp-step{background:var(--bg2);border:1px solid var(--border);border-radius:24px;padding:26px}
-.lp-step-n{font:700 44px/1 var(--display);color:var(--lime)}
-.lp-step h3{font:600 20px var(--display);text-transform:uppercase;letter-spacing:.4px;margin:14px 0 6px}
-.lp-step p{font-size:14px;color:var(--text2);line-height:1.6}
-.lp-final{background:var(--lime);color:#0b0b0b;border-radius:32px;padding:56px 32px;text-align:center;margin-bottom:40px}
-.lp-final h2{font:700 clamp(30px,4vw,52px)/1.05 var(--display);text-transform:uppercase;letter-spacing:.4px;margin-bottom:24px}
-.lp-footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--text3);font-size:13px;padding:6px 0 30px}
-.lp-footer .lp-brand{font-size:16px;color:var(--text)}
-
-/* ---- responsive ---- */
-@media (max-width:1560px){#header-source-pill{display:none}}
-@media (max-width:1320px){#header-project{display:none}}
-@media (max-width:1100px){
-  .b-kpi{grid-column:span 6}.b-timeline,.b-capsules,.b-half{grid-column:span 12}.b-timeline{grid-row:auto}
-  .lp-hero{grid-template-columns:1fr}.lp-grid{grid-template-columns:repeat(2,1fr)}
-  #header-source-pill,.user-text{display:none}
-}
-@media (max-width:720px){
-  .b-kpi{grid-column:span 12}
-  .lp-grid,.lp-steps,.lp-strip{grid-template-columns:1fr}.lp-links{display:none}
-  .grid2,.grid3,.grid4{grid-template-columns:1fr}
-  #header{padding:0 14px}#sidebar{width:64px}#main{padding:6px 14px 30px 4px}
-  .section-title{font-size:30px}.health-badge,#header-project{display:none}
-  .lp-hero-visual{grid-template-columns:1fr}.hv-timeline{grid-column:auto}
-}
 </style>
 </head>
 <body>
@@ -456,95 +215,22 @@ a{color:var(--lime)}
 <!-- CONNECT SCREEN — multi-panel, GitHub-first -->
 <div id="connect-screen">
 
-  <!-- PANEL 0: Landing page -->
-  <div id="cs-landing" class="landing">
-    <header class="lp-nav">
-      <div class="lp-brand"><span class="logo-mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 6h14M12 6v13"/><circle cx="12" cy="19" r="1.6" fill="currentColor" stroke="none"/></svg></span><span class="lp-brand-name">Traceon</span></div>
-      <nav class="lp-links">
-        <a href="#lp-features">Features</a>
-        <a href="#lp-how">How it works</a>
-        <a href="#lp-security">Security</a>
-      </nav>
-      <button class="btn btn-pill btn-dark" onclick="continueWithGitHub()"><svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> Sign in</button>
-    </header>
+  <!-- PANEL 0: Landing -->
+  <div id="cs-landing" class="connect-card" style="width:520px;text-align:center">
+    <div class="connect-logo" style="font-size:32px;margin-bottom:10px">Trace<span>on</span></div>
+    <div style="font-size:11px;font-weight:700;letter-spacing:1.2px;color:var(--text3);margin-bottom:10px">CONNECT YOUR PROJECT</div>
+    <div style="font-size:18px;font-weight:700;margin-bottom:8px">Understand your codebase<br>before you change it.</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:24px">Sign in with GitHub to securely access repositories you authorize for analysis.</div>
 
-    <section class="lp-hero">
-      <div class="lp-hero-copy">
-        <div class="lp-eyebrow">CONNECT YOUR PROJECT</div>
-        <h1 class="lp-title">Understand your codebase <span class="lp-accent">before you change it.</span></h1>
-        <p class="lp-lead">Sign in with GitHub to securely access repositories you authorize for analysis.</p>
-        <p class="lp-sub">Traceon maps your architecture, finds untested code and risky dependencies, shows what a change will break, and checks you are ready to release, straight from your real repository.</p>
-        <div id="cs-landing-notice" style="display:none;margin-bottom:16px;text-align:left"></div>
-        <div class="lp-cta-row">
-          <button class="btn btn-pill btn-primary btn-lg" id="gh-continue-btn" onclick="continueWithGitHub()"><svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span id="gh-continue-label">Continue with GitHub</span></button>
-          <a class="btn btn-pill btn-ghost btn-lg" href="#lp-how">How it works</a>
-        </div>
-        <div class="lp-trust"><svg class="ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Read-only access · Traceon never writes to your repositories</div>
-      </div>
-      <div class="lp-hero-visual" aria-hidden="true">
-        <div class="hv-card hv-kpi">
-          <div class="hv-label">HEALTH</div>
-          <div class="hv-nums"><div><span class="tri up"></span><b>82</b><small>Score</small></div><div><span class="tri down"></span><b>64%</b><small>Files tested</small></div></div>
-          <svg class="hv-spark" viewBox="0 0 200 50" preserveAspectRatio="none"><polyline points="0,38 25,30 50,34 75,18 100,26 125,12 150,22 175,16 200,20" fill="none" stroke="#b8f25c" stroke-width="2"/><polyline points="0,20 25,26 50,16 75,30 100,22 125,32 150,24 175,34 200,28" fill="none" stroke="#ff9a1f" stroke-width="2"/></svg>
-        </div>
-        <div class="hv-card hv-dots"><div class="hv-label">TESTS</div><div class="hv-dotgrid"><i class="g"></i><i class="w"></i><i class="w"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="w"></i><i class="w"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="w"></i><i class="o"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="o"></i><i class="w"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="w"></i><i class="w"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="w"></i><i class="w"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="w"></i><i class="o"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="o"></i><i class="w"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="w"></i><i class="w"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="w"></i><i class="w"></i></div></div>
-        <div class="hv-card hv-timeline">
-          <div class="hv-label">MODULES</div>
-          <div class="hv-bar g" style="width:62%"><i></i></div>
-          <div class="hv-bar o" style="width:48%;margin-left:30%"><i></i></div>
-          <div class="hv-bar w" style="width:40%;margin-left:12%"><i></i></div>
-          <div class="hv-bar g" style="width:55%;margin-left:22%"><i></i></div>
-          <div class="hv-bar o" style="width:36%;margin-left:6%"><i></i></div>
-        </div>
-      </div>
-    </section>
+    <div id="cs-landing-notice" style="display:none;margin-bottom:14px;text-align:left"></div>
 
-    <section class="lp-strip">
-      <div><b>Read-only</b><span>Contents &amp; metadata permissions only</span></div>
-      <div><b>No tokens</b><span>Sign in with GitHub, nothing to paste</span></div>
-      <div><b>Any stack</b><span>JS/TS, Python, Go, Java, Ruby, PHP, Rust…</span></div>
-      <div><b>8 workflows</b><span>From onboarding to release</span></div>
-    </section>
+    <!-- GitHub sign-in (standard OAuth, handled by the Traceon server) -->
+    <button class="btn" id="gh-continue-btn" onclick="continueWithGitHub()" style="width:100%;justify-content:center;padding:13px;font-size:15px;font-weight:700;background:#24292f;color:#fff;border:1px solid #444c56;border-radius:var(--radius);margin-bottom:8px;gap:10px">
+      <svg height="20" width="20" viewBox="0 0 16 16" fill="#fff"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      <span id="gh-continue-label">Continue with GitHub</span>
+    </button>
+    <div style="font-size:11px;color:var(--text3)">Read-only access · Traceon never writes to your repositories</div>
 
-    <section class="lp-section" id="lp-features">
-      <div class="lp-section-head"><div class="lp-eyebrow">FEATURES</div><h2 class="lp-h2">Everything you need before you touch the code</h2></div>
-      <div class="lp-grid">
-        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></span><h3>Project Map</h3><p>Modules and how they depend on each other, built from the real import graph.</p></div>
-        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span><h3>Onboarding</h3><p>Entry points, API routes, setup commands and a first-day guide for new developers.</p></div>
-        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><h3>Maintenance</h3><p>Vulnerable dependencies, missing lockfiles, undocumented env vars, Docker and CI gaps.</p></div>
-        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><h3>Testing</h3><p>Which files your tests actually reach, per module, and which endpoints have none.</p></div>
-        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><h3>Generate Tests</h3><p>Test stubs built from each file's real exports, in your framework and folder layout.</p></div>
-        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><h3>Change Impact</h3><p>Everything that depends on a module, the endpoints affected and the tests to run.</p></div>
-        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span><h3>Release</h3><p>A readiness check across tests, CI, configuration, dependencies and deployment.</p></div>
-        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><h3>Reports</h3><p>Health, release and maintenance reports you can share with your team.</p></div>
-      </div>
-    </section>
-
-    <section class="lp-section" id="lp-how">
-      <div class="lp-section-head"><div class="lp-eyebrow">HOW IT WORKS</div><h2 class="lp-h2">From sign-in to findings in three steps</h2></div>
-      <div class="lp-steps">
-        <div class="lp-step"><span class="lp-step-n">01</span><h3>Continue with GitHub</h3><p>Approve Traceon on GitHub's own sign-in page. There is no token to create or paste.</p></div>
-        <div class="lp-step"><span class="lp-step-n">02</span><h3>Choose repositories</h3><p>Pick exactly which repositories Traceon may read. Change your choice any time on GitHub.</p></div>
-        <div class="lp-step"><span class="lp-step-n">03</span><h3>Analyze</h3><p>Traceon reads a snapshot of the branch and fills every page with your project's real data.</p></div>
-      </div>
-    </section>
-
-    <section class="lp-section" id="lp-security">
-      <div class="lp-section-head"><div class="lp-eyebrow">SECURITY</div><h2 class="lp-h2">Built to be trusted with your code</h2></div>
-      <div class="lp-grid lp-grid-4">
-        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span><h3>Read-only</h3><p>Traceon never commits, pushes, opens pull requests or changes settings.</p></div>
-        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></span><h3>No tokens in your browser</h3><p>GitHub credentials stay on the Traceon server. Your browser only holds a secure session.</p></div>
-        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><h3>Secrets untouched</h3><p>Real .env files are never read. Only variable names from templates are checked.</p></div>
-        <div class="lp-feature"><span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span><h3>You stay in control</h3><p>Signing out revokes Traceon's access token on GitHub immediately.</p></div>
-      </div>
-    </section>
-
-    <section class="lp-final">
-      <h2>Ready to see your codebase clearly?</h2>
-      <button class="btn btn-pill btn-dark btn-lg" onclick="continueWithGitHub()"><svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> Continue with GitHub</button>
-    </section>
-
-    <footer class="lp-footer"><span class="lp-brand"><span class="logo-mark sm"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 6h14M12 6v13"/><circle cx="12" cy="19" r="1.6" fill="currentColor" stroke="none"/></svg></span>Traceon</span><span>Read-only repository analysis for development teams.</span></footer>
   </div>
 
   <!-- PANEL 1: GitHub sign-in status (errors, setup required) -->
@@ -558,7 +244,7 @@ a{color:var(--lime)}
 
   <!-- PANEL 2: Repo browser -->
   <div id="cs-repo-browser" class="connect-card" style="width:680px;display:none">
-    <div id="cs-gh-connected" style="display:none;margin-bottom:16px;padding:12px 14px;background:rgba(184,242,92,.06);border:1px solid rgba(184,242,92,.3);border-radius:var(--radius)"></div>
+    <div id="cs-gh-connected" style="display:none;margin-bottom:16px;padding:12px 14px;background:rgba(63,185,80,.06);border:1px solid rgba(63,185,80,.3);border-radius:var(--radius)"></div>
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
       <button class="btn btn-secondary btn-sm" onclick="showConnectPanel('landing')">← Back</button>
       <div>
@@ -584,7 +270,7 @@ a{color:var(--lime)}
     <div id="cs-repo-loading" style="text-align:center;padding:32px;color:var(--text2);font-size:13px;display:none">
       <div class="spinner" style="margin:0 auto 10px"></div>Loading your repositories…
     </div>
-    <div id="cs-repo-error" style="display:none;padding:16px;background:rgba(255,77,79,.06);border:1px solid rgba(255,77,79,.2);border-radius:var(--radius);font-size:13px;color:var(--red2)"></div>
+    <div id="cs-repo-error" style="display:none;padding:16px;background:rgba(218,54,51,.06);border:1px solid rgba(218,54,51,.2);border-radius:var(--radius);font-size:13px;color:var(--red2)"></div>
   </div>
 
   <!-- PANEL 3: Repo confirm -->
@@ -647,34 +333,41 @@ a{color:var(--lime)}
 <div id="app" style="display:none">
   <!-- HEADER -->
   <div id="header">
-    <div id="logo" onclick="navigate('overview')" title="Traceon"><span class="logo-mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 6h14M12 6v13"/><circle cx="12" cy="19" r="1.6" fill="currentColor" stroke="none"/></svg></span></div>
-    <nav class="top-nav">
-      <button class="nav-pill nav-item" data-page="overview" onclick="navigate('overview')"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/></svg><span>Overview</span></button>
-      <button class="nav-pill nav-item" data-page="map" onclick="navigate('map')"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg><span>Project Map</span></button>
-      <button class="nav-pill nav-item" data-page="testing" onclick="navigate('testing')"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span>Testing</span><span class="nav-badge warn"></span></button>
-      <button class="nav-pill nav-item" data-page="impact" onclick="navigate('impact')"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Change Impact</span></button>
-      <button class="nav-pill nav-item" data-page="release" onclick="navigate('release')"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg><span>Release</span></button>
-    </nav>
-    <div id="header-spacer"></div>
-    <div id="header-project" onclick="navigate('overview')" title="Current repository"><span class="proj-name"></span></div>
-    <span id="header-source-pill" class="source-pill live"><span class="dot"></span> LIVE PROJECT · GITHUB REPOSITORY</span>
-    <span class="health-badge" id="header-health-badge" title="Health score"></span>
-    <div class="user-chip" id="header-user" title="Signed in with GitHub">
-      <div class="user-text"><b id="header-user-name"></b><span id="header-user-login"></span></div>
-      <div class="avatar-wrap"><img id="header-user-avatar" alt="" width="42" height="42"><span class="avatar-badge" id="header-user-badge" style="display:none"></span></div>
+    <div id="logo">Trace<span class="dot">on</span></div>
+    <div id="header-project" onclick="navigate('overview')">
+      <span>📦</span>
+      <span class="proj-name"></span>
+      <span style="color:var(--text3);font-size:11px">v2.4.1</span>
     </div>
+    <div id="header-spacer"></div>
+    <span id="header-source-pill" class="source-pill live"><span class="dot"></span> LIVE PROJECT · GITHUB REPOSITORY</span>
+    <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2)">
+      Health <span class="health-badge warn" id="header-health-badge">74 / 100</span>
+    </div>
+    <button class="btn btn-secondary btn-sm" onclick="showConnect()">🔀 Switch Project</button>
   </div>
 
   <!-- BODY -->
   <div id="body">
-    <!-- ICON RAIL -->
+    <!-- SIDEBAR -->
     <div id="sidebar">
-      <button class="rail-btn nav-item" data-page="onboarding" onclick="navigate('onboarding')" title="Onboarding" aria-label="Onboarding"><svg class="ico" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></button>
-      <button class="rail-btn nav-item" data-page="maintenance" onclick="navigate('maintenance')" title="Maintenance" aria-label="Maintenance"><svg class="ico" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg><span class="nav-badge"></span></button>
-      <button class="rail-btn nav-item" data-page="reports" onclick="navigate('reports')" title="Reports" aria-label="Reports"><svg class="ico" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></button>
-      <div class="rail-spacer"></div>
-      <button class="rail-btn" onclick="showConnect()" title="Analyze another repository" aria-label="Analyze another repository"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-      <button class="rail-btn" onclick="signOutGitHub()" title="Sign out" aria-label="Sign out"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Workspace</div>
+        <div class="nav-item" data-page="overview" onclick="navigate('overview')"><span class="nav-icon">📊</span> Overview</div>
+        <div class="nav-item" data-page="map" onclick="navigate('map')"><span class="nav-icon">🗺️</span> Project Map</div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Workflows</div>
+        <div class="nav-item" data-page="onboarding" onclick="navigate('onboarding')"><span class="nav-icon">🚀</span> Onboarding</div>
+        <div class="nav-item" data-page="maintenance" onclick="navigate('maintenance')"><span class="nav-icon">🔧</span> Maintenance <span class="nav-badge">8</span></div>
+        <div class="nav-item" data-page="testing" onclick="navigate('testing')"><span class="nav-icon">🧪</span> Testing <span class="nav-badge warn">5</span></div>
+        <div class="nav-item" data-page="impact" onclick="navigate('impact')"><span class="nav-icon">⚡</span> Change Impact</div>
+        <div class="nav-item" data-page="release" onclick="navigate('release')"><span class="nav-icon">🚢</span> Release</div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Insights</div>
+        <div class="nav-item" data-page="reports" onclick="navigate('reports')"><span class="nav-icon">📋</span> Reports</div>
+      </div>
     </div>
 
     <!-- MAIN -->
@@ -682,32 +375,191 @@ a{color:var(--lime)}
 
       <!-- ==================== OVERVIEW ==================== -->
       <div class="page active" id="page-overview">
-        <div class="page-head">
+        <div class="section-header">
           <div>
-            <h1 class="section-title" id="overview-title">Overview</h1>
+            <div class="section-title" id="overview-title">Project Overview</div>
             <div class="section-subtitle" id="overview-subtitle"></div>
           </div>
-          <div class="filter-row" id="overview-filters"></div>
+          <div style="margin-left:auto;display:flex;gap:10px">
+            <button class="btn btn-secondary btn-sm" onclick="navigate('reports')">📋 Generate Report</button>
+            <button class="btn btn-primary btn-sm" onclick="navigate('release')">🚢 Prepare Release</button>
+          </div>
         </div>
 
-        <div class="bento" id="overview-bento"></div>
+        <!-- Health + stats row -->
+        <div class="grid4 mb-20">
+          <div class="card">
+            <div class="card-body" style="text-align:center;padding:20px">
+              <svg width="80" height="80" viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="32" fill="none" stroke="var(--bg4)" stroke-width="8"/>
+                <circle cx="40" cy="40" r="32" fill="none" stroke="var(--yellow2)" stroke-width="8"
+                  stroke-dasharray="201" stroke-dashoffset="52" stroke-linecap="round"
+                  transform="rotate(-90 40 40)"/>
+              </svg>
+              <div style="margin-top:8px">
+                <div style="font-size:28px;font-weight:800;color:var(--yellow2)">74</div>
+                <div style="font-size:11px;color:var(--text2)">Health Score</div>
+              </div>
+            </div>
+          </div>
+          <div class="card"><div class="card-body">
+            <div class="stat-number">42</div><div class="stat-label">Source Files</div>
+            <hr class="separator">
+            <div class="flex gap-8" style="flex-wrap:wrap">
+              <span class="badge badge-blue">TypeScript</span>
+              <span class="badge badge-yellow">JavaScript</span>
+              <span class="badge badge-gray">YAML</span>
+            </div>
+          </div></div>
+          <div class="card"><div class="card-body">
+            <div class="stat-number">11</div><div class="stat-label">Components</div>
+            <hr class="separator">
+            <div style="font-size:12px;color:var(--text2)">Auth · Payments · Orders<br>Users · Notifications · Search…</div>
+          </div></div>
+          <div class="card"><div class="card-body">
+            <div class="stat-number">67%</div><div class="stat-label">Test Coverage</div>
+            <hr class="separator">
+            <div class="progress-bar"><div class="progress-fill yellow" style="width:67%"></div></div>
+            <div style="font-size:12px;color:var(--text2);margin-top:8px">127 tests · 5 missing areas</div>
+          </div></div>
+        </div>
 
-        <div class="grid3 mb-20" id="overview-stats-row"></div>
+        <!-- Issues + Actions -->
+        <div class="grid2 mb-20">
+          <div class="card">
+            <div class="card-header"><span class="card-title">Issues Found</span><span class="card-subtitle">by severity</span></div>
+            <div class="card-body">
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <div class="flex-center gap-12">
+                  <span class="badge badge-red">CRITICAL</span>
+                  <div style="flex:1;height:8px;background:var(--bg4);border-radius:4px;overflow:hidden"><div style="width:13%;height:100%;background:var(--red2);border-radius:4px"></div></div>
+                  <span style="font-size:13px;font-weight:700;color:var(--red2);width:24px;text-align:right">2</span>
+                </div>
+                <div class="flex-center gap-12">
+                  <span class="badge badge-orange">HIGH</span>
+                  <div style="flex:1;height:8px;background:var(--bg4);border-radius:4px;overflow:hidden"><div style="width:37%;height:100%;background:var(--orange);border-radius:4px"></div></div>
+                  <span style="font-size:13px;font-weight:700;color:var(--orange);width:24px;text-align:right">6</span>
+                </div>
+                <div class="flex-center gap-12">
+                  <span class="badge badge-yellow">MEDIUM</span>
+                  <div style="flex:1;height:8px;background:var(--bg4);border-radius:4px;overflow:hidden"><div style="width:68%;height:100%;background:var(--yellow2);border-radius:4px"></div></div>
+                  <span style="font-size:13px;font-weight:700;color:var(--yellow2);width:24px;text-align:right">11</span>
+                </div>
+                <div class="flex-center gap-12">
+                  <span class="badge badge-blue">LOW</span>
+                  <div style="flex:1;height:8px;background:var(--bg4);border-radius:4px;overflow:hidden"><div style="width:100%;height:100%;background:var(--accent2);border-radius:4px"></div></div>
+                  <span style="font-size:13px;font-weight:700;color:var(--accent2);width:24px;text-align:right">16</span>
+                </div>
+              </div>
+              <hr class="separator">
+              <button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center" onclick="navigate('maintenance')">View All Issues →</button>
+            </div>
+          </div>
 
-        <!-- Project Source card -->
-        <div id="project-source-card" class="card mb-16">
+          <div class="card">
+            <div class="card-header"><span class="card-title">Recommended Actions</span></div>
+            <div class="card-body" style="padding:0">
+              <div class="issue-item" style="padding:12px 18px;margin:0" onclick="navigate('testing')">
+                <span style="font-size:16px">🔴</span>
+                <div class="issue-content">
+                  <div class="issue-title">Add payment failure regression tests</div>
+                  <div class="issue-desc">Payments module has 54% coverage — critical paths untested</div>
+                </div>
+              </div>
+              <div class="issue-item" style="padding:12px 18px;margin:0" onclick="navigate('maintenance')">
+                <span style="font-size:16px">🟠</span>
+                <div class="issue-content">
+                  <div class="issue-title">Review stripe@4.8.0 dependency</div>
+                  <div class="issue-desc">2 major versions behind — known breaking changes in v6</div>
+                </div>
+              </div>
+              <div class="issue-item" style="padding:12px 18px;margin:0" onclick="navigate('maintenance')">
+                <span style="font-size:16px">🟠</span>
+                <div class="issue-content">
+                  <div class="issue-title">Update API documentation</div>
+                  <div class="issue-desc">Payment endpoints added in v2.3 are not documented</div>
+                </div>
+              </div>
+              <div class="issue-item" style="padding:12px 18px;margin:0;border:none" onclick="navigate('maintenance')">
+                <span style="font-size:16px">🟡</span>
+                <div class="issue-content">
+                  <div class="issue-title">Refactor duplicated validation logic</div>
+                  <div class="issue-desc">Same email validation in 3 modules — extract to shared util</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats row -->
+        <div class="grid3 mb-20" id="overview-stats-row">
+          <div class="card">
+            <div class="card-header"><span class="card-title">Project Stats</span></div>
+            <div class="card-body" style="padding:0">
+              <table class="data-table">
+                <tr><td class="col-muted">Languages</td><td>TypeScript, JavaScript</td></tr>
+                <tr><td class="col-muted">Framework</td><td>Node.js · Express 4.18</td></tr>
+                <tr><td class="col-muted">Dependencies</td><td>38 direct · 142 transitive</td></tr>
+                <tr><td class="col-muted">Test Files</td><td>19 files · 127 tests</td></tr>
+                <tr><td class="col-muted">Documentation</td><td>README · API docs · OpenAPI</td></tr>
+                <tr><td class="col-muted">Deployment</td><td>Docker · GitHub Actions</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><span class="card-title">Module Coverage</span></div>
+            <div class="card-body" style="display:flex;flex-direction:column;gap:10px">
+              <div>
+                <div class="flex-center gap-8 mb-8"><span style="font-size:12px;flex:1">Authentication</span><span class="badge badge-green">89%</span></div>
+                <div class="progress-bar"><div class="progress-fill green" style="width:89%"></div></div>
+              </div>
+              <div>
+                <div class="flex-center gap-8 mb-8"><span style="font-size:12px;flex:1">Payments</span><span class="badge badge-red">54%</span></div>
+                <div class="progress-bar"><div class="progress-fill red" style="width:54%"></div></div>
+              </div>
+              <div>
+                <div class="flex-center gap-8 mb-8"><span style="font-size:12px;flex:1">Orders</span><span class="badge badge-yellow">71%</span></div>
+                <div class="progress-bar"><div class="progress-fill yellow" style="width:71%"></div></div>
+              </div>
+              <div>
+                <div class="flex-center gap-8 mb-8"><span style="font-size:12px;flex:1">Users</span><span class="badge badge-green">82%</span></div>
+                <div class="progress-bar"><div class="progress-fill green" style="width:82%"></div></div>
+              </div>
+              <div>
+                <div class="flex-center gap-8 mb-8"><span style="font-size:12px;flex:1">Notifications</span><span class="badge badge-red">41%</span></div>
+                <div class="progress-bar"><div class="progress-fill red" style="width:41%"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><span class="card-title">Recent Activity</span></div>
+            <div class="card-body" style="padding:0">
+              <table class="data-table">
+                <tr><td class="col-muted fs-12">Analysis</td><td class="fs-12">Just now ✅</td></tr>
+                <tr><td class="col-muted fs-12">Tests run</td><td class="fs-12">127 passed · 0 failed</td></tr>
+                <tr><td class="col-muted fs-12">Maintenance</td><td class="fs-12">35 findings</td></tr>
+                <tr><td class="col-muted fs-12">Release check</td><td class="fs-12">⚠️ 3 warnings</td></tr>
+                <tr><td class="col-muted fs-12">Last commit</td><td class="fs-12">2 hours ago</td></tr>
+                <tr><td class="col-muted fs-12">Baseline</td><td class="fs-12">Created today</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Source card (dynamic) -->
+        <div id="project-source-card" class="card mb-16" style="border-color:var(--border2)">
           <div class="card-body" style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
             <div style="min-width:160px">
-              <div class="kicker">Project Source</div>
-              <div id="ps-type" style="font-size:13px;font-weight:600;margin-bottom:4px"></div>
+              <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Project Source</div>
+              <div id="ps-type" style="font-size:13px;font-weight:600;margin-bottom:4px">Demo Project</div>
               <div id="ps-url" style="font-family:var(--mono);font-size:11px;color:var(--accent2);word-break:break-all"></div>
             </div>
             <div style="min-width:140px">
-              <div class="kicker">Analysis Type</div>
-              <div id="ps-analysis-type" style="font-size:13px;font-weight:600"></div>
+              <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Analysis Type</div>
+              <div id="ps-analysis-type" style="font-size:13px;font-weight:600">Demo Analysis</div>
             </div>
             <div style="min-width:140px">
-              <div class="kicker">Analysed</div>
+              <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Analysed</div>
               <div id="ps-date" style="font-size:13px;font-weight:600"></div>
             </div>
             <div style="margin-left:auto;display:flex;align-items:flex-start">
@@ -717,9 +569,9 @@ a{color:var(--lime)}
         </div>
 
         <!-- Baseline notice -->
-        <div class="card" id="baseline-card">
+        <div class="card" id="baseline-card" style="border-color:var(--accent);background:rgba(56,139,253,.05)">
           <div class="card-body" style="display:flex;gap:16px;align-items:flex-start">
-            <span class="lp-ico"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <span style="font-size:24px">🧠</span>
             <div>
               <div style="font-weight:700;margin-bottom:4px" id="baseline-title">Traceon Baseline Created</div>
               <div style="font-size:13px;color:var(--text2)" id="baseline-body"></div>
@@ -1042,7 +894,7 @@ function switchTab(tabEl, targetId) {
 
 function updateHeaderForProject(name, version, sourceType, healthStr, healthCls) {
   document.getElementById('header-project').innerHTML =
-    `<span class="proj-name">${name}</span>${version?`<span style="color:var(--text3);font-size:12px;margin-left:6px">${version}</span>`:''}`;
+    `<span>📦</span><span class="proj-name">${name}</span>${version?`<span style="color:var(--text3);font-size:11px">${version}</span>`:''}`;
   const pill = document.getElementById('header-source-pill');
   pill.className = 'source-pill live';
   pill.innerHTML = '<span class="dot"></span> LIVE PROJECT · GITHUB REPOSITORY';
@@ -1073,148 +925,150 @@ function updateBaselineCard(title, body) {
   document.getElementById('baseline-body').innerHTML = body;
 }
 
-
-
-// ============================================================
-// OVERVIEW DASHBOARD (bento) — every chart is drawn from the scanned repository
-// ============================================================
-function overviewCard(cls, title, body, footer = '') {
-  return `<div class="card ${cls}"><div class="card-header"><span class="card-title">${title}</span><span class="more" aria-hidden="true">···</span></div>${body}${footer}</div>`;
+// Patch overview stats cards for a URL profile
+function patchActiveProjectFromProfile(prof) {
+  // Health ring
+  const healthCard = document.querySelector('#page-overview .card-body svg ~ div');
+  if (prof.health) {
+    const circumference = 201;
+    const offset = circumference - (circumference * prof.health / 100);
+    const color = prof.health >= 85 ? 'var(--teal)' : prof.health >= 70 ? 'var(--yellow2)' : 'var(--red2)';
+    const strokeColor = color;
+    const svg = document.querySelector('#page-overview .card-body svg circle:nth-child(2)');
+    if (svg) { svg.setAttribute('stroke-dashoffset', offset); svg.setAttribute('stroke', strokeColor); }
+    if (healthCard) { healthCard.querySelector('div:first-child').textContent = prof.health; healthCard.querySelector('div:first-child').style.color = strokeColor; }
+  }
+  // Re-render overview stats
+  renderUrlProfileOverviewStats(prof);
 }
 
-function legendHtml(items, total) {
-  return `<div class="legend">${items.map(([c, l]) => `<span><span class="sw" style="border-color:${c}"></span>${escHtml(l)}</span>`).join('')}${total ? `<span class="total">Total: <b>${total}</b></span>` : ''}</div>`;
-}
+function renderUrlProfileOverviewStats(prof) {
+  const statsArea = document.querySelector('#page-overview .grid4.mb-20');
+  if (!statsArea) return;
 
-function renderOverviewFilters(m) {
-  const el = document.getElementById('overview-filters');
-  if (!el) return;
-  el.innerHTML = `
-    <span class="filter-pill">Repository: <b>${escHtml(m.name)}</b></span>
-    <span class="filter-pill">Branch: <b>${escHtml(m.branch)}</b></span>
-    ${m.commit ? `<span class="filter-pill">Commit: <b>${escHtml(m.commit.sha.slice(0, 7))}</b></span>` : ''}
-    <button class="icon-circle" onclick="rescanRepository()" title="Analyze again" aria-label="Analyze again"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></button>`;
-}
+  // ---- Health card ----
+  let healthCard;
+  if (prof.health != null) {
+    const hColor = prof.health >= 85 ? 'var(--teal)' : prof.health >= 70 ? 'var(--yellow2)' : 'var(--red2)';
+    const hOffset = 201 - (201 * prof.health / 100);
+    healthCard = `<div class="card">
+      <div class="card-body" style="text-align:center;padding:20px">
+        <svg width="80" height="80" viewBox="0 0 80 80">
+          <circle cx="40" cy="40" r="32" fill="none" stroke="var(--bg4)" stroke-width="8"/>
+          <circle cx="40" cy="40" r="32" fill="none" stroke="${hColor}" stroke-width="8"
+            stroke-dasharray="201" stroke-dashoffset="${hOffset}" stroke-linecap="round"
+            transform="rotate(-90 40 40)"/>
+        </svg>
+        <div style="margin-top:8px">
+          <div style="font-size:28px;font-weight:800;color:${hColor}">${prof.health}</div>
+          <div style="font-size:11px;color:var(--text2)">Health Score</div>
+        </div>
+      </div>
+    </div>`;
+  } else {
+    healthCard = `<div class="card">
+      <div class="card-body" style="text-align:center;padding:20px">
+        <div style="width:80px;height:80px;border-radius:50%;border:8px solid var(--bg4);margin:0 auto;display:flex;align-items:center;justify-content:center">
+          <span style="font-size:20px">🔒</span>
+        </div>
+        <div style="margin-top:8px">
+          <div style="font-size:14px;font-weight:700;color:var(--text2)">Not available</div>
+          <div style="font-size:11px;color:var(--text3)">Source not accessible</div>
+        </div>
+      </div>
+    </div>`;
+  }
 
-function rescanRepository() {
-  if (!GH.selectedRepo) return showConnect();
-  document.getElementById('connect-screen').classList.remove('hidden');
-  startRealScan();
-}
+  // ---- Files card ----
+  const langsHtml = prof.language.split(' / ').map(l => `<span class="badge badge-blue">${l.trim()}</span>`).join('');
+  const filesCard = `<div class="card"><div class="card-body">
+    <div class="stat-number">${prof.files != null ? prof.files : '<span style="font-size:18px;color:var(--text3)">Not available</span>'}</div>
+    <div class="stat-label">Source Files</div>
+    <hr class="separator">
+    <div class="flex gap-8" style="flex-wrap:wrap">${langsHtml}</div>
+  </div></div>`;
 
-// Two lines on one axis (files): reached vs untested per module
-function sparklineSvg(mods) {
-  if (mods.length < 2) return '<div class="fs-12 col-muted" style="padding:12px 4px">Not enough modules to chart.</div>';
-  const W = 300, H = 64, pad = 6;
-  const max = Math.max(1, ...mods.map(x => Math.max(x.reachedFiles, x.fileCount - x.reachedFiles)));
-  const X = i => pad + i * (W - 2 * pad) / (mods.length - 1);
-  const Y = v => H - pad - v / max * (H - 2 * pad);
-  const line = (vals, color) => `<polyline points="${vals.map((v, i) => `${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(' ')}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
-  const hits = mods.map((x, i) => `<rect x="${(X(i) - (W / mods.length) / 2).toFixed(1)}" y="0" width="${(W / mods.length).toFixed(1)}" height="${H}" fill="transparent"><title>${escHtml(x.label)}: ${x.reachedFiles} reached · ${x.fileCount - x.reachedFiles} untested</title></rect>`).join('');
-  return `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Files reached and untested per module">
-    ${line(mods.map(x => x.fileCount - x.reachedFiles), 'var(--amber)')}${line(mods.map(x => x.reachedFiles), 'var(--lime)')}${hits}</svg>`;
-}
+  // ---- Components card ----
+  const componentsCard = `<div class="card"><div class="card-body">
+    <div class="stat-number">${prof.components}</div>
+    <div class="stat-label">${prof._repoData ? 'Modules' : 'Components'}</div>
+    <hr class="separator">
+    <div style="font-size:12px;color:var(--text2)">${escHtml(prof.desc.slice(0, 80))}${prof.desc.length > 80 ? '…' : ''}</div>
+  </div></div>`;
 
-function renderOverviewDashboard(prof) {
-  const m = prof._repoData;
-  const el = document.getElementById('overview-bento');
-  if (!el || !m) return;
-  renderOverviewFilters(m);
-  const mods = (m.modules || []).slice().sort((a, b) => b.fileCount - a.fileCount);
-  const reached = new Set(m.testReached || []);
-  const cases = Object.values(m.testCases || {}).reduce((s, n) => s + n, 0);
-  const reachPct = prof.testReachPct || 0;
+  // ---- Coverage card ----
+  let coverageCard;
+  if (prof.coverage != null) {
+    const bar = prof.coverage;
+    const cls = bar >= 80 ? 'green' : bar >= 60 ? 'yellow' : 'red';
+    coverageCard = `<div class="card"><div class="card-body">
+      <div class="stat-number">${bar}%</div>
+      <div class="stat-label">Test Coverage</div>
+      <hr class="separator">
+      <div class="progress-bar"><div class="progress-fill ${cls}" style="width:${bar}%"></div></div>
+      <div style="font-size:12px;color:var(--text2);margin-top:8px">${prof.tests ? prof.tests.toLocaleString() + ' tests' : '—'}</div>
+    </div></div>`;
+  } else if (prof.testReachPct != null) {
+    const bar = prof.testReachPct;
+    const cls = bar >= 70 ? 'green' : bar >= 40 ? 'yellow' : 'red';
+    coverageCard = `<div class="card"><div class="card-body">
+      <div class="stat-number">${bar}%</div>
+      <div class="stat-label">Files Reached by Tests</div>
+      <hr class="separator">
+      <div class="progress-bar"><div class="progress-fill ${cls}" style="width:${bar}%"></div></div>
+      <div style="font-size:12px;color:var(--text2);margin-top:8px">${prof.tests} test files · static estimate, not line coverage</div>
+    </div></div>`;
+  } else {
+    coverageCard = `<div class="card"><div class="card-body">
+      <div style="font-size:18px;font-weight:700;color:var(--text2)">Not available</div>
+      <div class="stat-label">Test Coverage</div>
+      <hr class="separator">
+      <span class="ev-needs">NEEDS VERIFICATION</span>
+      <div style="font-size:12px;color:var(--text3);margin-top:6px">Source code not accessible</div>
+    </div></div>`;
+  }
 
-  // KPI: health
-  const kpiHealth = overviewCard('b-kpi', 'Health', `
-    <div class="kpi-nums">
-      <div class="kpi-num"><span class="tri ${prof.health >= 70 ? 'up' : 'down'}"></span><b>${prof.health}</b><small>Health Score</small></div>
-      <div class="kpi-num"><span class="tri ${reachPct >= 50 ? 'up' : 'down'}"></span><b>${reachPct}%</b><small>Files Reached by Tests</small></div>
-    </div>
-    <div class="kpi-foot">${sparklineSvg(mods.slice(0, 12))}</div>`,
-    legendHtml([['var(--lime)', 'Reached'], ['var(--amber)', 'Untested']]));
+  statsArea.innerHTML = healthCard + filesCard + componentsCard + coverageCard;
 
-  // KPI: tests with a dot grid (one dot per file, or per N files for large repos)
-  const files = m.sourceFiles.map(f => reached.has(f) ? 'g' : 'o').sort().concat(m.testFiles.map(() => 'w'));
-  const per = Math.max(1, Math.ceil(files.length / 84));
-  const dots = [];
-  for (let i = 0; i < files.length; i += per) dots.push(files[i]);
-  const kpiTests = overviewCard('b-kpi', 'Tests', `
-    <div class="kpi-nums">
-      <div class="kpi-num"><span class="tri ${m.testFiles.length ? 'up' : 'down'}"></span><b>${m.testFiles.length}</b><small>Test Files</small></div>
-      <div class="kpi-num"><span class="tri ${cases ? 'up' : 'down'}"></span><b>${cases}</b><small>Tests Found</small></div>
-    </div>
-    <div class="kpi-foot"><div class="dotgrid" role="img" aria-label="Source files reached or untested, and test files" title="${per > 1 ? `1 dot ≈ ${per} files` : '1 dot = 1 file'}">${dots.map(c => `<i class="dot-${c}"></i>`).join('')}</div></div>`,
-    legendHtml([['var(--lime)', 'Reached'], ['var(--amber)', 'Untested'], ['#f2f2f2', 'Tests']]));
+  // ---- Issues card ----
+  const issueCard = document.querySelector('#page-overview .grid2.mb-20 .card:first-child .card-body');
+  if (issueCard && prof.findings) {
+    const f = prof.findings;
+    const total = f.critical + f.high + f.medium + f.low;
+    const max = Math.max(f.critical, f.high, f.medium, f.low, 1);
+    issueCard.innerHTML = `
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="flex-center gap-12"><span class="badge badge-red">CRITICAL</span><div style="flex:1;height:8px;background:var(--bg4);border-radius:4px;overflow:hidden"><div style="width:${f.critical/max*100}%;height:100%;background:var(--red2);border-radius:4px"></div></div><span style="font-size:13px;font-weight:700;color:var(--red2);width:24px;text-align:right">${f.critical}</span></div>
+        <div class="flex-center gap-12"><span class="badge badge-orange">HIGH</span><div style="flex:1;height:8px;background:var(--bg4);border-radius:4px;overflow:hidden"><div style="width:${f.high/max*100}%;height:100%;background:var(--orange);border-radius:4px"></div></div><span style="font-size:13px;font-weight:700;color:var(--orange);width:24px;text-align:right">${f.high}</span></div>
+        <div class="flex-center gap-12"><span class="badge badge-yellow">MEDIUM</span><div style="flex:1;height:8px;background:var(--bg4);border-radius:4px;overflow:hidden"><div style="width:${f.medium/max*100}%;height:100%;background:var(--yellow2);border-radius:4px"></div></div><span style="font-size:13px;font-weight:700;color:var(--yellow2);width:24px;text-align:right">${f.medium}</span></div>
+        <div class="flex-center gap-12"><span class="badge badge-blue">LOW</span><div style="flex:1;height:8px;background:var(--bg4);border-radius:4px;overflow:hidden"><div style="width:${f.low/max*100}%;height:100%;background:var(--accent2);border-radius:4px"></div></div><span style="font-size:13px;font-weight:700;color:var(--accent2);width:24px;text-align:right">${f.low}</span></div>
+      </div>
+      <hr class="separator">
+      ${total === 0
+        ? `<div style="text-align:center;font-size:13px;color:var(--teal)">✅ No issues found from available data</div>`
+        : `<button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center" onclick="navigate('maintenance')">View All Issues →</button>`
+      }`;
+  }
 
-  // Modules: horizontal pill bars, coloured by risk
-  const top = mods.slice(0, 10);
-  const maxFiles = Math.max(1, ...top.map(x => x.fileCount));
-  const step = Math.max(1, Math.ceil(maxFiles / 5));
-  const axisMax = step * 5;
-  const rows = top.map(x => {
-    const risk = moduleRisk(x).toLowerCase();
-    const w = Math.max(14, x.fileCount / axisMax * 100);
-    return `<div class="tl-label" title="${escHtml(x.label)}">${escHtml(x.id.startsWith('(') ? x.label : x.id.split('/').slice(-2).join('/'))}</div>
-      <div class="tl-track"><div class="tl-bar ${risk}" style="width:${w}%" onclick="navigate('impact');selectImpactComponent(${jsArg(x.id)})"
-        title="${escHtml(x.label)} — ${x.fileCount} files · ${x.reachPct}% reached by tests · ${risk} risk">
-        <span class="tl-ico">${moduleIcon(x.id)}</span><span>${x.fileCount}</span></div></div>`;
-  }).join('');
-  const timeline = overviewCard('b-timeline', 'Modules', `
-    <div class="tl">${rows || '<div class="col-muted fs-13">No source modules detected.</div>'}
-      <div></div><div class="tl-axis">${[0, 1, 2, 3, 4, 5].map(i => `<span>${i * step}</span>`).join('')}</div></div>`,
-    legendHtml([['var(--lime)', 'Low risk'], ['var(--amber)', 'Medium'], ['#f2f2f2', 'High']], `${m.sourceFiles.length} files`));
+  // ---- Recommended Actions card ----
+  const actionsCard = document.querySelector('#page-overview .grid2.mb-20 .card:last-child .card-body');
+  if (actionsCard) {
+    const actions = buildActionsForProfile(prof);
+    if (actions.length === 0) {
+      actionsCard.innerHTML = `<div style="text-align:center;padding:20px;color:var(--text2);font-size:13px">✅ No recommended actions from available data</div>`;
+    } else {
+      actionsCard.innerHTML = actions.map(a => `
+        <div class="issue-item" style="padding:12px 18px;margin:0" onclick="navigate('${a.nav}')">
+          <span style="font-size:16px">${a.dot}</span>
+          <div class="issue-content">
+            <div class="issue-title">${escHtml(a.title)}</div>
+            <div class="issue-desc">${escHtml(a.desc)}</div>
+          </div>
+        </div>`).join('');
+    }
+  }
 
-  // Test reach: capsule columns per module
-  const capMods = mods.filter(x => !x.id.startsWith('(other')).slice(0, 9);
-  const capMax = Math.max(1, ...capMods.map(x => Math.max(x.testFiles.length, x.reachedFiles, x.fileCount - x.reachedFiles)));
-  const segColor = { w: '#f2f2f2', g: 'var(--lime)', o: 'var(--amber)' };
-  const caps = capMods.map(x => {
-    const segs = [[x.testFiles.length, 'w', 'Test files'], [x.reachedFiles, 'g', 'Reached files'], [x.fileCount - x.reachedFiles, 'o', 'Untested files']]
-      .filter(([v]) => v > 0)
-      .map(([v, cls, label], i) => `${i ? `<span class="cap-dot" style="background:${segColor[cls]}"></span>` : ''}<div class="cap ${cls}" style="height:${Math.round(30 + v / capMax * 60)}px" title="${label}: ${v}">${v}</div>`)
-      .join('');
-    return `<div class="cap-col" onclick="navigate('testing')" title="${escHtml(x.label)}">${segs}<span class="cap-name">${escHtml(x.id.split('/').pop())}</span></div>`;
-  }).join('');
-  const capsules = overviewCard('b-capsules', 'Test Reach', `<div class="caps">${caps || '<div class="col-muted fs-13">No source modules detected.</div>'}</div>`,
-    legendHtml([['#f2f2f2', 'Test files'], ['var(--lime)', 'Reached'], ['var(--amber)', 'Untested']], `${m.sourceFiles.length} files`));
-
-  // Issues by severity + recommended actions
-  const f = prof.findings;
-  const total = f.critical + f.high + f.medium + f.low;
-  const maxSev = Math.max(1, f.critical, f.high, f.medium, f.low);
-  const sev = (label, n, color, badge) => `<div class="sev-row"><span class="badge ${badge}" style="width:78px;justify-content:center">${label}</span>
-    <div class="sev-track"><div class="sev-fill" style="width:${n / maxSev * 100}%;background:${color}"></div></div><b style="width:24px;text-align:right">${n}</b></div>`;
-  const issues = overviewCard('b-half', 'Issues Found', `<div class="card-body" style="display:flex;flex-direction:column;gap:14px">
-      ${sev('CRITICAL', f.critical, 'var(--red2)', 'badge-red')}${sev('HIGH', f.high, 'var(--orange)', 'badge-orange')}
-      ${sev('MEDIUM', f.medium, 'var(--amber)', 'badge-yellow')}${sev('LOW', f.low, 'var(--lime)', 'badge-green')}
-      <button class="btn btn-secondary btn-sm" style="justify-content:center;margin-top:4px" onclick="navigate('maintenance')">${total ? `View all ${total} issues →` : 'Open Maintenance →'}</button></div>`);
-  const acts = buildActionsForProfile(prof);
-  const actions = overviewCard('b-half', 'Recommended Actions', `<div class="card-body" style="padding:6px 0">${acts.length
-    ? acts.map(a => `<div class="issue-item" style="padding:12px 22px;margin:0" onclick="navigate('${a.nav}')"><span style="font-size:14px">${a.dot}</span>
-        <div class="issue-content"><div class="issue-title">${escHtml(a.title)}</div><div class="issue-desc">${escHtml(a.desc)}</div></div></div>`).join('')
-    : '<div style="text-align:center;padding:24px;color:var(--text2);font-size:13px">✅ No recommended actions</div>'}</div>`);
-
-  el.innerHTML = kpiHealth + kpiTests + timeline + capsules + issues + actions;
   updateSidebarBadges(prof);
-}
-
-// Signed-in user in the top bar; the badge counts critical + high findings
-function renderHeaderUser(prof) {
-  const u = GH.user;
-  const chip = document.getElementById('header-user');
-  if (!chip) return;
-  chip.style.display = u ? '' : 'none';
-  if (!u) return;
-  document.getElementById('header-user-name').textContent = u.name || u.login;
-  document.getElementById('header-user-login').textContent = '@' + u.login;
-  const img = document.getElementById('header-user-avatar');
-  if (u.avatar_url) img.src = u.avatar_url + (u.avatar_url.includes('?') ? '&' : '?') + 's=96';
-  const badge = document.getElementById('header-user-badge');
-  const n = prof && prof.findings ? prof.findings.critical + prof.findings.high : 0;
-  badge.textContent = n;
-  badge.style.display = n ? '' : 'none';
-  badge.title = `${n} critical/high findings`;
 }
 
 function buildActionsForProfile(prof) {
@@ -1410,8 +1264,8 @@ function showLandingNotice(msg, tone = 'error') {
   if (!el) return;
   if (!msg) { el.style.display = 'none'; el.innerHTML = ''; return; }
   const c = tone === 'info'
-    ? 'background:rgba(184,242,92,.06);border:1px solid rgba(184,242,92,.25);color:var(--accent2)'
-    : 'background:rgba(255,77,79,.06);border:1px solid rgba(255,77,79,.3);color:var(--red2)';
+    ? 'background:rgba(56,139,253,.06);border:1px solid rgba(56,139,253,.25);color:var(--accent2)'
+    : 'background:rgba(218,54,51,.06);border:1px solid rgba(218,54,51,.3);color:var(--red2)';
   el.innerHTML = `<div style="padding:10px 14px;border-radius:var(--radius);font-size:13px;${c}">${escHtml(msg)}</div>`;
   el.style.display = 'block';
 }
@@ -1426,7 +1280,7 @@ function showGitHubSetupRequired(kind) {
     ? `Start Traceon with <code class="inline-code">npm start</code> and open <code class="inline-code">http://localhost:3000</code>.`
     : `An administrator needs to register a GitHub App and set <code class="inline-code">GITHUB_CLIENT_ID</code> and <code class="inline-code">GITHUB_CLIENT_SECRET</code> on the server.`;
   body.innerHTML = `
-    <div style="padding:16px;background:rgba(255,154,31,.06);border:1px solid rgba(255,154,31,.25);border-radius:var(--radius);margin-bottom:16px">
+    <div style="padding:16px;background:rgba(210,153,34,.06);border:1px solid rgba(210,153,34,.25);border-radius:var(--radius);margin-bottom:16px">
       <div style="font-weight:700;color:var(--yellow2);margin-bottom:6px">GitHub sign-in is not available yet</div>
       <div style="font-size:13px;color:var(--text2);line-height:1.7">
         ${intro}<br><br>
@@ -1551,7 +1405,7 @@ function renderRepoList(repos, query) {
     const lang = repo.language || 'Unknown';
     const vis = (repo.visibility || (repo.private ? 'private' : 'public')).toLowerCase();
     const visLabel = vis.charAt(0).toUpperCase() + vis.slice(1);
-    const badge = repo.private ? 'background:rgba(255,77,79,.12);color:var(--red2)' : 'background:rgba(184,242,92,.1);color:var(--teal)';
+    const badge = repo.private ? 'background:rgba(218,54,51,.12);color:var(--red2)' : 'background:rgba(63,185,80,.1);color:var(--teal)';
     return `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius2);padding:14px 16px;display:flex;gap:14px;align-items:flex-start;transition:border-color .15s" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
       <div style="flex:1;min-width:0">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px;flex-wrap:wrap">
@@ -1607,7 +1461,7 @@ function showRepoConfirm(repo) {
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
         <svg height="24" width="24" viewBox="0 0 16 16" fill="var(--text2)"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
         <span style="font-weight:700;font-size:16px">${escHtml(repo.full_name)}</span>
-        <span style="font-size:10px;padding:1px 7px;border-radius:10px;font-weight:600;${repo.private ? 'background:rgba(255,77,79,.12);color:var(--red2)' : 'background:rgba(184,242,92,.1);color:var(--teal)'}">${repo.private ? 'Private' : 'Public'}</span>
+        <span style="font-size:10px;padding:1px 7px;border-radius:10px;font-weight:600;${repo.private ? 'background:rgba(218,54,51,.12);color:var(--red2)' : 'background:rgba(63,185,80,.1);color:var(--teal)'}">${repo.private ? 'Private' : 'Public'}</span>
       </div>
       <table class="data-table" style="font-size:13px">
         <tr><td class="col-muted" style="width:130px">Owner</td><td>${escHtml(repo.owner || '')}</td></tr>
@@ -1617,7 +1471,7 @@ function showRepoConfirm(repo) {
         ${repo.description ? `<tr><td class="col-muted">Description</td><td>${escHtml(repo.description)}</td></tr>` : ''}
       </table>
     </div>
-    <div style="padding:12px 14px;background:rgba(184,242,92,.05);border:1px solid rgba(184,242,92,.15);border-radius:var(--radius);margin-bottom:16px;font-size:12px;color:var(--text2);line-height:1.6">
+    <div style="padding:12px 14px;background:rgba(56,139,253,.05);border:1px solid rgba(56,139,253,.15);border-radius:var(--radius);margin-bottom:16px;font-size:12px;color:var(--text2);line-height:1.6">
       <strong style="color:var(--accent2)">What Traceon will read:</strong> a read-only snapshot of the <strong>${escHtml(repo.default_branch || 'main')}</strong> branch — folder structure, source and test files, dependency manifests and lockfiles, README and docs, configuration, Dockerfiles and CI/CD workflows.
       <strong>Traceon never commits, pushes, opens pull requests or changes settings.</strong> Values in <code class="inline-code">.env</code> files are not read.
     </div>
@@ -1748,7 +1602,7 @@ async function startRealScan() {
     Object.entries(stageState).forEach(([id, st]) => { if (st === 'running') setStage(id, 'error'); });
     document.getElementById('cs-scan-title').innerHTML = '<span style="color:var(--red2)">✗</span> Analysis stopped';
     const reauth = code === 'not_authenticated';
-    body.insertAdjacentHTML('beforeend', `<div style="margin-top:12px;padding:12px 14px;background:rgba(255,77,79,.06);border:1px solid rgba(255,77,79,.25);border-radius:var(--radius);color:var(--red2);font-size:13px">
+    body.insertAdjacentHTML('beforeend', `<div style="margin-top:12px;padding:12px 14px;background:rgba(218,54,51,.06);border:1px solid rgba(218,54,51,.25);border-radius:var(--radius);color:var(--red2);font-size:13px">
       ${escHtml(GH_MESSAGES[code] || GH_MESSAGES.unavailable)}
       <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
         ${reauth
@@ -1990,7 +1844,7 @@ function finishGitHubScan(m) {
 
   const commit = m.commit ? ` @ <span class="file-path" style="font-size:11px">${escHtml(m.commit.sha.slice(0, 7))}</span>` : '';
   updateHeaderForProject(escHtml(name), activeUrlProfile.version, 'github', health + ' / 100', healthCls);
-  updateOverviewMeta('Overview',
+  updateOverviewMeta('Project Analysis',
     `${escHtml(m.fullName)} · ${escHtml(m.branch)}${commit} · Last analysed just now · <span class="ev-verified">VERIFIED</span> <span class="ev-ai">AI ANALYSIS</span>`);
   updateProjectSource('GitHub Repository', m.url, 'GitHub Repository Analysis', today, 'github');
 
@@ -2003,8 +1857,7 @@ function finishGitHubScan(m) {
     (m.commit ? `<br>Snapshot: ${escHtml(m.branch)} @ ${escHtml(m.commit.sha.slice(0, 7))} — “${escHtml(m.commit.message)}”` : '') + partial);
 
   document.getElementById('app').style.display = 'flex';
-  renderOverviewDashboard(activeUrlProfile);
-  renderHeaderUser(activeUrlProfile);
+  patchActiveProjectFromProfile(activeUrlProfile);
   renderRepoOverviewRow(m);
 
   patchOnboardingForRealRepo(m, framework);
@@ -2054,8 +1907,8 @@ function buildMapNodesFromModules(m) {
           id: mod.id,
           label: `${moduleIcon(mod.id)} ${short.length > 20 ? '…' + short.slice(-19) : short}\n${mod.fileCount} files · ${mod.reachPct}% tested`,
           x, y, w: W, h: H,
-          color: '#1a1a1c',
-          border: risk === 'HIGH' ? '#ff5f57' : risk === 'MEDIUM' ? '#ff9a1f' : '#b8f25c',
+          color: risk === 'HIGH' ? '#2a1515' : risk === 'MEDIUM' ? '#2a2210' : '#1c2a3a',
+          border: risk === 'HIGH' ? '#f85149' : risk === 'MEDIUM' ? '#d29922' : '#388bfd',
           risk,
         });
         x += W + GAP;
@@ -2084,12 +1937,12 @@ function moduleRisk(mod) {
 function buildFlatRepoNodes(m) {
   const nodes = [];
   const groups = [
-    { id:'source', label:'📂 Source Files', color:'#1a1a1c', border:'#b8f25c' },
+    { id:'source', label:'📂 Source Files', color:'#1c2a3a', border:'#388bfd' },
   ];
-  if (m.testFiles.length)  groups.push({ id:'tests',  label:'🧪 Tests',        color:'#1a1a1c', border:'#f2f2f2' });
-  if (m.docFiles.length)   groups.push({ id:'docs',   label:'📄 Docs',          color:'#1a1a1c', border:'#b8f25c' });
-  if (m.deployFiles.length)groups.push({ id:'deploy', label:'🚀 Deployment',    color:'#1a1a1c', border:'#b8f25c' });
-  if (m.configFiles.length)groups.push({ id:'config', label:'⚙️ Config',        color:'#1a1a1c', border:'#ff9a1f' });
+  if (m.testFiles.length)  groups.push({ id:'tests',  label:'🧪 Tests',        color:'#1a1a2a', border:'#8957e5' });
+  if (m.docFiles.length)   groups.push({ id:'docs',   label:'📄 Docs',          color:'#21262d', border:'#58a6ff' });
+  if (m.deployFiles.length)groups.push({ id:'deploy', label:'🚀 Deployment',    color:'#21262d', border:'#3fb950' });
+  if (m.configFiles.length)groups.push({ id:'config', label:'⚙️ Config',        color:'#2a1a00', border:'#db6d28' });
   groups.forEach((g, i) => nodes.push({ ...g, x: 60 + (i%3)*200, y: 40 + Math.floor(i/3)*100, w: 160, h: 44 }));
   return nodes;
 }
@@ -2301,7 +2154,7 @@ function initMap() {
     const line = document.createElementNS(ns,'line');
     line.setAttribute('x1',x1); line.setAttribute('y1',y1);
     line.setAttribute('x2',x2); line.setAttribute('y2',y2);
-    line.setAttribute('stroke','#3a3a3e'); line.setAttribute('stroke-width','1.5');
+    line.setAttribute('stroke','#444c56'); line.setAttribute('stroke-width','1.5');
     line.setAttribute('opacity','0.6');
     svg.appendChild(line);
   });
@@ -2315,7 +2168,7 @@ function initMap() {
     const rect = document.createElementNS(ns,'rect');
     rect.setAttribute('x', node.x); rect.setAttribute('y', node.y);
     rect.setAttribute('width', node.w); rect.setAttribute('height', node.h);
-    rect.setAttribute('rx','22'); rect.setAttribute('ry','22');
+    rect.setAttribute('rx','6'); rect.setAttribute('ry','6');
     rect.setAttribute('fill', node.color);
     rect.setAttribute('stroke', node.border);
     rect.setAttribute('stroke-width','1.5');
@@ -2401,7 +2254,7 @@ function initMaintenance() {
     const medCount   = items.filter(i=>i.sev==='MEDIUM').length;
     const lowCount   = items.filter(i=>i.sev==='LOW').length;
 
-    let h = `<div class="card mb-16" style="border-color:var(--accent2);background:rgba(184,242,92,.04)">
+    let h = `<div class="card mb-16" style="border-color:var(--accent2);background:rgba(56,139,253,.04)">
       <div class="card-body" style="padding:12px 18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center">
         <span class="source-pill live"><span class="dot"></span> LIVE PROJECT</span>
         <span class="ev-ai">AI ANALYSIS</span>
@@ -2630,7 +2483,7 @@ function renderRepoModuleDetail(id) {
   if (mod.importedBy.length) html += section('Used By', `<div style="display:flex;flex-wrap:wrap;gap:6px">${mod.importedBy.map(x => `<span class="badge badge-blue">${escHtml(x)}</span>`).join('')}</div>`);
   if (routes.length) html += section(`API Routes (${routes.length})`, `<div style="display:flex;flex-direction:column;gap:4px">${capList(routes, 5, r => `<span class="file-path">${escHtml(r.method)} ${escHtml(r.path)}</span>`)}</div>`);
   if (mod.testFiles.length) html += section('Test Files', `<div style="display:flex;flex-direction:column;gap:4px">${capList(mod.testFiles, 5, t => `<span class="file-path">${escHtml(t)}</span>`)}</div>`);
-  if (issues.length) html += section(`Issues (${issues.length})`, `<div style="display:flex;flex-direction:column;gap:6px">${issues.map(i => `<div style="font-size:12px;padding:6px 8px;background:rgba(255,77,79,.08);border-left:3px solid var(--red2);border-radius:4px">${escHtml(i.title)}</div>`).join('')}</div>`);
+  if (issues.length) html += section(`Issues (${issues.length})`, `<div style="display:flex;flex-direction:column;gap:6px">${issues.map(i => `<div style="font-size:12px;padding:6px 8px;background:rgba(218,54,51,.08);border-left:3px solid var(--red2);border-radius:4px">${escHtml(i.title)}</div>`).join('')}</div>`);
   html += `<div style="margin-top:16px;display:flex;flex-direction:column;gap:8px">
     <button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center" onclick="navigate('impact');selectImpactComponent(${jsArg(id)})">⚡ Analyse Change Impact</button>
     <button class="btn btn-secondary btn-sm" style="width:100%;justify-content:center" onclick="navigate('testing')">🧪 View Tests</button>
@@ -2700,7 +2553,7 @@ function renderRepoTestingGaps(el) {
       <div class="card-body">
         <div style="font-size:12px;font-weight:600;color:var(--text3);text-transform:uppercase;margin-bottom:10px">Files no test reaches</div>
         <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px">
-          ${capList(untested, 6, f => `<div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(255,77,79,.06);border-left:3px solid var(--red2);border-radius:4px">
+          ${capList(untested, 6, f => `<div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(218,54,51,.06);border-left:3px solid var(--red2);border-radius:4px">
             <span style="color:var(--red2)">⚠</span><span class="file-path">${escHtml(f)}</span>
             ${(m.symbols[f] || []).length ? `<span class="fs-12 col-muted">exports ${escHtml(m.symbols[f].slice(0, 4).join(', '))}</span>` : ''}
           </div>`)}
@@ -2864,7 +2717,7 @@ function renderRepoImpact(id) {
   </div>
   <div class="grid2 mb-16">
     ${card('Related Tests', `${relatedTests.length} test files`, relatedTests.length ? capList(relatedTests, 20, f => `<div class="impact-file test-f">${escHtml(f)}</div>`) : none('No tests import this module or its dependents.'))}
-    ${card('⚠️ Missing Regression Tests', `${untested.length} files`, untested.length ? capList(untested, 15, f => `<div style="padding:8px;margin-bottom:6px;background:rgba(255,77,79,.06);border-left:3px solid var(--red2);border-radius:4px;font-size:13px">No test reaches <span class="file-path">${escHtml(f)}</span></div>`) + `<button class="btn btn-primary btn-sm" style="margin-top:6px" onclick="openGenModal(${jsArg(id)})">⚡ Generate Test Stub</button>` : none('Every file in this module is reached by at least one test.'), `border-color:${untested.length ? 'var(--red2)' : 'var(--border)'}`)}
+    ${card('⚠️ Missing Regression Tests', `${untested.length} files`, untested.length ? capList(untested, 15, f => `<div style="padding:8px;margin-bottom:6px;background:rgba(218,54,51,.06);border-left:3px solid var(--red2);border-radius:4px;font-size:13px">No test reaches <span class="file-path">${escHtml(f)}</span></div>`) + `<button class="btn btn-primary btn-sm" style="margin-top:6px" onclick="openGenModal(${jsArg(id)})">⚡ Generate Test Stub</button>` : none('Every file in this module is reached by at least one test.'), `border-color:${untested.length ? 'var(--red2)' : 'var(--border)'}`)}
   </div>`;
   const extra = [];
   if (endpoints.length) extra.push(card('🔌 Affected Endpoints', `${endpoints.length} routes`, capList(endpoints, 15, r => `<div class="impact-file indirect">${escHtml(r.method)} ${escHtml(r.path)}<span class="col-muted" style="margin-left:auto">${escHtml(r.file)}</span></div>`)));
@@ -3118,7 +2971,7 @@ function initOnboarding() {
           </div>
         </div>
       </div>
-      <div class="card mb-16" style="border-color:rgba(184,242,92,.3);background:rgba(184,242,92,.04)">
+      <div class="card mb-16" style="border-color:rgba(56,139,253,.3);background:rgba(56,139,253,.04)">
         <div class="card-body" style="padding:12px 18px;font-size:13px;color:var(--text2)">
           <span class="ev-verified">VERIFIED</span> · Module dependencies come from the import graph (${Object.keys(m.importGraph || {}).length} files with internal imports). Use the <strong>Project Map</strong> to explore them visually.
         </div>
@@ -3164,7 +3017,7 @@ function initOnboarding() {
           <div class="mb-16"><div style="font-weight:600;margin-bottom:8px">Run Tests</div>
             <div class="code-block">${escHtml(testCmd)}</div>
           </div>
-          ${m.readmeContent ? `<div class="card" style="border-color:var(--green);background:rgba(184,242,92,.04)"><div class="card-body" style="padding:12px 16px">
+          ${m.readmeContent ? `<div class="card" style="border-color:var(--green);background:rgba(63,185,80,.04)"><div class="card-body" style="padding:12px 16px">
             <span style="color:var(--teal);font-weight:700">✅ README present</span>
             <span style="font-size:13px;color:var(--text2);margin-left:8px">Full setup instructions may be in the README. <span class="ev-verified">VERIFIED</span></span>
           </div></div>` : ''}
@@ -3242,7 +3095,7 @@ function openGenModal(module) {
         <span class="demo-label">GENERATED STUB — verify before use</span>
       </div>
       <div style="font-size:12px;font-weight:600;color:var(--text3);margin-bottom:8px">${escHtml(stub.testPath)}</div>
-      <pre style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:14px;font-family:var(--mono);font-size:12px;color:#d7f7a6;overflow-x:auto;line-height:1.7;white-space:pre">${escHtml(stub.code)}</pre>
+      <pre style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:14px;font-family:var(--mono);font-size:12px;color:#a5d6ff;overflow-x:auto;line-height:1.7;white-space:pre">${escHtml(stub.code)}</pre>
       <div class="fs-12 col-muted" style="margin-top:10px">Built from the exported names Traceon found in the file. The assertions are placeholders — fill in the TODOs with real inputs and expected results. Traceon does not write to your repository.</div>`;
     document.getElementById('gen-modal').classList.remove('hidden');
     return;
