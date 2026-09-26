@@ -11,12 +11,14 @@ npm start            # Node.js 22+ — no dependencies to install
 # open http://localhost:3000
 ```
 
-- **Try Demo Project** works immediately. It loads *ShopCore API*, a demo project
-  with simulated data, clearly labelled **DEMO PROJECT** / **SIMULATED**.
-- **Continue with GitHub** signs in with GitHub (standard OAuth) and analyses your
-  real repositories, read-only. These are labelled **LIVE PROJECT · GITHUB REPOSITORY**.
-  To enable it, register a GitHub App and set three environment variables; see
-  [docs/GITHUB_AUTH_SETUP.md](docs/GITHUB_AUTH_SETUP.md).
+Users sign in with **Continue with GitHub** (standard OAuth), choose which
+repositories Traceon may read, and analyse them. All analysis uses the real
+repository, read-only; there is no demo or sample data.
+
+To enable sign-in, register a GitHub App and set three environment variables; see
+[docs/GITHUB_AUTH_SETUP.md](docs/GITHUB_AUTH_SETUP.md). For hosting on Railway or
+another Node.js host, set the same variables there with `APP_URL` pointing at the
+public `https://` address.
 
 ## How it fits together
 

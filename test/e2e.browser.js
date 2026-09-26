@@ -39,7 +39,8 @@ const SP = process.env.E2E_SCREENSHOTS || os.tmpdir();
   await p.goto(base);
   await step('landing has no token inputs', async () => {
     const txt = await p.locator('#cs-landing').innerText();
-    if (!txt.includes('Continue with GitHub') || !txt.includes('Try Demo Project') || !txt.includes('Sign in with GitHub to securely access repositories you authorize for analysis.')) throw new Error(txt);
+    if (!txt.includes('Continue with GitHub') || !txt.includes('Sign in with GitHub to securely access repositories you authorize for analysis.')) throw new Error(txt);
+    if (/demo|simulated|preview a public url|paste a file/i.test(txt)) throw new Error('demo entry point on connect screen: ' + txt);
     if (await p.locator('input[type=password]').count()) throw new Error('password input present');
     if (/token|privy|wallet/i.test(await p.content().then(h => (h.match(/<div id="connect-screen">[\s\S]*?<!-- LOADING OVERLAY/) || [''])[0]))) throw new Error('token/privy text on connect screen');
   });
@@ -175,6 +176,22 @@ const SP = process.env.E2E_SCREENSHOTS || os.tmpdir();
     if (!t.includes('sample-app')) throw new Error(t.slice(0, 200));
     await p.evaluate(() => closeModal('report-modal'));
   });
+  await step('no demo or simulated content on any page', async () => {
+    const pages = ['overview','map','onboarding','maintenance','testing','impact','release','reports'];
+    let all = '';
+    for (const pg of pages) {
+      await p.evaluate(x => navigate(x), pg);
+      await p.waitForTimeout(150);
+      const tabs = p.locator(`#page-${pg} .tab`);
+      const n = await tabs.count();
+      if (n) for (let i = 0; i < n; i++) { await tabs.nth(i).click(); all += await p.locator(`#page-${pg}`).innerText(); }
+      else all += await p.locator(`#page-${pg}`).innerText();
+    }
+    all += await p.locator('#sidebar').innerText() + await p.locator('#header').innerText();
+    const hits = ['ShopCore', 'DEMO', 'SIMULATED', 'Developer Impact', 'Stripe', 'jsonwebtoken', 'paymentService'].filter(w => all.includes(w));
+    if (hits.length) throw new Error('demo content found: ' + hits.join(', '));
+  });
+
   await step('run tests does not simulate for real repos', async () => {
     await p.evaluate(() => runTests());
     const t = await p.locator('#toast').innerText();
@@ -205,8 +222,7 @@ const SP = process.env.E2E_SCREENSHOTS || os.tmpdir();
   });
 
   await step('switch project → still signed in → sign out', async () => {
-    await p.evaluate(() => showConnect());
-    await p.click('#gh-continue-btn');
+    await p.click('button:has-text("Switch Project")');
     await p.waitForSelector('#cs-gh-connected:has-text("Signed in")');
     await p.click('button:has-text("Sign out")');
     await p.waitForSelector('#cs-landing-notice:has-text("signed out")');
@@ -214,33 +230,12 @@ const SP = process.env.E2E_SCREENSHOTS || os.tmpdir();
     if (s.authenticated) throw new Error('still authenticated');
   });
 
-  await step('demo project still works and is labelled', async () => {
-    await p.click('button:has-text("Try Demo Project")');
-    await p.waitForTimeout(6500);
-    const pill = await p.locator('#header-source-pill').innerText();
-    if (!pill.includes('DEMO PROJECT')) throw new Error(pill);
-    await p.evaluate(() => navigate('developer-impact'));
-    if (!(await p.locator('#page-developer-impact').innerText()).includes('DEMO MEASUREMENTS')) throw new Error('label');
-    await p.evaluate(() => navigate('maintenance'));
-    const mt = await p.locator('#maintenance-findings').textContent();
-    if (!mt.includes('jsonwebtoken') || mt.includes('sample-app') || mt.includes('STRIPE_SECRET_KEY')) throw new Error('demo maintenance shows wrong project');
-    const ov = await p.evaluate(() => { navigate('overview'); return document.getElementById('page-overview').textContent; });
-    if (!ov.includes('Express 4.18') || ov.includes('Module Test Reach') || ov.includes('octo-dev')) throw new Error('demo overview not restored');
-    await p.evaluate(() => navigate('impact'));
-    if (!(await p.locator('#impact-component-buttons').textContent()).includes('Payments')) throw new Error('demo impact not restored');
+  await step('returning signed-in users land on their repositories', async () => {
+    await p.click('#gh-continue-btn');
+    await p.waitForSelector('#cs-repo-list button:has-text("Analyze Repository")');
+    await p.reload();
+    await p.waitForSelector('#cs-repo-list button:has-text("Analyze Repository")', { timeout: 10000 });
   });
-  await step('demo testing cards are clickable and show the passing run', async () => {
-    await p.evaluate(() => navigate('testing'));
-    await p.click('#page-testing .tab:has-text("Coverage Overview")');
-    if ((await p.locator('#tstat-tests-value').innerText()) !== '127') throw new Error('demo values not restored');
-    await p.click('#tstat-tests');
-    if (!(await p.locator('#test-results-panel').innerText()).includes('127 passed')) throw new Error('demo results');
-    await p.click('#page-testing .tab:has-text("Coverage Overview")');
-    await p.click('#tstat-gaps');
-    if (!(await p.locator('#testing-gaps').innerText()).includes('Payments')) throw new Error('demo gaps');
-    await shot('11-demo-gaps');
-  });
-  await shot('09-demo');
 
   // Opened as a plain file: honest "server required" state, no fake login
   const p2 = await ctx.newPage();

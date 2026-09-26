@@ -125,9 +125,9 @@ In production, serve Traceon over **HTTPS**, for example behind a TLS-terminatin
 proxy with `APP_URL=https://…`. Session cookies are marked `Secure` automatically
 when `APP_URL` uses https.
 
-If the GitHub variables are missing, Traceon still starts. The Demo Project works,
-and **Continue with GitHub** explains that sign-in has not been set up yet. It
-never falls back to a fake login.
+If the GitHub variables are missing, Traceon still starts, and **Continue with
+GitHub** explains that sign-in has not been set up yet. It never falls back to a
+fake login.
 
 ## 4. Server routes
 
