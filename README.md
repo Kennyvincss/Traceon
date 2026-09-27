@@ -2,8 +2,6 @@
 
 **Understand your codebase before you change it.**
 
-> **Also in this repository:** [Solana OS](solana-os/README.md), an all-in-one gateway to the Solana ecosystem (Next.js; deploy on Vercel with Root Directory `solana-os`).
-
 Traceon connects to your GitHub repositories and turns them into a clear picture
 of the project: how it is structured, where the risks are, which code is untested,
 what a change will affect, and whether it is ready to release. Everything is
